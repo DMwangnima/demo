@@ -8,4 +8,4 @@
 
 2）运行src/dbhelper下的db.go，生成相应的数据库和表
 
-博客查阅： http://lixifan.cn/article/29# demo
+博客查阅： http://lixifan.cn/article/29

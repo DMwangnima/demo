@@ -6,6 +6,7 @@ Package pb is a generated protocol buffer package.
 
 It is generated from these files:
 	user.proto
+	userStatus.proto
 
 It has these top-level messages:
 	User
@@ -17,6 +18,29 @@ It has these top-level messages:
 	DeletetUserRep
 	InsertUserReq
 	InsertUserRep
+	Session
+	GetSessionByUIDReq
+	GetSessionByUIDRep
+	GetSessionByTokenReq
+	UpdateConnectorAddrReq
+	GetSessionByTokenRep
+	GetConnectorAddrReq
+	GetConnectorAddrRep
+	UpdateConnectorAddrRep
+	NewSessionReq
+	NewSessionRep
+	RemoveSessionReq
+	RemoveSessionRep
+	RefreshSessionReq
+	RefreshSessionRep
+	UserConnectedReq
+	UserConnectedRep
+	UserDisonnectedReq
+	UserDisonnectedRep
+	RemoveSessionByUIDReq
+	RemoveSessionByUIDRep
+	GetUserIDByTokenReq
+	GetUserIDByTokenRep
 */
 package pb
 

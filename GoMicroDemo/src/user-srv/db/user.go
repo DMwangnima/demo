@@ -2,7 +2,7 @@ package db
 
 import (
 	"database/sql"
-	"mewe_job/GoMicroDemo/src/user-srv/entity"
+	"user-srv/entity"
 )
 
 // user表的查

@@ -1,6 +1,6 @@
 package entity
 
-import "mewe_job/GoMicroDemo/src/share/pb"
+import "share/pb"
 
 type User struct{
 	Id      int32 `json:"id" db:"id"`

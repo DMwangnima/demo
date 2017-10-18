@@ -1,11 +1,11 @@
 package handler
 
 import(
-	"mewe_job/GoMicroDemo/src/share/pb"
+	"share/pb"
 	"golang.org/x/net/context"
 	"log"
-	"mewe_job/GoMicroDemo/src/user-srv/db"
-	"mewe_job/GoMicroDemo/src/user-srv/entity"
+	"user-srv/db"
+	"user-srv/entity"
 )
 
 type UserHandler struct {

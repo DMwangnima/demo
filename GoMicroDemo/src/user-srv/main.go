@@ -6,13 +6,13 @@ import (
 	"github.com/micro/go-micro/server"
 	"user-srv/handler"
 	"github.com/micro/go-micro"
-	"log"
 	"user-srv/db"
 	"share/config"
+	"share/utils/log"
 )
 
 func main() {
-
+	logger := log.Init("user")
 	// 创建Service，并定义一些参数
 	service := micro.NewService(
 		micro.Name(config.Namespace+"user"),
@@ -22,25 +22,25 @@ func main() {
 	// 定义Service动作操作
 	service.Init(
 		micro.Action(func(c *cli.Context) {
-			log.Println("micro.Action test ...")
+			logger.Info("micro.Action test ...")
 			// 先注册db
 			db.Init(config.MysqlDSN)
 			pb.RegisterUserServiceHandler(service.Server(), handler.NewUserHandler(), server.InternalHandler(true))
 		}),
 		micro.AfterStop(func() error {
-			log.Println("micro.AfterStop test ...")
+			logger.Info("micro.AfterStop test ...")
 			return nil
 		}),
 		micro.AfterStart(func() error {
-			log.Println("micro.AfterStart test ...")
+			logger.Info("micro.AfterStart test ...")
 			return nil
 		}),
 	)
 
-	log.Println("启动user-srv服务 ...")
+	logger.Info("启动user-srv服务 ...")
 
 	//启动service
 	if err := service.Run(); err != nil {
-		log.Panic("user-srv服务启动失败 ...")
+		logger.Panic("user-srv服务启动失败 ...")
 	}
 }

@@ -3,6 +3,6 @@ package config
 const ConfigPrefix = "class/"
 
 var(
-	MysqlDSN = "root:ricoder@(localhost:3306)/gomicro"
+	MysqlDSN = "root:mysql8560025l.@(localhost:3306)/gomicro"
 	Namespace = "com.class.cinema."
 )

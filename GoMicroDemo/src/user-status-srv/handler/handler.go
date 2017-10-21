@@ -3,6 +3,8 @@ package handler
 import (
 	"go.uber.org/zap"
 	"github.com/garyburd/redigo/redis"
+	"share/utils/log"
+
 )
 type UserStatusHandler struct {
 	pool               *redis.Pool
@@ -17,5 +19,6 @@ func NewUserStatusHandler(pool *redis.Pool) *UserStatusHandler {
 		pool: pool,
 		sessionExpire: 15 * 86400,
 		tokenExpire:   15 * 86400,
+		logger:              log.Instance().Named("UserStatusHandler"),
 	}
 }

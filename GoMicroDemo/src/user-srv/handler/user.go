@@ -3,18 +3,22 @@ package handler
 import(
 	"share/pb"
 	"golang.org/x/net/context"
-	"log"
 	"user-srv/db"
 	"user-srv/entity"
+	"go.uber.org/zap"
+	tlog "share/utils/log"
+	"log"
 )
 
 type UserHandler struct {
-
+	logger                *zap.Logger
 }
 
 // new一个UserHandler
 func NewUserHandler() *UserHandler{
-	return &UserHandler{}
+	return &UserHandler{
+		logger:              tlog.Instance().Named("UserHandler"),
+	}
 }
 
 // 增
@@ -52,7 +56,7 @@ func (c *UserHandler) DeletetUser(ctx context.Context, req * pb.DeletetUserReq,r
 // 查
 func (c *UserHandler) SelectUser(ctx context.Context, req * pb.SelectUserReq,rsp *pb.SelectUserRep)error {
 
-	log.Println("SelectUser ...",req.GetId())
+	c.logger.Info("SelectUser ... ")
 	user,err := db.SelectUserById(req.GetId())
 	if err != nil {
 		log.Fatal("user.db.SelectUserByUId has a error")

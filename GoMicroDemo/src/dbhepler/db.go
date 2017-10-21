@@ -9,7 +9,7 @@ import (
 	"log"
 	"time"
 	"math/rand"
-	"mewe_job/GoMicroDemo/src/share/config"
+	"share/config"
 )
 
 var schema = `

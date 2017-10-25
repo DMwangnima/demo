@@ -1,6 +1,10 @@
-doFROM ubuntu:14.04
+FROM ubuntu:14.04
 
 ADD http://mirrors.163.com/.help/sources.list.trusty /etc/apt/sources.list
+
+COPY conf/redis.conf /etc/redis/6379.conf
+COPY conf/consul.json /etc/consul/consul.json
+COPY supervisor/*.conf /etc/supervisor/conf.d/
 
 RUN apt-get update && \
     apt-get -y install build-essential && \

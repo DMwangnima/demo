@@ -10,7 +10,7 @@ case "$1" in
         cd ..
     ;;
     run)
-        docker run --name=$Container -p 18082:8082 -d -v `pwd`:/data/deploy/$ProjectName gomicro-env
+        docker run --name=$Container -p 18087:8082 -p 18505:8500 -d -v `pwd`:/data/deploy/$ProjectName gomicro-env
     ;;
     init)
         docker exec $Container bash /data/deploy/$ProjectName/dockerbase/init.sh

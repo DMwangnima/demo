@@ -1,5 +1,7 @@
 FROM ubuntu:14.04
 
+MAINTAINER ricoder "ricoder142@gmail.com"
+
 ADD http://mirrors.163.com/.help/sources.list.trusty /etc/apt/sources.list
 
 COPY conf/redis.conf /etc/redis/6379.conf

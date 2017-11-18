@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8a6e6706-d436-426c-a12b-1f7c265408aa" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/GoMicroDemo/api/user.sql" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/.idea/workspace.xml" afterPath="$PROJECT_DIR$/GoMicroDemo/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/dockerbase/init.sh" afterPath="$PROJECT_DIR$/GoMicroDemo/dockerbase/init.sh" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/domain/apid.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/share.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/share/config.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/share/pb.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/share/service.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/share/tencent/cmq.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/share/utils/crypto.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/share/utils/log.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/share/wrapper.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/user-srv/db.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/user-srv/entity.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/user-srv/handler.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/user-status-srv/handler.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/user-status-srv/utils.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/garyburd/redigo/internal.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/garyburd/redigo/redis.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/go-log/log.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/go-log/log/log.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/go-sql-driver/mysql.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/golang/protobuf/proto.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/hashicorp/consul/api.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/hashicorp/consul/vendor/github.com/hashicorp/go-cleanhttp.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/hashicorp/consul/vendor/github.com/hashicorp/go-rootcerts.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/hashicorp/consul/vendor/github.com/hashicorp/serf/coordinate.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/hashicorp/consul/watch.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/jmoiron/sqlx.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/jmoiron/sqlx/reflectx.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/cli.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-log.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-micro.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-micro/broker.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-micro/broker/codec.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-micro/broker/codec/json.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-micro/broker/http.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-micro/client.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-micro/cmd.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-micro/codec.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-micro/codec/jsonrpc.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-micro/codec/protorpc.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-micro/errors.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-micro/metadata.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-micro/registry.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-micro/registry/consul.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-micro/registry/mdns.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-micro/selector.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-micro/selector/cache.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-micro/server.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-micro/server/debug.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-micro/server/debug/proto.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-micro/transport.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-micro/transport/codec.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/go-micro/transport/http.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/mdns.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/misc/lib/addr.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/misc/lib/net.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/micro/misc/lib/tls.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/miekg/dns.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/miekg/dns/internal/socket.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/mitchellh/hashstructure.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/pborman/uuid.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/pkg/errors.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/github.com/satori/go.uuid.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/go.uber.org/atomic.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/go.uber.org/multierr.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/go.uber.org/zap.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/go.uber.org/zap/buffer.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/go.uber.org/zap/internal/bufferpool.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/go.uber.org/zap/internal/color.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/go.uber.org/zap/internal/exit.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/go.uber.org/zap/zapcore.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/golang.org/x/net/bpf.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/golang.org/x/net/context.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/golang.org/x/net/internal/iana.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/golang.org/x/net/internal/socket.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/golang.org/x/net/ipv4.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/golang.org/x/net/ipv6.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/pkg/linux_amd64/vendor/gopkg.in/natefinch/lumberjack.v2.a" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/altsrc/flag.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/altsrc/flag_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/altsrc/helpers_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/altsrc/input_source_context.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/altsrc/map_input_source.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/altsrc/yaml_command_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/altsrc/yaml_file_loader.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/app.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/app_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/appveyor.yml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/autocomplete/bash_autocomplete" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/autocomplete/zsh_autocomplete" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/category.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/cli.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/command.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/command_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/context.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/context_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/flag.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/flag_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/help.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/help_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/cli/helpers_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-log/LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-log/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-log/log.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/broker/broker.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/broker/codec/codec.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/broker/codec/json/json.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/broker/codec/noop/noop.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/broker/http/http.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/broker/http_broker.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/broker/http_broker_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/broker/mock/mock.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/broker/mock/mock_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/broker/options.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/client/backoff.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/client/backoff_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/client/buffer.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/client/client.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/client/client_wrapper.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/client/context.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/client/mock/context.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/client/mock/mock.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/client/mock/mock_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/client/mock/options.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/client/options.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/client/options_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/client/retry.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/client/rpc/rpc.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/client/rpc_client.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/client/rpc_client_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/client/rpc_codec.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/client/rpc_pool.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/client/rpc_pool_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/client/rpc_publication.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/client/rpc_request.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/client/rpc_stream.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/cmd/cmd.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/cmd/options.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/codec/codec.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/codec/jsonrpc/client.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/codec/jsonrpc/jsonrpc.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/codec/jsonrpc/server.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/codec/protorpc/envelope.pb.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/codec/protorpc/envelope.proto" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/codec/protorpc/netstring.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/codec/protorpc/protorpc.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/errors/errors.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/errors/errors_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/function.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/function_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/go-micro.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/go-micro.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/metadata/metadata.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/metadata/metadata_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/options.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/publisher.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/registry/consul/consul.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/registry/consul/options.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/registry/consul_registry.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/registry/consul_registry_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/registry/consul_watcher.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/registry/consul_watcher_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/registry/encoding.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/registry/encoding_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/registry/mdns/encoding.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/registry/mdns/encoding_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/registry/mdns/mdns.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/registry/mdns/mdns_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/registry/mdns/watcher.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/registry/mdns/watcher_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/registry/mock/helper.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/registry/mock/helper_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/registry/mock/mock.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/registry/mock/mock_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/registry/mock/mock_watcher.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/registry/options.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/registry/registry.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/registry/service.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/registry/watcher.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/selector/cache/cache.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/selector/cache/cache_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/selector/cache/options.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/selector/default.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/selector/default_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/selector/filter.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/selector/filter_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/selector/options.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/selector/selector.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/selector/strategy.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/selector/strategy_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/buffer.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/context.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/debug.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/debug/debug.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/debug/proto/debug.pb.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/debug/proto/debug.proto" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/extractor.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/extractor_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/handler.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/mock/mock.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/mock/mock_handler.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/mock/mock_subscriber.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/mock/mock_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/options.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/rpc/rpc.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/rpc_codec.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/rpc_codec_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/rpc_handler.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/rpc_request.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/rpc_server.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/rpc_service.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/rpc_stream.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/server.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/server_wrapper.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/server/subscriber.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/service.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/service_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/transport/codec/codec.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/transport/codec/json/json.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/transport/codec/noop/noop.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/transport/http/http.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/transport/http/http_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/transport/http_transport.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/transport/http_transport_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/transport/mock/mock.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/transport/mock/mock_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/transport/options.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/transport/transport.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/wrapper.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/go-micro/wrapper_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/mdns/LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/mdns/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/mdns/client.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/mdns/dns_sd.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/mdns/dns_sd_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/mdns/examples/client/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/mdns/examples/client/main.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/mdns/examples/service/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/mdns/examples/service/main.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/mdns/server.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/mdns/server_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/mdns/zone.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/mdns/zone_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/misc/lib/addr/addr.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/misc/lib/addr/addr_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/misc/lib/net/net.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/misc/lib/net/net_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/vendor/github.com/micro/misc/lib/tls/tls.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/GoMicroDemo/src/web/web.go" afterPath="$PROJECT_DIR$/GoMicroDemo/src/web/web.go" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="init.sh" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/GoMicroDemo/dockerbase/init.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="db.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GoMicroDemo/src/dbhepler/db.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GoMicroDemo/api/user.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="5" column="18" lean-forward="true" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="GOROOT" path="$PROJECT_DIR$/../../../go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/GoMicroDemo/dockerbase/init.sh" />
+        <option value="$PROJECT_DIR$/GoMicroDemo/api/user.sql" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1286" />
+    <option name="y" value="88" />
+    <option name="width" value="1356" />
+    <option name="height" value="762" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="demo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="demo" type="462c0819:PsiDirectoryNode" />
+              <item name="GoMicroDemo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="demo" type="462c0819:PsiDirectoryNode" />
+              <item name="GoMicroDemo" type="462c0819:PsiDirectoryNode" />
+              <item name="dockerbase" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="demo" type="462c0819:PsiDirectoryNode" />
+              <item name="GoMicroDemo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="demo" type="462c0819:PsiDirectoryNode" />
+              <item name="GoMicroDemo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="dbhepler" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="go.vendoring.notification.had.been.shown" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1366" y="-6" width="1920" height="1086" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/GoMicroDemo/src/dbhepler/db.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GoMicroDemo/api/user.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="18" lean-forward="true" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GoMicroDemo/dockerbase/init.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

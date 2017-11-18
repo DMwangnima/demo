@@ -9,7 +9,7 @@ import (
 	"golang.org/x/net/context"
 	"strings"
 	"github.com/micro/go-web"
-	"mewe_job/GoMicroDemo/src/share/pb"
+	"share/pb"
 	"share/config"
 )
 var(

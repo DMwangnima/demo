@@ -8,6 +8,9 @@
 
 2）运行src/dbhelper下的db.go，生成相应的数据库和表
 
+系统应用可以查看项目基于go-micro微服务实现的在线电影院订票系统：
+https://github.com/wiatingpub/MTBSystem
+
 系列博客可以关注公众号：
 
 ![qrcode_for_gh_04e57fbebd02_258.jpg](http://upload-images.jianshu.io/upload_images/3365849-f14ff503e4288fc3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)

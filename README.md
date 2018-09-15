@@ -13,12 +13,6 @@ https://github.com/wiatingpub/MTBSystem
 
 ---------
 
-**java-netty**
-
-- ing
-
----------
-
 
 系列博客可以关注公众号：
 

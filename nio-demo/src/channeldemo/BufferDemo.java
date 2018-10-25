@@ -17,13 +17,11 @@ public class BufferDemo {
             // 将ByteBuffer模式从写入模式切换为读取模式
             buf.flip();
             // 判断其中是否还有数据待读取，查看源码position < limit
-            while(buf.hasRemaining()){
-                // 每次读取一个字节
-                System.out.print((char) buf.get());
-            }
+            // 每次读取一个字节
+            System.out.print((char) buf.get());
 
             // 清空buf
-            buf.clear();
+            buf.compact();
             // 此处不需要做flip切换吗？
             bytesRead = inChannel.read(buf);
         }

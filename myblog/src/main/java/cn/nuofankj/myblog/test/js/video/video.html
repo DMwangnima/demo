@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="never">
+    <title>仅供学习交流使用</title>
+    <link href="/static/DPlayer/DPlayer.min.css" rel="stylesheet">
+    <script src="/static/hls.js/hls.min.js"></script>
+    <script src="/static/DPlayer/DPlayer.min.js"></script>
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .video {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+</head>
+<body marginwidth="0" marginheight="0">
+<div id="dplayer" class="video"></div>
+<script>
+
+
+    let isiPad = navigator.userAgent.match(/iPad|iPhone|Android|Linux|iPod/i) !== null;
+
+    if (isiPad) {
+        document.getElementById("dplayer").innerHTML = `<video src="https:\/\/dl101.yunpan.360.cn\/intf.php?method=Download.downloadFile\x26qid=2858648280\x26fname=%2F%E5%8A%A8%E6%BC%AB%2F%E7%94%B5%E5%BD%B1%2F%E9%A3%8E%E8%AF%AD%E5%92%92.mp4\x26fhash=3220654e770afddeb3fe9ab9aaac67aa8f0bad11\x26dt=101_.77aa031f75c379cdc59ccf8c09ccd841\x26v=1.0.1\x26rtick=15400182967329\x26open_app_id=0\x26host=dl101.yunpan.360.cn\x26devtype=ecs_web\x26sign=3cea4f340016f0429c4ebbbea98a3d36\x26\x26token=2075726002.8.a31da7ff.2858648280.15247266742401551.1540004791" controls="controls" autoplay="autoplay" width="100%" height="100%" poster="/static/loading_wap.gif"></video>`;
+    } else {
+        new DPlayer({
+            container: document.getElementById('dplayer'),
+            autoplay: true,
+            video: {
+                url: 'https:\/\/dl101\.yunpan\.360\.cn\/intf\.php\?method=Download\.downloadFile\x26qid=2858648280\x26fname=%2F%E5%8A%A8%E6%BC%AB%2F%E7%94%B5%E5%BD%B1%2F%E9%A3%8E%E8%AF%AD%E5%92%92\.mp4\x26fhash=3220654e770afddeb3fe9ab9aaac67aa8f0bad11\x26dt=101_\.77aa031f75c379cdc59ccf8c09ccd841\x26v=1\.0\.1\x26rtick=15400182967329\x26open_app_id=0\x26host=dl101\.yunpan\.360\.cn\x26devtype=ecs_web\x26sign=3cea4f340016f0429c4ebbbea98a3d36\x26\x26token=2075726002\.8\.a31da7ff\.2858648280\.15247266742401551\.1540004791',
+                type: 'mp4' || 'normal'
+            }
+        });
+    }
+</script>
+
+
+</body></html>

@@ -1,40 +1,44 @@
 package cn.nuofankj.myblog.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "article")
 @Inheritance(strategy = InheritanceType.JOINED)
+@Data
 public class Article implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long aid;
+  private int aid;
 
   private String id;
   private String title;
   private String categoryId;
-  private long createTime;
-  private long deleteTime;
-  private long updateTime;
-  private long publishTime;
-  private long status;
+  private int createTime;
+  private int deleteTime;
+  private int updateTime;
+  @Column(columnDefinition = "int default 0 comment '打卡的开始时间'", nullable = true)
+  private int publishTime;
+  private int status;
   private String content;
   private String htmlContent;
   private String cover;
   private String subMessage;
-  private long pageview;
+  private int pageview;
   private String isEncrypt;
 
 
-  public long getAid() {
+  public int getAid() {
     return aid;
   }
 
-  public void setAid(long aid) {
+  public void setAid(int aid) {
     this.aid = aid;
   }
 
@@ -66,47 +70,47 @@ public class Article implements Serializable {
   }
 
 
-  public long getCreateTime() {
+  public int getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(long createTime) {
+  public void setCreateTime(int createTime) {
     this.createTime = createTime;
   }
 
 
-  public long getDeleteTime() {
+  public int getDeleteTime() {
     return deleteTime;
   }
 
-  public void setDeleteTime(long deleteTime) {
+  public void setDeleteTime(int deleteTime) {
     this.deleteTime = deleteTime;
   }
 
 
-  public long getUpdateTime() {
+  public int getUpdateTime() {
     return updateTime;
   }
 
-  public void setUpdateTime(long updateTime) {
+  public void setUpdateTime(int updateTime) {
     this.updateTime = updateTime;
   }
 
 
-  public long getPublishTime() {
+  public int getPublishTime() {
     return publishTime;
   }
 
-  public void setPublishTime(long publishTime) {
+  public void setPublishTime(int publishTime) {
     this.publishTime = publishTime;
   }
 
 
-  public long getStatus() {
+  public int getStatus() {
     return status;
   }
 
-  public void setStatus(long status) {
+  public void setStatus(int status) {
     this.status = status;
   }
 
@@ -147,11 +151,11 @@ public class Article implements Serializable {
   }
 
 
-  public long getPageview() {
+  public int getPageview() {
     return pageview;
   }
 
-  public void setPageview(long pageview) {
+  public void setPageview(int pageview) {
     this.pageview = pageview;
   }
 

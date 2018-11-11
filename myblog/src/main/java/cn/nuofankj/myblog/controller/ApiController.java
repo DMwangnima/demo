@@ -54,6 +54,7 @@ public class ApiController {
             ArticlesDto articles = apiService.articles(by, categoryId, tagId, page, pageSize);
             return MessageDto.valueOf(articles, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
         } catch (Exception e) {
+            log.error(e.getMessage());
             return MessageDto.valueOf(null, FriendTipData.ERROR_CODE, FriendTipData.ERROR_MSG, false);
         }
     }

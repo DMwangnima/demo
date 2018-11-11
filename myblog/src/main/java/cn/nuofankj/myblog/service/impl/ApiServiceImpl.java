@@ -13,10 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Configuration
@@ -35,6 +32,12 @@ public class ApiServiceImpl implements ApiService {
     private PagesRepository pagesRepository;
     @Autowired
     private CommentsRepository commentsRepository;
+    @Autowired
+    private ArticleTagMapperRepository articleTagMapperRepository;
+    @Autowired
+    private FriendsRepository friendsRepository;
+    @Autowired
+    private FriendsTypeRepository friendsTypeRepository;
 
     @Override
     public BlogConfigDto blogInfo() {
@@ -49,7 +52,7 @@ public class ApiServiceImpl implements ApiService {
         long categoryCount = categoryRepository.count();
         long tagCount = tagRepository.count();
         long articleCount = articleRepository.count();
-        BlogConfigDto blogConfigDto = BlogConfigDto.toBlogInfo(blogConfig, categoryCount, tagCount, articleCount);
+        BlogConfigDto blogConfigDto = BlogConfigDto.toDTO(blogConfig, categoryCount, tagCount, articleCount);
         return blogConfigDto;
     }
 
@@ -85,12 +88,26 @@ public class ApiServiceImpl implements ApiService {
     }
 
     @Override
-    public ArticlesDto articles(int page, int pageSize) {
+    public ArticlesDto articles(String by, String categoryId, String tagId, int page, int pageSize) {
 
         Pageable pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "aid");
         Page<Article> all = articleRepository.findAll(pageable);
         List<Article> articles = all.getContent();
-        ArticlesDto articlesDto = ArticlesDto.valueOf(page, pageSize, articles.size(), articles);
+        List<ArticleDetailDto> articleDetailDtos = new ArrayList<>();
+        for(Article article : articles) {
+            Category category = categoryRepository.findCategoryById(article.getCategoryId());
+
+            List<Tag> tags = new ArrayList<>();
+
+            List<ArticleTagMapper> articleTagMappers = articleTagMapperRepository.findAllByArticleId(article.getId());
+            for(ArticleTagMapper articleTagMapper : articleTagMappers) {
+                Tag tag = tagRepository.findTagById(articleTagMapper.getTagId());
+                tags.add(tag);
+            }
+            ArticleDetailDto articleDetailDto = ArticleDetailDto.valueOf(article, category, tags, null, null);
+            articleDetailDtos.add(articleDetailDto);
+        }
+        ArticlesDto articlesDto = ArticlesDto.valueOf(page, pageSize, articles.size(), articleDetailDtos);
         return articlesDto;
     }
 
@@ -110,13 +127,90 @@ public class ApiServiceImpl implements ApiService {
 
         Article article = articleRepository.findArticleById(id);
 
-        Category category = categoryRepository.findCategoryById(article.getId());
+        Category category = categoryRepository.findCategoryById(article.getCategoryId());
 
-        Optional<Tag> tagOptional = tagRepository.findById(category.getAid());
-        Tag tag = tagOptional.get();
+        List<ArticleTagMapper> articleTagMappers = articleTagMapperRepository.findAllByArticleId(article.getId());
+
+        List<Tag> tags = new ArrayList<>();
+
+        for(ArticleTagMapper articleTagMapper : articleTagMappers) {
+            Tag tag = tagRepository.findTagById(articleTagMapper.getTagId());
+            tags.add(tag);
+        }
 
         Map<String, ArticleDescDto> pn = new HashMap<>();
-        
-        return articleDto;
+        List<Article> byAidLessThan = articleRepository.findByAidLessThan(article.getAid());
+        List<Article> byAidGreaterThan = articleRepository.findByAidGreaterThan(article.getAid());
+        if(byAidLessThan.size() > 0) {
+            ArticleDescDto articleDescDto = ArticleDescDto.toDTO(byAidLessThan.get(0));
+            pn.put("pre", articleDescDto);
+        }
+        if(byAidGreaterThan.size() > 0) {
+            ArticleDescDto articleDescDto = ArticleDescDto.toDTO(byAidGreaterThan.get(0));
+            pn.put("next", articleDescDto);
+        }
+
+        ArticleDetailDto articleDetailDto = ArticleDetailDto.valueOf(article, category, tags, qrcode, pn);
+
+        return articleDetailDto;
+    }
+
+    @Override
+    public void addComment(String articleId, long parentId, String name, int replyId, String content, String sourceContent, String ticket, String randstr, String email) {
+
+        CommentDto commentDto = CommentDto.valueOf(articleId, parentId, replyId, name, email, content, sourceContent, 1);
+        Comments comments = CommentDto.toEnt(commentDto);
+        commentsRepository.save(comments);
+    }
+
+    @Override
+    public CategorysDto categorys() {
+        List<Category> categories = categoryRepository.findAll();
+        CategorysDto categorysDto = CategorysDto.valueOf(categories.size(), categories);
+        return categorysDto;
+    }
+
+    @Override
+    public TagsDetailDto tags() {
+        List<Tag> tags = tagRepository.findAll();
+        TagsDetailDto tagsDetailDto = TagsDetailDto.valueOf(tags.size(), tags);
+        return tagsDetailDto;
+    }
+
+    @Override
+    public FriendsTypesDto friends() {
+        List<FriendsType> friendsTypes = friendsTypeRepository.findAll();
+        FriendsTypeDto[] friendsTypeDtos = new FriendsTypeDto[friendsTypes.size()];
+        int size = 0;
+        for(FriendsType friendsType : friendsTypes) {
+            List<Friends> friends = friendsRepository.findAllByTypeId(friendsType.getId());
+            FriendsTypeDto friendsTypeDto = FriendsTypeDto.toDTO(friendsType, friends);
+            friendsTypeDtos[size] = friendsTypeDto;
+            size ++;
+        }
+        return FriendsTypesDto.valueOf(friendsTypeDtos);
+    }
+
+    @Override
+    public SearchDto search(String searchValue, int page, int pageSize) {
+        Pageable pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "aid");
+        List<Article> articles = articleRepository.findAllByTitleContaining(searchValue, pageable);
+        List<ArticleDetailDto> articleDetailDtos = new ArrayList<>();
+        for(Article article : articles) {
+            Category category = categoryRepository.findCategoryById(article.getCategoryId());
+
+            List<Tag> tags = new ArrayList<>();
+
+            List<ArticleTagMapper> articleTagMappers = articleTagMapperRepository.findAllByArticleId(article.getId());
+            for(ArticleTagMapper articleTagMapper : articleTagMappers) {
+                Tag tag = tagRepository.findTagById(articleTagMapper.getTagId());
+                tags.add(tag);
+            }
+            ArticleDetailDto articleDetailDto = ArticleDetailDto.valueOf(article, category, tags, null, null);
+            articleDetailDtos.add(articleDetailDto);
+        }
+        ArticlesDto articlesDto = ArticlesDto.valueOf(page, pageSize, articles.size(), articleDetailDtos);
+        SearchDto searchDto = SearchDto.valueOf(page, pageSize, articleDetailDtos.size(), articleDetailDtos);
+        return searchDto;
     }
 }

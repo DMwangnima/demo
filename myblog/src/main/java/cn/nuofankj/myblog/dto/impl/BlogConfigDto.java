@@ -19,7 +19,7 @@ public class BlogConfigDto {
     private long categoryCount;
     private long tagCount;
 
-    public static BlogConfigDto toBlogInfo(BlogConfig blogConfig, long categoryCount, long tagCount, long articleCount) {
+    public static BlogConfigDto toDTO(BlogConfig blogConfig, long categoryCount, long tagCount, long articleCount) {
         BlogConfigDto blogConfigDto = new BlogConfigDtoConvert().toDTO(blogConfig);
         blogConfigDto.setArticleCount(articleCount);
         blogConfigDto.setCategoryCount(categoryCount);

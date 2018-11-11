@@ -10,7 +10,7 @@ public class CategoryDto {
     private String id;
     private String name;
 
-    public CategoryDto toDto(Category category) {
+    public static CategoryDto toDto(Category category) {
         CategoryDto categoryDto = new CategoryDtoConvert().toDTO(category);
         return categoryDto;
     }

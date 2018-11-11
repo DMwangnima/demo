@@ -5,6 +5,8 @@ import cn.nuofankj.myblog.entity.Comments;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
+import java.util.Date;
+
 @Data
 public class CommentDto {
     private long id;
@@ -14,9 +16,31 @@ public class CommentDto {
     private String name;
     private String email;
     private String content;
+    private String sourceContent;
     private long createTime;
+    private long deleteTime;
     private long status;
-    private String isAuthor;
+    private int isAuthor;
+
+    public static CommentDto valueOf(String articleId, long parentId, long replyId, String name, String email,
+                                     String content, String sourceContent, int isAuthor) {
+        CommentDto commentDto = new CommentDto();
+        commentDto.setArticleId(articleId);
+        commentDto.setParentId(parentId);
+        commentDto.setReplyId(replyId);
+        commentDto.setName(name);
+        commentDto.setEmail(email);
+        commentDto.setContent(content);
+        commentDto.setSourceContent(sourceContent);
+        commentDto.setCreateTime(new Date().getTime());
+        commentDto.setIsAuthor(isAuthor);
+        return commentDto;
+    }
+
+    public static Comments toEnt(CommentDto commentDto) {
+        Comments comments = new CommentDtoConvert().toENT(commentDto);
+        return comments;
+    }
 
     public static CommentDto toDto(Comments comments) {
         CommentDto commentDto = new CommentDtoConvert().toDTO(comments);

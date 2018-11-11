@@ -22,7 +22,7 @@ public class ArticleDto {
     private long pageview;
     private String isEncrypt;
 
-    public static ArticleDto toArticleDto(Article article) {
+    public static ArticleDto toDto(Article article) {
         ArticleDto articleDto = new ArticleDto.ArticleDtoConvert().toDTO(article);
 
         return articleDto;

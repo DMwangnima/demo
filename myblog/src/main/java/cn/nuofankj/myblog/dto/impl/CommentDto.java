@@ -6,6 +6,7 @@ import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class CommentDto {
@@ -21,6 +22,7 @@ public class CommentDto {
     private long deleteTime;
     private long status;
     private int isAuthor;
+    private List<CommentDto> children;
 
     public static CommentDto valueOf(String articleId, long parentId, long replyId, String name, String email,
                                      String content, String sourceContent, int isAuthor) {

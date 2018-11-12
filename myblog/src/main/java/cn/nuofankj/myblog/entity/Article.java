@@ -15,30 +15,30 @@ public class Article implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int aid;
+  private long aid;
 
   private String id;
   private String title;
   private String categoryId;
-  private int createTime;
-  private int deleteTime;
-  private int updateTime;
-  @Column(columnDefinition = "int default 0 comment '打卡的开始时间'", nullable = true)
-  private int publishTime;
-  private int status;
+  private long createTime;
+  private long deleteTime;
+  private long updateTime;
+  private long publishTime;
+  // 状态，0-正常（发布），1-删除，2-记录（待发布）
+  private long status;
   private String content;
   private String htmlContent;
   private String cover;
   private String subMessage;
-  private int pageview;
+  private long pageview;
   private String isEncrypt;
 
 
-  public int getAid() {
+  public long getAid() {
     return aid;
   }
 
-  public void setAid(int aid) {
+  public void setAid(long aid) {
     this.aid = aid;
   }
 
@@ -70,47 +70,47 @@ public class Article implements Serializable {
   }
 
 
-  public int getCreateTime() {
+  public long getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(int createTime) {
+  public void setCreateTime(long createTime) {
     this.createTime = createTime;
   }
 
 
-  public int getDeleteTime() {
+  public long getDeleteTime() {
     return deleteTime;
   }
 
-  public void setDeleteTime(int deleteTime) {
+  public void setDeleteTime(long deleteTime) {
     this.deleteTime = deleteTime;
   }
 
 
-  public int getUpdateTime() {
+  public long getUpdateTime() {
     return updateTime;
   }
 
-  public void setUpdateTime(int updateTime) {
+  public void setUpdateTime(long updateTime) {
     this.updateTime = updateTime;
   }
 
 
-  public int getPublishTime() {
+  public long getPublishTime() {
     return publishTime;
   }
 
-  public void setPublishTime(int publishTime) {
+  public void setPublishTime(long publishTime) {
     this.publishTime = publishTime;
   }
 
 
-  public int getStatus() {
+  public long getStatus() {
     return status;
   }
 
-  public void setStatus(int status) {
+  public void setStatus(long status) {
     this.status = status;
   }
 
@@ -151,11 +151,11 @@ public class Article implements Serializable {
   }
 
 
-  public int getPageview() {
+  public long getPageview() {
     return pageview;
   }
 
-  public void setPageview(int pageview) {
+  public void setPageview(long pageview) {
     this.pageview = pageview;
   }
 

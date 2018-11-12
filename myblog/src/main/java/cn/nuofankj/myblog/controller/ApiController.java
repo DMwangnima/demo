@@ -24,6 +24,7 @@ public class ApiController {
             BlogConfigDto blogConfigDto = apiService.blogInfo();
             return MessageDto.valueOf(blogConfigDto, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
         } catch (Exception e) {
+            log.error("error",e);
             return MessageDto.valueOf(null, FriendTipData.ERROR_CODE, FriendTipData.ERROR_MSG, false);
         }
     }
@@ -31,19 +32,21 @@ public class ApiController {
     @RequestMapping("/getAbout")
     public MessageDto getAbout() {
         try {
-            AboutDto aboutDto = apiService.getAbout();
+            AboutDto aboutDto = apiService.about();
             return MessageDto.valueOf(aboutDto, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
         } catch (Exception e) {
+            log.error("error",e);
             return MessageDto.valueOf(null, FriendTipData.ERROR_CODE, FriendTipData.ERROR_MSG, false);
         }
     }
 
     @RequestMapping("/comments/list")
-    public MessageDto comments(int articleId) {
+    public MessageDto comments(String articleId) {
         try {
-            AboutDto aboutDto = apiService.getAbout();
-            return MessageDto.valueOf(aboutDto, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
+            CommentsDto comments = apiService.comments(articleId);
+            return MessageDto.valueOf(comments, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
         } catch (Exception e) {
+            log.error("error",e);
             return MessageDto.valueOf(null, FriendTipData.ERROR_CODE, FriendTipData.ERROR_MSG, false);
         }
     }
@@ -54,7 +57,7 @@ public class ApiController {
             ArticlesDto articles = apiService.articles(by, categoryId, tagId, page, pageSize);
             return MessageDto.valueOf(articles, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
         } catch (Exception e) {
-            log.error(e.getMessage());
+            log.error("error",e);
             return MessageDto.valueOf(null, FriendTipData.ERROR_CODE, FriendTipData.ERROR_MSG, false);
         }
     }
@@ -65,6 +68,7 @@ public class ApiController {
             ArticleDetailDto articleDetailDto = apiService.article(id);
             return MessageDto.valueOf(articleDetailDto, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
         } catch (Exception e) {
+            log.error("error",e);
             return MessageDto.valueOf(null, FriendTipData.ERROR_CODE, FriendTipData.ERROR_MSG, false);
         }
     }
@@ -75,6 +79,7 @@ public class ApiController {
             apiService.addComment(articleId, parentId, name, replyId, content, sourceContent, ticket, randstr, email);
             return MessageDto.valueOf(null, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
         } catch (Exception e) {
+            log.error("error",e);
             return MessageDto.valueOf(null, FriendTipData.ERROR_CODE, FriendTipData.ERROR_MSG, false);
         }
     }
@@ -85,6 +90,7 @@ public class ApiController {
             CategorysDto categorys = apiService.categorys();
             return MessageDto.valueOf(categorys, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
         } catch (Exception e) {
+            log.error("error",e);
             return MessageDto.valueOf(null, FriendTipData.ERROR_CODE, FriendTipData.ERROR_MSG, false);
         }
     }
@@ -95,6 +101,7 @@ public class ApiController {
             TagsDetailDto tags = apiService.tags();
             return MessageDto.valueOf(tags, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
         } catch (Exception e) {
+            log.error("error",e);
             return MessageDto.valueOf(null, FriendTipData.ERROR_CODE, FriendTipData.ERROR_MSG, false);
         }
     }
@@ -105,6 +112,7 @@ public class ApiController {
             FriendsTypesDto friends = apiService.friends();
             return MessageDto.valueOf(friends, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
         } catch (Exception e) {
+            log.error("error",e);
             return MessageDto.valueOf(null, FriendTipData.ERROR_CODE, FriendTipData.ERROR_MSG, false);
         }
     }
@@ -115,6 +123,29 @@ public class ApiController {
             SearchDto search = apiService.search(searchValue, page, pageSize);
             return MessageDto.valueOf(search, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
         } catch (Exception e) {
+            log.error("error",e);
+            return MessageDto.valueOf(null, FriendTipData.ERROR_CODE, FriendTipData.ERROR_MSG, false);
+        }
+    }
+
+    @RequestMapping("article/archives")
+    public MessageDto archives(int page, int pageSize) {
+        try {
+            ArchivesDetailDto archives = apiService.archives(page, pageSize);
+            return MessageDto.valueOf(archives, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
+        } catch (Exception e) {
+            log.error("error",e);
+            return MessageDto.valueOf(null, FriendTipData.ERROR_CODE, FriendTipData.ERROR_MSG, false);
+        }
+    }
+
+    @RequestMapping("getResume")
+    public MessageDto getResume() {
+        try {
+            ResumeDto resume = apiService.resume();
+            return MessageDto.valueOf(resume, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
+        } catch (Exception e) {
+            log.error("error",e);
             return MessageDto.valueOf(null, FriendTipData.ERROR_CODE, FriendTipData.ERROR_MSG, false);
         }
     }

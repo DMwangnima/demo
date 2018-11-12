@@ -12,7 +12,7 @@ public class CategoryDetailDto {
     private long createTime;
     private long updateTime;
     private int status;
-    private int articleCount;
+    private long articleCount;
 
     public static CategoryDetailDto toDto(Category category) {
         CategoryDetailDto categoryDto = new CategoryDetailDtoConvert().toDTO(category);
@@ -32,6 +32,8 @@ public class CategoryDetailDto {
             // TODO 此处的CategoryDetailDto有问题，应该会导致无法转换
             CategoryDetailDto categoryDto = new CategoryDetailDto();
             BeanUtils.copyProperties(category, categoryDto);
+            categoryDto.setCategoryName(category.getName());
+            categoryDto.setCategoryId(category.getId());
             return categoryDto;
         }
     }

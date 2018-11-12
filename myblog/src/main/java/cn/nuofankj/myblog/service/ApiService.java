@@ -6,9 +6,9 @@ public interface ApiService {
 
     BlogConfigDto blogInfo();
 
-    AboutDto getAbout();
+    AboutDto about();
 
-    CommentsDto comments(long articleId);
+    CommentsDto comments(String articleId);
 
     ArticlesDto articles(String by, String categoryId, String tagId, int page, int pageSize);
 
@@ -23,4 +23,8 @@ public interface ApiService {
     FriendsTypesDto friends();
 
     SearchDto search(String searchValue, int page, int pageSize);
+
+    ArchivesDetailDto archives(int page, int pageSize);
+
+    ResumeDto resume();
 }

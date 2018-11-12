@@ -5,8 +5,6 @@ import cn.nuofankj.myblog.entity.Article;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,10 +14,11 @@ public interface ArticleRepository extends JpaRepository<Article, Long>, JpaSpec
 
     Article findArticleById(String id);
 
-    List<Article> findByAidLessThan(long aid);
+    List<Article> findByAidLessThanAndStatus(long aid, long status, Pageable pageable);
 
-    List<Article> findByAidGreaterThan(long aid);
+    List<Article> findByAidGreaterThanAndStatus(long aid, long status, Pageable pageable);
 
-    List<Article> findAllByTitleContaining(String title, Pageable pageable);
+    List<Article> findAllByTitleContainingAndStatus(String title, long status, Pageable pageable);
 
+    List<Article> findAllByStatus(long status, Pageable pageable);
 }

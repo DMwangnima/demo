@@ -11,6 +11,9 @@ public class CategoryDto {
     private String name;
 
     public static CategoryDto toDto(Category category) {
+        if(category == null) {
+            return null;
+        }
         CategoryDto categoryDto = new CategoryDtoConvert().toDTO(category);
         return categoryDto;
     }

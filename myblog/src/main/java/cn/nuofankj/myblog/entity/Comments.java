@@ -23,7 +23,7 @@ public class Comments implements Serializable {
   private long createTime;
   private long deleteTime;
   private long status;
-  private String isAuthor;
+  private int isAuthor;
 
 
   public long getId() {
@@ -125,11 +125,11 @@ public class Comments implements Serializable {
   }
 
 
-  public String getIsAuthor() {
+  public int getIsAuthor() {
     return isAuthor;
   }
 
-  public void setIsAuthor(String isAuthor) {
+  public void setIsAuthor(int isAuthor) {
     this.isAuthor = isAuthor;
   }
 

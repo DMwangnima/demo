@@ -20,10 +20,13 @@ public class AdminController {
 
     public MessageDto login(String username, String password) {
         try {
+
             return MessageDto.valueOf(null, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
         } catch (Exception e) {
             log.error("error",e);
             return MessageDto.valueOf(null, FriendTipData.ERROR_CODE, FriendTipData.ERROR_MSG, false);
         }
     }
+
+
 }

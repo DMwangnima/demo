@@ -8,15 +8,15 @@ import java.util.Map;
 public class AdminUserDto {
     private String userId;
     private String userName;
-    private String lastLoginTime;
+    private long lastLoginTime;
     private Map<String,String> token;
 
-    public AdminUserDto valueOf(String userId, String userName, String lastLoginTime, String accessToken, String tokenExpiresIn, String exp) {
+    public static AdminUserDto valueOf(String userId, String userName, long lastLoginTime, String accessToken, long tokenExpiresIn, String exp) {
         AdminUserDto adminUserDto = new AdminUserDto();
         adminUserDto.setUserId(userId);
         adminUserDto.setLastLoginTime(lastLoginTime);
         adminUserDto.token.put("accessToken",accessToken);
-        adminUserDto.token.put("tokenExpiresIn",tokenExpiresIn);
+        adminUserDto.token.put("tokenExpiresIn",tokenExpiresIn + "");
         adminUserDto.token.put("exp",exp);
         return adminUserDto;
     }

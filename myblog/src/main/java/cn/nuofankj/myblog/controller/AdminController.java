@@ -17,7 +17,6 @@ public class AdminController {
     private AdminService adminService;
 
     @RequestMapping("/login")
-
     public MessageDto login(String username, String password) {
         try {
 
@@ -29,4 +28,13 @@ public class AdminController {
     }
 
 
+    @RequestMapping("/error")
+    public MessageDto error(String username, String password) {
+        try {
+            return MessageDto.valueOf("验证身份失败", FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
+        } catch (Exception e) {
+            log.error("error",e);
+            return MessageDto.valueOf(null, FriendTipData.ERROR_CODE, FriendTipData.ERROR_MSG, false);
+        }
+    }
 }

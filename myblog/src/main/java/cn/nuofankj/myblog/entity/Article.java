@@ -1,6 +1,7 @@
 package cn.nuofankj.myblog.entity;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,6 +10,7 @@ import java.io.Serializable;
 @Table(name = "article")
 @Inheritance(strategy = InheritanceType.JOINED)
 @Data
+@Accessors(chain = true)
 public class Article implements Serializable {
 
   private static final long serialVersionUID = 1L;

@@ -5,7 +5,7 @@ import cn.nuofankj.myblog.dto.impl.*;
 public interface AdminService {
     AdminUserDto login(String username, String password);
 
-    long saveArticle(long id, String content, String htmlContent, String title, String cover, String subMessage, String isEncrypt);
+    String saveArticle(String id, String content, String htmlContent, String title, String cover, String subMessage, String isEncrypt);
 
     StatisticsDto statisticsHome();
 

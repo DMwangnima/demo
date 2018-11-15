@@ -1,9 +1,12 @@
 package cn.nuofankj.myblog.dto.impl;
 
-import lombok.AllArgsConstructor;
+import cn.nuofankj.myblog.dto.DTOConvert;
+import cn.nuofankj.myblog.entity.Article;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.BeanUtils;
 
-@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class AdminArticleDto {
     private long id;
@@ -17,4 +20,27 @@ public class AdminArticleDto {
     private long deleteTime;
     private long updateTime;
     private long publishTime;
+
+    public static AdminArticleDto toDto(Article article) {
+
+        AdminArticleDto adminArticleDto = new AdminArticleDtoConvert().toDTO(article);
+        return adminArticleDto;
+    }
+
+    private static class AdminArticleDtoConvert implements DTOConvert<Article, AdminArticleDto> {
+
+        @Override
+        public Article toENT(AdminArticleDto adminArticleDto) {
+
+            throw new AssertionError("不支持正向转换方法");
+        }
+
+        @Override
+        public AdminArticleDto toDTO(Article article) {
+
+            AdminArticleDto adminArticleDto = new AdminArticleDto();
+            BeanUtils.copyProperties(article, adminArticleDto);
+            return adminArticleDto;
+        }
+    }
 }

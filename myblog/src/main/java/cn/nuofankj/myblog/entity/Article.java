@@ -1,6 +1,7 @@
 package cn.nuofankj.myblog.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;

@@ -20,4 +20,8 @@ public interface AdminService {
     CommentListDto commentsList(int page, int pageSize);
 
     FriendListDto friendList(int page, int pageSize);
+
+    String publish(String id, String content, String htmlContent, String title, String cover, String subMessage, String isEncrypt, String category, String tags);
+
+    String qiniuToken(String bucket, String withWater);
 }

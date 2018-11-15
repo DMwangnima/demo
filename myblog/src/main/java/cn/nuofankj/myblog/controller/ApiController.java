@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/blogapi/index.php/w")
 @Slf4j
 public class ApiController {
 

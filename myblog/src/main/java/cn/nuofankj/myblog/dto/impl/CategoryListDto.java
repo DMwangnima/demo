@@ -8,8 +8,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class CategoryListDto {
-    private int page;
-    private int pageSize;
-    private int count;
+//    private int page;
+//    private int pageSize;
+//    private int count;
     private List<CategoryDescDto> list;
 }

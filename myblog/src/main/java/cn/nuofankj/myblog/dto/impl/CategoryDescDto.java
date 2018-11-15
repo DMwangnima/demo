@@ -11,6 +11,6 @@ public class CategoryDescDto {
     private long createTime;
     private long updateTime;
     private int status;
-    private int articleCount;
-    private int canDel;
+    private long articleCount;
+    private String canDel;
 }

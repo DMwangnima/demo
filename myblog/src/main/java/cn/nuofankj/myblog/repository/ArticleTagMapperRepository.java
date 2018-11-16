@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface ArticleTagMapperRepository extends JpaRepository<ArticleTagMapper, Long> {
      List<ArticleTagMapper> findAllByArticleId(String articleId);
+     List<ArticleTagMapper> deleteByArticleId(String articleId);
 }

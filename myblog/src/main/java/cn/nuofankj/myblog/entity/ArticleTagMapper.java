@@ -1,11 +1,14 @@
 package cn.nuofankj.myblog.entity;
 
+import lombok.experimental.Accessors;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "article_tag_mapper")
 @Inheritance(strategy = InheritanceType.JOINED)
+@Accessors(chain = true)
 public class ArticleTagMapper implements Serializable {
 
   private static final long serialVersionUID = 1L;

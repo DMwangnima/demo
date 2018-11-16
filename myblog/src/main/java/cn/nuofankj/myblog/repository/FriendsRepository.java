@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface FriendsRepository extends JpaRepository<Friends, Long> {
     List<Friends> findAllByTypeId(long typeId);
+    Friends findFriendsByFriendId(String friendId);
 }

@@ -17,7 +17,7 @@ public class Tag implements Serializable {
   private String name;
   private long createTime;
   private long updateTime;
-  private String status;
+  private int status;
   private long articleCount;
 
 
@@ -66,11 +66,11 @@ public class Tag implements Serializable {
   }
 
 
-  public String getStatus() {
+  public int getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(int status) {
     this.status = status;
   }
 

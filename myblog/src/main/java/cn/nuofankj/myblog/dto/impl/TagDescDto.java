@@ -10,6 +10,6 @@ public class TagDescDto {
     private String tagName;
     private long createTime;
     private long updateTime;
-    private String status;
+    private int status;
     private long articleCount;
 }

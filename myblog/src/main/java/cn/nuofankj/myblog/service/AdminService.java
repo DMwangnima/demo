@@ -3,8 +3,10 @@ package cn.nuofankj.myblog.service;
 import cn.nuofankj.myblog.dto.impl.*;
 import cn.nuofankj.myblog.pojo.TagsPojo;
 
+import javax.servlet.http.HttpSession;
+
 public interface AdminService {
-    AdminUserDto login(String username, String password);
+    AdminUserDto login(String username, String password, HttpSession session, String ip);
 
     String saveArticle(String id, String content, String htmlContent, String title, String cover, String subMessage, String isEncrypt);
 
@@ -24,7 +26,7 @@ public interface AdminService {
 
     String publish(String id, String content, String htmlContent, String title, String cover, String subMessage, String isEncrypt, String category, String tags);
 
-    String qiniuToken(String bucket, String withWater);
+    String qiniuToken(String bucket, String withWater, HttpSession session);
 
     ArticleDetailDto articleInfo(String id);
 

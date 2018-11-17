@@ -20,7 +20,7 @@ public class Admin implements Serializable{
   private String accessToken;
   private long tokenExpiresIn;
   private long createTime;
-  private String status;
+  private long status;
   private long lastLoginTime;
 
 
@@ -96,11 +96,11 @@ public class Admin implements Serializable{
   }
 
 
-  public String getStatus() {
+  public long getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(long status) {
     this.status = status;
   }
 

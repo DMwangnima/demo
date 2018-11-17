@@ -4,10 +4,12 @@ import cn.nuofankj.myblog.constant.FriendTipData;
 import cn.nuofankj.myblog.dto.impl.*;
 import cn.nuofankj.myblog.pojo.TagsPojo;
 import cn.nuofankj.myblog.service.AdminService;
+import cn.nuofankj.myblog.util.CommonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -18,9 +20,9 @@ public class AdminController {
     private AdminService adminService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public MessageDto login(String username, String password) {
+    public MessageDto login(String username, String password, HttpServletRequest request) {
         try {
-            AdminUserDto login = adminService.login(username, password);
+            AdminUserDto login = adminService.login(username, password, request.getSession(), CommonUtil.getIpAddr(request));
             return MessageDto.valueOf(login, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
         } catch (Exception e) {
             log.error("error",e);

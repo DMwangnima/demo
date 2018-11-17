@@ -10,6 +10,8 @@ import cn.nuofankj.myblog.pojo.TagsPojo;
 import cn.nuofankj.myblog.repository.*;
 import cn.nuofankj.myblog.service.AdminService;
 import cn.nuofankj.myblog.util.CommonUtil;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -19,9 +21,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import javax.servlet.http.HttpSession;
+import java.util.*;
 
 @Service
 @Configuration
@@ -51,14 +52,29 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private SyslogRepository syslogRepository;
 
-    // TODO 暂时缺少session操作以及生成各种参数的操作
     @Override
-    public AdminUserDto login(String username, String password) {
+    public AdminUserDto login(String username, String password, HttpSession session, String ip) {
         Admin admin = adminRepository.findAllByUsername(username);
         if(admin != null) {
-            return AdminUserDto.valueOf(admin.getUserId(), admin.getUsername(), admin.getLastLoginTime(), admin.getAccessToken(), admin.getTokenExpiresIn(), null);
+            admin.setLastLoginTime(new Date().getTime());
+            admin.setAccessToken(CommonUtil.getRandomString(15));
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.DAY_OF_WEEK, 1);
+            admin.setTokenExpiresIn(calendar.getTime().getTime());
+            adminRepository.save(admin);
+            saveSysLog("管理员"+admin.getUsername()+"登录系统", ip);
+            long exp = calendar.getTime().getTime() - new Date().getTime();
+            return AdminUserDto.valueOf(admin.getUserId(), admin.getUsername(), admin.getLastLoginTime(), admin.getAccessToken(), admin.getTokenExpiresIn(), exp);
         }
         return null;
+    }
+
+    public void saveSysLog( String msg, String ip) {
+        SysLog sysLog = new SysLog();
+        sysLog.setContent(msg);
+        sysLog.setIp(ip);
+        sysLog.setTime(new Date().getTime());
+        syslogRepository.save(sysLog);
     }
 
     @Override
@@ -154,8 +170,35 @@ public class AdminServiceImpl implements AdminService {
 
     // TODO 此处待实现
     @Override
-    public String qiniuToken(String bucket, String withWater) {
-        return "test";
+    public String qiniuToken(String bucket, String withWater, HttpSession session) {
+        if(!bucket.equals("blogimg")) {
+            log.error("'bucket 目前只能是 blogimg");
+            return "bucket 目前只能是 blogimg";
+        }
+        String id = CommonUtil.getRandomString(20);
+        Map<String, String> args = new HashMap<>();
+        long deadLine = new Date().getTime() + 3600;
+        args.put("deadLine",deadLine + "");
+        String scope = bucket;
+        args.put("scope",scope);
+        String returnBody = "{'imgUrl': 'http://blogimg.lixifan.cn/$(key)'}";
+        args.put("returnBody",returnBody);
+        String data = JSONObject.toJSON(args).toString();
+
+        return "";
+    }
+
+    public String signWithData(String data) {
+        String baseData = base64_urlSafeEncode(data);
+
+    }
+
+    public String base64_urlSafeEncode(String data) {
+        Base64.getEncoder().encodeToString()
+    }
+
+    public String sign(String data) {
+
     }
 
     @Override

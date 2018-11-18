@@ -1,14 +1,17 @@
 package cn.nuofankj.myblog.service;
 
 import cn.nuofankj.myblog.dto.impl.*;
+import cn.nuofankj.myblog.pojo.CategoryPojo;
 import cn.nuofankj.myblog.pojo.TagsPojo;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 public interface AdminService {
     AdminUserDto login(String username, String password, HttpSession session, String ip);
 
-    String saveArticle(String id, String content, String htmlContent, String title, String cover, String subMessage, String isEncrypt);
+    String saveArticle(String id, String content, String htmlContent, String title, String cover, String subMessage, int isEncrypt, String category, String tags);
 
     StatisticsDto statisticsHome();
 
@@ -24,13 +27,13 @@ public interface AdminService {
 
     FriendListDto friendList(int page, int pageSize);
 
-    String publish(String id, String content, String htmlContent, String title, String cover, String subMessage, String isEncrypt, String category, String tags);
+    String publish(String ip, HttpServletRequest request, String id, String content, String htmlContent, String title, String cover, String subMessage, int isEncrypt, String category, String tags);
 
-    String qiniuToken(String bucket, String withWater, HttpSession session);
+    Map<String,String> qiniuToken(String bucket, String withWater, HttpServletRequest request);
 
     ArticleDetailDto articleInfo(String id);
 
-    String modifyArticle(String title, String cover, String subMessage, String isEncrypt, String content, String htmlContent, String id, String categoryId, TagsPojo[] tags);
+    String modifyArticle(String title, String cover, String subMessage, int isEncrypt, String content, String htmlContent, String id, String category, String tags);
 
     void articleDelete(String id);
 

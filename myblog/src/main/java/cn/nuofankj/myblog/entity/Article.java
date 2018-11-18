@@ -34,7 +34,7 @@ public class Article implements Serializable {
   private String cover;
   private String subMessage;
   private long pageview;
-  private String isEncrypt;
+  private int isEncrypt;
 
 
   public long getAid() {
@@ -163,11 +163,11 @@ public class Article implements Serializable {
   }
 
 
-  public String getIsEncrypt() {
+  public int getIsEncrypt() {
     return isEncrypt;
   }
 
-  public void setIsEncrypt(String isEncrypt) {
+  public void setIsEncrypt(int isEncrypt) {
     this.isEncrypt = isEncrypt;
   }
 

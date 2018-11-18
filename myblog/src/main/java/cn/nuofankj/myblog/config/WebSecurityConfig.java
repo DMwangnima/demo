@@ -33,6 +33,8 @@ public class WebSecurityConfig extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         InterceptorRegistration addInterceptor = registry.addInterceptor(getSecurityInterceptor());
 
+//        addInterceptor.excludePathPatterns("/**");
+
         // 排除配置
         addInterceptor.excludePathPatterns("/blogapi/index.php/w/*");
         addInterceptor.excludePathPatterns("/blogapi/index.php/a/login");
@@ -47,8 +49,7 @@ public class WebSecurityConfig extends WebMvcConfigurerAdapter {
         @Override
         public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
                 throws Exception {
-            HttpSession session = request.getSession();
-            Object accessToken = session.getAttribute(SESSION_KEY);
+            String accessToken = request.getHeader(SESSION_KEY);
             if (accessToken != null) {
                 Admin admin = adminRepository.findAllByAccessToken((String)accessToken);
                 if(admin != null) {

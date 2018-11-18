@@ -2,6 +2,7 @@ package cn.nuofankj.myblog.controller;
 
 import cn.nuofankj.myblog.constant.FriendTipData;
 import cn.nuofankj.myblog.dto.impl.*;
+import cn.nuofankj.myblog.pojo.CategoryPojo;
 import cn.nuofankj.myblog.pojo.TagsPojo;
 import cn.nuofankj.myblog.service.AdminService;
 import cn.nuofankj.myblog.util.CommonUtil;
@@ -10,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/blogapi/index.php/a")
@@ -86,9 +89,9 @@ public class AdminController {
     }
 
     @RequestMapping("/article/save")
-    public MessageDto commentsList(String id, String content, String htmlContent, String title, String cover, String subMessage, String isEncrypt) {
+    public MessageDto saveArticle(String id, String content, String htmlContent, String title, String cover, String subMessage, int isEncrypt, String category, String tags) {
         try {
-            String articleId = adminService.saveArticle(id, content, htmlContent, title, cover, subMessage, isEncrypt);
+            String articleId = adminService.saveArticle(id, content, htmlContent, title, cover, subMessage, isEncrypt, category, tags);
             return MessageDto.valueOf(articleId, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
         } catch (Exception e) {
             log.error("error",e);
@@ -99,9 +102,9 @@ public class AdminController {
 
     // TODO 最后两个参数我实在有点日狗了，完全不知道什么格式
     @RequestMapping("/article/publish")
-    public MessageDto publish(String id, String content, String htmlContent, String title, String cover, String subMessage, String isEncrypt, @RequestParam(value = "category[]") List<String> category, @RequestParam(value = "tags[][]") List<String> tags) {
+    public MessageDto publish(HttpServletRequest request, String id, String content, String htmlContent, String title, String cover, String subMessage, int isEncrypt, String category, String tags) {
         try {
-            String articleId = adminService.publish(id, content, htmlContent, title, cover, subMessage, isEncrypt, category.get(0),tags.get(0));
+            String articleId = adminService.publish(CommonUtil.getIpAddr(request), request, id, content, htmlContent, title, cover, subMessage, isEncrypt, category,tags);
             return MessageDto.valueOf(articleId, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
         } catch (Exception e) {
             log.error("error",e);
@@ -144,9 +147,9 @@ public class AdminController {
 
     // TODO 此处的tags数组参数待定
     @RequestMapping("/article/modify")
-    public MessageDto articleModify(String title, String cover, String subMessage, String isEncrypt, String content, String htmlContent, String id, @RequestParam("category[id]") String categoryId, TagsPojo[] tags) {
+    public MessageDto articleModify(String title, String cover, String subMessage, int isEncrypt, String content, String htmlContent, String id, String category, String tags) {
         try {
-            String articleId = adminService.modifyArticle(title, cover, subMessage, isEncrypt, content, htmlContent, id, categoryId, tags);
+            String articleId = adminService.modifyArticle(title, cover, subMessage, isEncrypt, content, htmlContent, id, category, tags);
             return MessageDto.valueOf(articleId, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
         } catch (Exception e) {
             log.error("error",e);
@@ -307,10 +310,11 @@ public class AdminController {
         }
     }
 
-    @RequestMapping("/test")
-    public MessageDto test() {
+    @RequestMapping("/qiniu/token")
+    public MessageDto test(String bucket, String withWater, HttpServletRequest request) {
         try {
-            return MessageDto.valueOf(null, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
+            Map<String,String> token = adminService.qiniuToken(bucket, withWater, request);
+            return MessageDto.valueOf(token, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
         } catch (Exception e) {
             log.error("error",e);
             return MessageDto.valueOf(null, FriendTipData.ERROR_CODE, FriendTipData.ERROR_MSG, false);

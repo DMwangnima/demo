@@ -1,17 +1,19 @@
 package cn.nuofankj.myblog.service.impl;
 
-import cn.nuofankj.myblog.constant.ArticleStatusEnum;
-import cn.nuofankj.myblog.constant.CategoryStatusEnum;
-import cn.nuofankj.myblog.constant.PagesTypeEnum;
-import cn.nuofankj.myblog.constant.TagStatusEnum;
+import cn.nuofankj.myblog.config.WebSecurityConfig;
+import cn.nuofankj.myblog.constant.*;
 import cn.nuofankj.myblog.dto.impl.*;
 import cn.nuofankj.myblog.entity.*;
+import cn.nuofankj.myblog.pojo.CategoryPojo;
 import cn.nuofankj.myblog.pojo.TagsPojo;
 import cn.nuofankj.myblog.repository.*;
 import cn.nuofankj.myblog.service.AdminService;
 import cn.nuofankj.myblog.util.CommonUtil;
+import cn.nuofankj.myblog.util.HMACSHA1;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.qiniu.util.Auth;
+import com.qiniu.util.StringMap;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +23,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
@@ -78,11 +81,14 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public String saveArticle(String id, String content, String htmlContent, String title, String cover, String subMessage, String isEncrypt) {
+    public String saveArticle(String id, String content, String htmlContent, String title, String cover, String subMessage, int isEncrypt, String category, String tags) {
         Article article = articleRepository.findArticleById(id);
         if(article == null){
-            return null;
+            article = new Article();
+            article.setId(CommonUtil.getRandomString(20));
         }
+        CategoryPojo categoryPojo = JSON.parseObject(category, CategoryPojo.class);
+        TagsPojo[] tagsPojos = JSON.parseObject(tags, TagsPojo[].class);
         article.setContent(content);
         article.setHtmlContent(htmlContent);
         article.setTitle(title);
@@ -153,8 +159,13 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public String publish(String id, String content, String htmlContent, String title, String cover, String subMessage, String isEncrypt, String category, String tags) {
+    public String publish(String ip, HttpServletRequest request, String id, String content, String htmlContent, String title, String cover, String subMessage, int isEncrypt, String categoryStr, String tagsStr) {
         Article article = new Article();
+        if(id == null) {
+            id = CommonUtil.getRandomString(20);
+        }
+        CategoryPojo category = JSON.parseObject(categoryStr, CategoryPojo.class);
+        TagsPojo[] tags = JSON.parseObject(tagsStr, TagsPojo[].class);
         article.setId(id);
         article.setContent(content);
         article.setHtmlContent(htmlContent);
@@ -162,43 +173,84 @@ public class AdminServiceImpl implements AdminService {
         article.setCover(cover);
         article.setSubMessage(subMessage);
         article.setIsEncrypt(isEncrypt);
+        if(category.getId() == null) {
+            Category cate = new Category();
+            cate.setName(category.getName());
+            cate.setCreateTime(new Date().getTime());
+            cate.setId(CommonUtil.getRandomString(20));
+            cate.setArticleCount(0);
+            categoryRepository.save(cate);
+            article.setCategoryId(cate.getId());
+        } else {
+            Category categoryById = categoryRepository.findCategoryById(category.getId());
+            categoryById.setArticleCount(categoryById.getArticleCount()+1);
+            categoryRepository.save(categoryById);
+        }
+
         article = articleRepository.save(article);
-//        Tag allByName = tagRepository.findAllByName(tags);
+        for(TagsPojo tagsPojo : tags) {
+            if(tagsPojo.getId() == null) {
+                Tag tag = new Tag();
+                tag.setId(CommonUtil.getRandomString(20));
+                tag.setName(tagsPojo.getName());
+                tag.setCreateTime(new Date().getTime());
+                tagRepository.save(tag);
+                ArticleTagMapper articleTagMapper = new ArticleTagMapper();
+                articleTagMapper.setArticleId(article.getId());
+                articleTagMapper.setTagId(tagsPojo.getId());
+                articleTagMapper.setCreateTime(new Date().getTime());
+                articleTagMapperRepository.save(articleTagMapper);
+            } else {
+                Tag tagById = tagRepository.findTagById(tagsPojo.getId());
+                tagById.setArticleCount(tagById.getArticleCount() + 1);
+                tagById.setUpdateTime(new Date().getTime());
+                tagRepository.save(tagById);
+                ArticleTagMapper articleTagMapper = new ArticleTagMapper();
+                articleTagMapper.setArticleId(article.getId());
+                articleTagMapper.setTagId(tagsPojo.getId());
+                articleTagMapper.setCreateTime(new Date().getTime());
+                articleTagMapperRepository.save(articleTagMapper);
+            }
+        }
+
+        String token = (String)request.getHeader(WebSecurityConfig.SESSION_KEY);
+        Admin allByAccessToken = adminRepository.findAllByAccessToken(token);
+        saveSysLog("管理员"+allByAccessToken.getUsername()+"发布了文章"+article.getId(), ip);
         return null;
 
     }
 
-    // TODO 此处待实现
     @Override
-    public String qiniuToken(String bucket, String withWater, HttpSession session) {
-        if(!bucket.equals("blogimg")) {
-            log.error("'bucket 目前只能是 blogimg");
-            return "bucket 目前只能是 blogimg";
-        }
-        String id = CommonUtil.getRandomString(20);
-        Map<String, String> args = new HashMap<>();
-        long deadLine = new Date().getTime() + 3600;
-        args.put("deadLine",deadLine + "");
-        String scope = bucket;
-        args.put("scope",scope);
-        String returnBody = "{'imgUrl': 'http://blogimg.lixifan.cn/$(key)'}";
-        args.put("returnBody",returnBody);
-        String data = JSONObject.toJSON(args).toString();
+    public Map<String,String> qiniuToken(String bucket, String withWater, HttpServletRequest request) {
 
-        return "";
+        Auth auth = Auth.create(BlogConstant.accessKey, BlogConstant.secretKey);
+        StringMap putPolicy = new StringMap();
+        putPolicy.put("returnBody", "{\"imgUrl\":\"http://pidfzr9do.bkt.clouddn.com/$(key)\"}");
+        long expireSeconds = 3600;
+        String upToken = auth.uploadToken(bucket, null, expireSeconds, putPolicy);
+        Map<String,String> map = new HashMap<>();
+        map.put("token", upToken);
+        return map;
     }
 
-    public String signWithData(String data) {
+    public String signWithData(String data, String accessKey) {
         String baseData = base64_urlSafeEncode(data);
-
+        return sign(baseData, accessKey)+":"+baseData;
     }
 
     public String base64_urlSafeEncode(String data) {
-        Base64.getEncoder().encodeToString()
+        String base64 = Base64.getEncoder().encodeToString(data.getBytes());
+        data = base64.replace("+", "-").replace("/", "_");
+        return data;
     }
 
-    public String sign(String data) {
-
+    public String sign(String data, String accessKey) {
+        try {
+            return HMACSHA1.getSignature(data, accessKey);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -216,7 +268,9 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public String modifyArticle(String title, String cover, String subMessage, String isEncrypt, String content, String htmlContent, String id, String categoryId, TagsPojo[] tags) {
+    public String modifyArticle(String title, String cover, String subMessage, int isEncrypt, String content, String htmlContent, String id, String categoryStr, String tagsStr) {
+        CategoryPojo category = JSON.parseObject(categoryStr, CategoryPojo.class);
+        TagsPojo[] tags = JSON.parseObject(tagsStr, TagsPojo[].class);
         Article article = articleRepository.findArticleById(id);
         article.setTitle(title);
         article.setCover(cover);
@@ -224,7 +278,7 @@ public class AdminServiceImpl implements AdminService {
         article.setIsEncrypt(isEncrypt);
         article.setContent(content);
         article.setHtmlContent(htmlContent);
-        article.setCategoryId(categoryId);
+        article.setCategoryId(category.getId());
         articleRepository.save(article);
         for(TagsPojo pojo : tags) {
             if(pojo.getId() != null && !pojo.getId().equals("")) {

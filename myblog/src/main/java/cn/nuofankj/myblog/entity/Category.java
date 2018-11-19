@@ -1,5 +1,7 @@
 package cn.nuofankj.myblog.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -19,8 +21,11 @@ public class Category implements Serializable {
   private long updateTime;
   private int status;
   private long articleCount;
-  private String canDel;
+  private int canDel;
 
+  public static long getSerialVersionUID() {
+    return serialVersionUID;
+  }
 
   public long getAid() {
     return aid;
@@ -30,7 +35,6 @@ public class Category implements Serializable {
     this.aid = aid;
   }
 
-
   public String getId() {
     return id;
   }
@@ -38,7 +42,6 @@ public class Category implements Serializable {
   public void setId(String id) {
     this.id = id;
   }
-
 
   public String getName() {
     return name;
@@ -48,24 +51,21 @@ public class Category implements Serializable {
     this.name = name;
   }
 
-
   public long getCreateTime() {
     return createTime;
   }
 
   public void setCreateTime(long createTime) {
-    this.createTime = createTime;
+    this.createTime = createTime % 1000;
   }
-
 
   public long getUpdateTime() {
     return updateTime;
   }
 
   public void setUpdateTime(long updateTime) {
-    this.updateTime = updateTime;
+    this.updateTime = updateTime % 1000;
   }
-
 
   public int getStatus() {
     return status;
@@ -75,7 +75,6 @@ public class Category implements Serializable {
     this.status = status;
   }
 
-
   public long getArticleCount() {
     return articleCount;
   }
@@ -84,13 +83,11 @@ public class Category implements Serializable {
     this.articleCount = articleCount;
   }
 
-
-  public String getCanDel() {
+  public int getCanDel() {
     return canDel;
   }
 
-  public void setCanDel(String canDel) {
+  public void setCanDel(int canDel) {
     this.canDel = canDel;
   }
-
 }

@@ -64,7 +64,7 @@ public class Friends implements Serializable {
   }
 
   public void setCreateTime(long createTime) {
-    this.createTime = createTime;
+    this.createTime = createTime % 1000;
   }
 
 
@@ -73,7 +73,7 @@ public class Friends implements Serializable {
   }
 
   public void setUpdateTime(long updateTime) {
-    this.updateTime = updateTime;
+    this.updateTime = updateTime % 1000;
   }
 
 
@@ -82,7 +82,7 @@ public class Friends implements Serializable {
   }
 
   public void setDeleteTime(long deleteTime) {
-    this.deleteTime = deleteTime;
+    this.deleteTime = deleteTime % 1000;
   }
 
 

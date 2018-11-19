@@ -3,11 +3,15 @@ package cn.nuofankj.myblog.controller;
 import cn.nuofankj.myblog.constant.FriendTipData;
 import cn.nuofankj.myblog.dto.impl.*;
 import cn.nuofankj.myblog.service.ApiService;
+import cn.nuofankj.myblog.util.CommonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 @RestController
@@ -52,9 +56,9 @@ public class ApiController {
     }
 
     @RequestMapping("/article/list")
-    public MessageDto articles(@RequestParam(required = false)String by, @RequestParam(required = false)String categoryId, @RequestParam(required = false)String tagId, int page, int pageSize) {
+    public MessageDto articles(@RequestParam(required = false , defaultValue = "")String by, @RequestParam(required = false)String categoryId, @RequestParam(required = false)String tagId, int page, int pageSize) {
         try {
-            ArticlesDto articles = apiService.articles(by, categoryId, tagId, page, pageSize);
+            ArticleInfoDetailDto articles = apiService.articles(by, categoryId, tagId, page, pageSize);
             return MessageDto.valueOf(articles, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
         } catch (Exception e) {
             log.error("error",e);
@@ -73,10 +77,13 @@ public class ApiController {
         }
     }
 
-    @RequestMapping("/comments/add")
-    public MessageDto add(String articleId, @RequestParam(required = false)long parentId, String name, int replyId, String content, String sourceContent, String ticket, String randstr, String email) {
+    @RequestMapping(value = "/comments/add", method = RequestMethod.POST)
+    public MessageDto add(HttpServletRequest request, String articleId, @RequestParam(required = false)Long parentId, String name, int replyId, String content, String sourceContent, String ticket, String randstr, String email) {
         try {
-            apiService.addComment(articleId, parentId, name, replyId, content, sourceContent, ticket, randstr, email);
+            if(parentId == null) {
+                parentId = 0L;
+            }
+            apiService.addComment(CommonUtil.getIpAddr(request), articleId, parentId, name, replyId, content, sourceContent, ticket, randstr, email);
             return MessageDto.valueOf(null, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
         } catch (Exception e) {
             log.error("error",e);
@@ -109,7 +116,7 @@ public class ApiController {
     @RequestMapping("friends/list")
     public MessageDto friends() {
         try {
-            FriendsTypesDto friends = apiService.friends();
+            FriendsTypeDto[] friends = apiService.friends();
             return MessageDto.valueOf(friends, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
         } catch (Exception e) {
             log.error("error",e);

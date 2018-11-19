@@ -19,4 +19,6 @@ public class FriendTipData {
     public static final String SUCCESS_MSG = "success";
 
     public static final String ERROR_MSG = "error";
+
+    public static final String LOGIN_ERROR_MSG = "登录失败";
 }

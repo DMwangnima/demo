@@ -12,4 +12,5 @@ public interface CommentsRepository extends JpaRepository<Comments, Long> {
     List<Comments> findAllByArticleIdAndIsAuthor(String articleId, int isAuthor, Pageable pageable);
     List<Comments> findAllByParentId(long parentId, Pageable pageable);
     List<Comments> findAllByParentIdAndArticleId(long parentId, String articleId, Pageable pageable);
+    List<Comments> findAllByArticleId(String articleId);
 }

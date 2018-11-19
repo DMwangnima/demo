@@ -1,5 +1,7 @@
 package cn.nuofankj.myblog.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -24,7 +26,11 @@ public class Comments implements Serializable {
   private long deleteTime;
   private long status;
   private int isAuthor;
+  private String ip;
 
+  public static long getSerialVersionUID() {
+    return serialVersionUID;
+  }
 
   public long getId() {
     return id;
@@ -34,7 +40,6 @@ public class Comments implements Serializable {
     this.id = id;
   }
 
-
   public String getArticleId() {
     return articleId;
   }
@@ -42,7 +47,6 @@ public class Comments implements Serializable {
   public void setArticleId(String articleId) {
     this.articleId = articleId;
   }
-
 
   public long getParentId() {
     return parentId;
@@ -52,7 +56,6 @@ public class Comments implements Serializable {
     this.parentId = parentId;
   }
 
-
   public long getReplyId() {
     return replyId;
   }
@@ -60,7 +63,6 @@ public class Comments implements Serializable {
   public void setReplyId(long replyId) {
     this.replyId = replyId;
   }
-
 
   public String getName() {
     return name;
@@ -70,7 +72,6 @@ public class Comments implements Serializable {
     this.name = name;
   }
 
-
   public String getEmail() {
     return email;
   }
@@ -78,7 +79,6 @@ public class Comments implements Serializable {
   public void setEmail(String email) {
     this.email = email;
   }
-
 
   public String getContent() {
     return content;
@@ -88,7 +88,6 @@ public class Comments implements Serializable {
     this.content = content;
   }
 
-
   public String getSourceContent() {
     return sourceContent;
   }
@@ -97,24 +96,21 @@ public class Comments implements Serializable {
     this.sourceContent = sourceContent;
   }
 
-
   public long getCreateTime() {
     return createTime;
   }
 
   public void setCreateTime(long createTime) {
-    this.createTime = createTime;
+    this.createTime = createTime % 1000;
   }
-
 
   public long getDeleteTime() {
     return deleteTime;
   }
 
   public void setDeleteTime(long deleteTime) {
-    this.deleteTime = deleteTime;
+    this.deleteTime = deleteTime % 1000;
   }
-
 
   public long getStatus() {
     return status;
@@ -124,7 +120,6 @@ public class Comments implements Serializable {
     this.status = status;
   }
 
-
   public int getIsAuthor() {
     return isAuthor;
   }
@@ -133,4 +128,11 @@ public class Comments implements Serializable {
     this.isAuthor = isAuthor;
   }
 
+  public String getIp() {
+    return ip;
+  }
+
+  public void setIp(String ip) {
+    this.ip = ip;
+  }
 }

@@ -1,15 +1,13 @@
 package cn.nuofankj.myblog.service;
 
 import cn.nuofankj.myblog.dto.impl.*;
-import cn.nuofankj.myblog.pojo.CategoryPojo;
-import cn.nuofankj.myblog.pojo.TagsPojo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 public interface AdminService {
-    AdminUserDto login(String username, String password, HttpSession session, String ip);
+    MessageDto login(String username, String password, HttpSession session, String ip);
 
     String saveArticle(String id, String content, String htmlContent, String title, String cover, String subMessage, int isEncrypt, String category, String tags);
 
@@ -23,7 +21,9 @@ public interface AdminService {
 
     TagListDto tagList(String all);
 
-    CommentListDto commentsList(int page, int pageSize);
+    CommentsDto commentsList(int page, int pageSize);
+
+    CommentsDto commentsListByArticleId(String articleId);
 
     FriendListDto friendList(int page, int pageSize);
 
@@ -62,4 +62,6 @@ public interface AdminService {
     void modifyFriends(String name, String url, int type, String friendIdfriendId);
 
     void deleteFriends(String friendId);
+
+    FriendsTypeDto[] friendTypeList();
 }

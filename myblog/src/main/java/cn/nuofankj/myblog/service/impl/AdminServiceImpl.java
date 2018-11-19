@@ -11,7 +11,6 @@ import cn.nuofankj.myblog.service.AdminService;
 import cn.nuofankj.myblog.util.CommonUtil;
 import cn.nuofankj.myblog.util.HMACSHA1;
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.qiniu.util.Auth;
 import com.qiniu.util.StringMap;
 import lombok.extern.slf4j.Slf4j;
@@ -56,9 +55,12 @@ public class AdminServiceImpl implements AdminService {
     private SyslogRepository syslogRepository;
 
     @Override
-    public AdminUserDto login(String username, String password, HttpSession session, String ip) {
+    public MessageDto login(String username, String password, HttpSession session, String ip) {
         Admin admin = adminRepository.findAllByUsername(username);
         if(admin != null) {
+            if(!admin.getPassword().equals(password)) {
+                return MessageDto.valueOf(null, FriendTipData.ERROR_CODE, FriendTipData.LOGIN_ERROR_MSG, false);
+            }
             admin.setLastLoginTime(new Date().getTime());
             admin.setAccessToken(CommonUtil.getRandomString(15));
             Calendar calendar = Calendar.getInstance();
@@ -67,7 +69,8 @@ public class AdminServiceImpl implements AdminService {
             adminRepository.save(admin);
             saveSysLog("管理员"+admin.getUsername()+"登录系统", ip);
             long exp = calendar.getTime().getTime() - new Date().getTime();
-            return AdminUserDto.valueOf(admin.getUserId(), admin.getUsername(), admin.getLastLoginTime(), admin.getAccessToken(), admin.getTokenExpiresIn(), exp);
+            AdminUserDto adminUserDto = AdminUserDto.valueOf(admin.getUserId(), admin.getUsername(), admin.getLastLoginTime(), admin.getAccessToken(), admin.getTokenExpiresIn(), exp);
+            return MessageDto.valueOf(adminUserDto, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, false);
         }
         return null;
     }
@@ -86,15 +89,18 @@ public class AdminServiceImpl implements AdminService {
         if(article == null){
             article = new Article();
             article.setId(CommonUtil.getRandomString(20));
+            article.setCreateTime(new Date().getTime());
         }
         CategoryPojo categoryPojo = JSON.parseObject(category, CategoryPojo.class);
         TagsPojo[] tagsPojos = JSON.parseObject(tags, TagsPojo[].class);
+        doTagACate(categoryPojo, tagsPojos, article);
         article.setContent(content);
         article.setHtmlContent(htmlContent);
         article.setTitle(title);
         article.setCover(cover);
         article.setSubMessage(subMessage);
         article.setIsEncrypt(isEncrypt);
+        articleRepository.save(article);
         return article.getId();
     }
 
@@ -145,17 +151,98 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public CommentListDto commentsList(int page, int pageSize) {
+    public CommentsDto commentsList(int page, int pageSize) {
         Pageable pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
-        Page<Comments> comments = commentsRepository.findAll(pageable);
-        return CommentListDto.valueOf(page, pageSize, comments.getSize(), comments.getContent());
+        List<Comments> commentsList = commentsRepository.findAll(pageable).getContent();
+        List<CommentDto> list = new ArrayList<>();
+        for(Comments comments : commentsList) {
+            CommentDto commentDto = CommentDto.toDto(comments);
+            List<Comments> allByParentId = commentsRepository.findAllByParentId(comments.getId(), pageable);
+            List<CommentDto> listTmp = new ArrayList<>();
+            for(Comments c : allByParentId) {
+                listTmp.add(CommentDto.toDto(c));
+            }
+            commentDto.setChildren(listTmp);
+            list.add(commentDto);
+        }
+        CommentsDto commentsDto = CommentsDto.valueOf(list, list.size());
+        return commentsDto;
+    }
+
+    @Override
+    public CommentsDto commentsListByArticleId(String articleId) {
+        Pageable pageable = PageRequest.of(0, 100, Sort.Direction.DESC, "id");
+        List<Comments> commentsList = commentsRepository.findAllByParentIdAndArticleId(0, articleId, pageable);
+        List<CommentDto> list = new ArrayList<>();
+        for(Comments comments : commentsList) {
+            CommentDto commentDto = CommentDto.toDto(comments);
+            List<Comments> allByParentId = commentsRepository.findAllByParentId(comments.getId(), pageable);
+            List<CommentDto> listTmp = new ArrayList<>();
+            for(Comments c : allByParentId) {
+                listTmp.add(CommentDto.toDto(c));
+            }
+            commentDto.setChildren(listTmp);
+            list.add(commentDto);
+        }
+        CommentsDto commentsDto = CommentsDto.valueOf(list, list.size());
+        return commentsDto;
     }
 
     @Override
     public FriendListDto friendList(int page, int pageSize) {
-        Pageable pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
+        Pageable pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "aid");
         Page<Friends> friends = friendsRepository.findAll(pageable);
         return FriendListDto.valueOf(page, pageSize, friends.getSize(), friends.getContent());
+    }
+
+    public void doTagACate(CategoryPojo category, TagsPojo[] tags, Article article) {
+        if(category != null) {
+            if(category.getId() == null) {
+                Category cate = new Category();
+                cate.setName(category.getName());
+                cate.setCreateTime(new Date().getTime());
+                cate.setId(CommonUtil.getRandomString(20));
+                cate.setArticleCount(0);
+                categoryRepository.save(cate);
+                article.setCategoryId(cate.getId());
+            } else {
+                Category categoryById = categoryRepository.findCategoryById(category.getId());
+                if(!article.getCategoryId().equals(category.getId())) {
+                    Category categoryTmp = categoryRepository.findCategoryById(article.getCategoryId());
+                    categoryTmp.setArticleCount(categoryById.getArticleCount()- 1);
+                    categoryRepository.save(categoryTmp);
+                    categoryById.setArticleCount(categoryById.getArticleCount()+1);
+                }
+                categoryById.setUpdateTime(new Date().getTime());
+                categoryRepository.save(categoryById);
+                article.setCategoryId(categoryById.getId());
+            }
+        }
+
+        if(tags != null) {
+            articleTagMapperRepository.deleteAllByArticleId(article.getId());
+            for(TagsPojo tagsPojo : tags) {
+                if(tagsPojo.getId() == null) {
+                    Tag tag = new Tag();
+                    tag.setId(CommonUtil.getRandomString(20));
+                    tag.setName(tagsPojo.getName());
+                    tag.setCreateTime(new Date().getTime());
+                    tag.setArticleCount(1);
+                    tagRepository.save(tag);
+                    tagsPojo.setId(tag.getId());
+                } else {
+                    Tag tagById = tagRepository.findTagById(tagsPojo.getId());
+                    tagById.setArticleCount(tagById.getArticleCount() + 1);
+                    tagById.setUpdateTime(new Date().getTime());
+                    tagRepository.save(tagById);
+                }
+                ArticleTagMapper articleTagMapper = new ArticleTagMapper();
+                articleTagMapper.setArticleId(article.getId());
+                articleTagMapper.setTagId(tagsPojo.getId());
+                articleTagMapper.setCreateTime(new Date().getTime());
+                articleTagMapperRepository.save(articleTagMapper);
+            }
+        }
     }
 
     @Override
@@ -173,51 +260,11 @@ public class AdminServiceImpl implements AdminService {
         article.setCover(cover);
         article.setSubMessage(subMessage);
         article.setIsEncrypt(isEncrypt);
-        if(category.getId() == null) {
-            Category cate = new Category();
-            cate.setName(category.getName());
-            cate.setCreateTime(new Date().getTime());
-            cate.setId(CommonUtil.getRandomString(20));
-            cate.setArticleCount(0);
-            categoryRepository.save(cate);
-            article.setCategoryId(cate.getId());
-        } else {
-            Category categoryById = categoryRepository.findCategoryById(category.getId());
-            categoryById.setArticleCount(categoryById.getArticleCount()+1);
-            categoryRepository.save(categoryById);
-        }
-
-        article = articleRepository.save(article);
-        for(TagsPojo tagsPojo : tags) {
-            if(tagsPojo.getId() == null) {
-                Tag tag = new Tag();
-                tag.setId(CommonUtil.getRandomString(20));
-                tag.setName(tagsPojo.getName());
-                tag.setCreateTime(new Date().getTime());
-                tagRepository.save(tag);
-                ArticleTagMapper articleTagMapper = new ArticleTagMapper();
-                articleTagMapper.setArticleId(article.getId());
-                articleTagMapper.setTagId(tagsPojo.getId());
-                articleTagMapper.setCreateTime(new Date().getTime());
-                articleTagMapperRepository.save(articleTagMapper);
-            } else {
-                Tag tagById = tagRepository.findTagById(tagsPojo.getId());
-                tagById.setArticleCount(tagById.getArticleCount() + 1);
-                tagById.setUpdateTime(new Date().getTime());
-                tagRepository.save(tagById);
-                ArticleTagMapper articleTagMapper = new ArticleTagMapper();
-                articleTagMapper.setArticleId(article.getId());
-                articleTagMapper.setTagId(tagsPojo.getId());
-                articleTagMapper.setCreateTime(new Date().getTime());
-                articleTagMapperRepository.save(articleTagMapper);
-            }
-        }
-
+        doTagACate(category, tags, article);
         String token = (String)request.getHeader(WebSecurityConfig.SESSION_KEY);
         Admin allByAccessToken = adminRepository.findAllByAccessToken(token);
         saveSysLog("管理员"+allByAccessToken.getUsername()+"发布了文章"+article.getId(), ip);
-        return null;
-
+        return article.getId();
     }
 
     @Override
@@ -280,38 +327,7 @@ public class AdminServiceImpl implements AdminService {
         article.setHtmlContent(htmlContent);
         article.setCategoryId(category.getId());
         articleRepository.save(article);
-        for(TagsPojo pojo : tags) {
-            if(pojo.getId() != null && !pojo.getId().equals("")) {
-                List<ArticleTagMapper> articleTagMappers = articleTagMapperRepository.deleteByArticleId(id);
-                ArticleTagMapper articleTagMapper = new ArticleTagMapper();
-                articleTagMapper.setArticleId(id);
-                articleTagMapper.setTagId(pojo.getId());
-                articleTagMapperRepository.save(articleTagMapper);
-                for(ArticleTagMapper tagMapper : articleTagMappers) {
-                    Tag tagById = tagRepository.findTagById(tagMapper.getTagId());
-                    tagById.setArticleCount(tagById.getArticleCount() - 1);
-                    tagById.setUpdateTime(new Date().getTime());
-                    tagRepository.save(tagById);
-                }
-                Tag tagById = tagRepository.findTagById(pojo.getId());
-                tagById.setArticleCount(tagById.getArticleCount() + 1);
-                tagById.setUpdateTime(new Date().getTime());
-                tagRepository.save(tagById);
-            }
-            if(pojo.getName() != null && !pojo.getName().equals("")) {
-                Tag tag = new Tag();
-                tag.setUpdateTime(new Date().getTime());
-                tag.setArticleCount(1);
-                tag.setCreateTime(new Date().getTime());
-                tag.setName(pojo.getName());
-                tag.setId(CommonUtil.getRandomString(25));
-                tagRepository.save(tag);
-                ArticleTagMapper articleTagMapper = new ArticleTagMapper();
-                articleTagMapper.setArticleId(id);
-                articleTagMapper.setTagId(tag.getId());
-                articleTagMapperRepository.save(articleTagMapper);
-            }
-        }
+        doTagACate(category, tags, article);
         return article.getId();
     }
 
@@ -424,6 +440,20 @@ public class AdminServiceImpl implements AdminService {
     public void deleteFriends(String friendId) {
         Friends friends = friendsRepository.findFriendsByFriendId(friendId);
         friendsRepository.delete(friends);
+    }
+
+    @Override
+    public FriendsTypeDto[] friendTypeList() {
+        List<FriendsType> friendsTypes = friendsTypeRepository.findAll();
+        FriendsTypeDto[] friendsTypeDtos = new FriendsTypeDto[friendsTypes.size()];
+        int size = 0;
+        for(FriendsType friendsType : friendsTypes) {
+            List<Friends> friends = friendsRepository.findAllByTypeId(friendsType.getId());
+            FriendsTypeDto friendsTypeDto = FriendsTypeDto.toDTO(friendsType, friends);
+            friendsTypeDtos[size] = friendsTypeDto;
+            size ++;
+        }
+        return friendsTypeDtos;
     }
 
     @Override

@@ -31,7 +31,7 @@ public class SysLog implements Serializable {
   }
 
   public void setTime(long time) {
-    this.time = time;
+    this.time = time % 1000;
   }
 
 

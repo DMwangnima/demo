@@ -53,7 +53,7 @@ public class ArticleTagMapper implements Serializable {
   }
 
   public void setCreateTime(long createTime) {
-    this.createTime = createTime;
+    this.createTime = createTime % 1000;
   }
 
 }

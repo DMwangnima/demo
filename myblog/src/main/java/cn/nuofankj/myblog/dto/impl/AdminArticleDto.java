@@ -9,7 +9,7 @@ import org.springframework.beans.BeanUtils;
 @NoArgsConstructor
 @Data
 public class AdminArticleDto {
-    private long id;
+    private String id;
     private String title;
     private String cover;
     private long pageview;

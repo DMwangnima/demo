@@ -53,7 +53,7 @@ public class Tag implements Serializable {
   }
 
   public void setCreateTime(long createTime) {
-    this.createTime = createTime;
+    this.createTime = createTime % 1000;
   }
 
 
@@ -62,7 +62,7 @@ public class Tag implements Serializable {
   }
 
   public void setUpdateTime(long updateTime) {
-    this.updateTime = updateTime;
+    this.updateTime = updateTime % 1000;
   }
 
 

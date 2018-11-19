@@ -24,15 +24,15 @@ public class AdminController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public MessageDto login(String username, String password, HttpServletRequest request) {
+        MessageDto dto = null;
         try {
-            AdminUserDto login = adminService.login(username, password, request.getSession(), CommonUtil.getIpAddr(request));
-            return MessageDto.valueOf(login, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
+            dto = adminService.login(username, password, request.getSession(), CommonUtil.getIpAddr(request));
+            return dto;
         } catch (Exception e) {
             log.error("error",e);
             return MessageDto.valueOf(null, FriendTipData.ERROR_CODE, FriendTipData.ERROR_MSG, false);
         }
     }
-
 
     @RequestMapping("/error")
     public MessageDto error(String username, String password) {
@@ -77,10 +77,21 @@ public class AdminController {
         }
     }
 
-    @RequestMapping("/comments/alllist")
-    public MessageDto commentsList(int page, int pageSize) {
+    @RequestMapping("/comments/list")
+    public MessageDto commentsList(String articleId) {
         try {
-            CommentListDto commentListDto = adminService.commentsList(page, pageSize);
+            CommentsDto commentsDto = adminService.commentsListByArticleId(articleId);
+            return MessageDto.valueOf(commentsDto, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
+        } catch (Exception e) {
+            log.error("error",e);
+            return MessageDto.valueOf(null, FriendTipData.ERROR_CODE, FriendTipData.ERROR_MSG, false);
+        }
+    }
+
+    @RequestMapping("/comments/alllist")
+    public MessageDto commentsAllList(int page, int pageSize) {
+        try {
+            CommentsDto commentListDto = adminService.commentsList(page, pageSize);
             return MessageDto.valueOf(commentListDto, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
         } catch (Exception e) {
             log.error("error",e);
@@ -99,8 +110,6 @@ public class AdminController {
         }
     }
 
-
-    // TODO 最后两个参数我实在有点日狗了，完全不知道什么格式
     @RequestMapping("/article/publish")
     public MessageDto publish(HttpServletRequest request, String id, String content, String htmlContent, String title, String cover, String subMessage, int isEncrypt, String category, String tags) {
         try {
@@ -278,6 +287,17 @@ public class AdminController {
         }
     }
 
+    @RequestMapping("/webConfig/getResume")
+    public MessageDto getResume() {
+        try {
+            PageMDDto about = adminService.getResume();
+            return MessageDto.valueOf(about, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
+        } catch (Exception e) {
+            log.error("error",e);
+            return MessageDto.valueOf(null, FriendTipData.ERROR_CODE, FriendTipData.ERROR_MSG, false);
+        }
+    }
+
     @RequestMapping("/friends/list")
     public MessageDto friendsList(int page, int pageSize) {
         try {
@@ -311,10 +331,21 @@ public class AdminController {
     }
 
     @RequestMapping("/qiniu/token")
-    public MessageDto test(String bucket, String withWater, HttpServletRequest request) {
+    public MessageDto qiniuToken(String bucket, String withWater, HttpServletRequest request) {
         try {
             Map<String,String> token = adminService.qiniuToken(bucket, withWater, request);
             return MessageDto.valueOf(token, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
+        } catch (Exception e) {
+            log.error("error",e);
+            return MessageDto.valueOf(null, FriendTipData.ERROR_CODE, FriendTipData.ERROR_MSG, false);
+        }
+    }
+
+    @RequestMapping("/friends/typeList")
+    public MessageDto friendTypeList() {
+        try {
+            FriendsTypeDto[] friendsTypesDtos = adminService.friendTypeList();
+            return MessageDto.valueOf(friendsTypesDtos, FriendTipData.SUCCESS_CODE, FriendTipData.SUCCESS_MSG, true);
         } catch (Exception e) {
             log.error("error",e);
             return MessageDto.valueOf(null, FriendTipData.ERROR_CODE, FriendTipData.ERROR_MSG, false);

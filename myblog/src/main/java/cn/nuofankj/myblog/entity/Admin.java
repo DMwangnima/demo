@@ -92,7 +92,7 @@ public class Admin implements Serializable{
   }
 
   public void setCreateTime(long createTime) {
-    this.createTime = createTime;
+    this.createTime = createTime % 1000;
   }
 
 
@@ -110,7 +110,7 @@ public class Admin implements Serializable{
   }
 
   public void setLastLoginTime(long lastLoginTime) {
-    this.lastLoginTime = lastLoginTime;
+    this.lastLoginTime = lastLoginTime % 1000;
   }
 
 }

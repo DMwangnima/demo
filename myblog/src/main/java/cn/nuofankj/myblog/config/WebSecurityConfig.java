@@ -33,12 +33,12 @@ public class WebSecurityConfig extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         InterceptorRegistration addInterceptor = registry.addInterceptor(getSecurityInterceptor());
 
-//        addInterceptor.excludePathPatterns("/**");
+        addInterceptor.excludePathPatterns("/**");
 
         // 排除配置
-        addInterceptor.excludePathPatterns("/blogapi/index.php/w/*");
-        addInterceptor.excludePathPatterns("/blogapi/index.php/a/login");
-        addInterceptor.excludePathPatterns("/blogapi/index.php/a/error");
+//        addInterceptor.excludePathPatterns("/blogapi/index.php/w/*");
+//        addInterceptor.excludePathPatterns("/blogapi/index.php/a/login");
+//        addInterceptor.excludePathPatterns("/blogapi/index.php/a/error");
 
         // 拦截配置
         addInterceptor.addPathPatterns("/**");

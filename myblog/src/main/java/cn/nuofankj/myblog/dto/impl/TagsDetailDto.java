@@ -3,18 +3,19 @@ package cn.nuofankj.myblog.dto.impl;
 import cn.nuofankj.myblog.entity.Tag;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 public class TagsDetailDto {
     private int count;
-    private List<TagDetailDto> list;
+    private List<TagDetailDto> list = new ArrayList<>();
 
     public static TagsDetailDto valueOf(int count, List<Tag> list) {
         TagsDetailDto tagsDetailDto = new TagsDetailDto();
         tagsDetailDto.setCount(count);
         for(Tag tag : list) {
-            TagDetailDto tagDetailDto = TagDetailDto.toDto(tag);
+            TagDetailDto tagDetailDto = TagDetailDto.valueOf(tag);
             tagsDetailDto.list.add(tagDetailDto);
         }
         return tagsDetailDto;

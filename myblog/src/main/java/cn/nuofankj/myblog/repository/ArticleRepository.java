@@ -22,5 +22,9 @@ public interface ArticleRepository extends JpaRepository<Article, Long>, JpaSpec
 
     List<Article> findAllByStatus(long status, Pageable pageable);
 
+    List<Article> findAllByStatusAndCategoryId(long status, String categoryId, Pageable pageable);
+
+    List<Article> findAllByStatusAndIdNotContains(long status, Pageable pageable, String id);
+
     List<Article> findAllByStatus(long status);
 }

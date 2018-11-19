@@ -10,17 +10,17 @@ public interface ApiService {
 
     CommentsDto comments(String articleId);
 
-    ArticlesDto articles(String by, String categoryId, String tagId, int page, int pageSize);
+    ArticleInfoDetailDto articles(String by, String categoryId, String tagId, int page, int pageSize);
 
     ArticleDetailDto article(String id);
 
-    void addComment(String articleId, long parentId, String name, int replyId, String content, String sourceContent, String ticket, String randstr, String email);
+    void addComment(String ip,String articleId, long parentId, String name, int replyId, String content, String sourceContent, String ticket, String randstr, String email);
 
     CategorysDto categorys();
 
     TagsDetailDto tags();
 
-    FriendsTypesDto friends();
+    FriendsTypeDto[] friends();
 
     SearchDto search(String searchValue, int page, int pageSize);
 

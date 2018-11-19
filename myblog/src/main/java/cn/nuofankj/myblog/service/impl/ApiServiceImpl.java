@@ -96,11 +96,32 @@ public class ApiServiceImpl implements ApiService {
     }
 
     @Override
-    public ArticlesDto articles(String by, String categoryId, String tagId, int page, int pageSize) {
+    public ArticleInfoDetailDto articles(String by, String categoryId, String tagId, int page, int pageSize) {
 
-        Pageable pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "publishTime");
-        List<Article> articles = articleRepository.findAllByStatus(ArticleStatusEnum.NORMAL.getStatus(), pageable);
-        List<ArticleDetailDto> articleDetailDtos = new ArrayList<>();
+        List<Article> articles = new ArrayList<>();
+        Pageable pageable;
+        switch (by) {
+            case "category":
+                pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "publishTime");
+                articles = articleRepository.findAllByStatusAndCategoryId(ArticleStatusEnum.NORMAL.getStatus(), categoryId, pageable );
+                break;
+
+            case "tag":
+                pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "createTime");
+                List<ArticleTagMapper> allByTagId = articleTagMapperRepository.findAllByTagId(tagId, pageable);
+                for(ArticleTagMapper articleTagMapper : allByTagId) {
+                    Article articleById = articleRepository.findArticleById(articleTagMapper.getArticleId());
+                    articles.add(articleById);
+                }
+                break;
+
+                default:
+                    pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "publishTime");
+                    articles = articleRepository.findAllByStatusAndIdNotContains(ArticleStatusEnum.NORMAL.getStatus(), pageable, "-1");
+                    ;
+        }
+
+        List<ArticleMsgDetailDto> articleDetailDtos = new ArrayList<>();
         for(Article article : articles) {
             Category category = categoryRepository.findCategoryById(article.getCategoryId());
 
@@ -111,10 +132,10 @@ public class ApiServiceImpl implements ApiService {
                 Tag tag = tagRepository.findTagById(articleTagMapper.getTagId());
                 tags.add(tag);
             }
-            ArticleDetailDto articleDetailDto = ArticleDetailDto.valueOf(article, category, tags, null, null);
+            ArticleMsgDetailDto articleDetailDto = ArticleMsgDetailDto.valueOf(article, category, tags, null, null);
             articleDetailDtos.add(articleDetailDto);
         }
-        ArticlesDto articlesDto = ArticlesDto.valueOf(page, pageSize, articles.size(), articleDetailDtos);
+        ArticleInfoDetailDto articlesDto = ArticleInfoDetailDto.valueOf(page, pageSize, articles.size(), articleDetailDtos);
         return articlesDto;
     }
 
@@ -160,14 +181,29 @@ public class ApiServiceImpl implements ApiService {
 
         ArticleDetailDto articleDetailDto = ArticleDetailDto.valueOf(article, category, tags, qrcode, pn);
 
+        article.setPageview(article.getPageview() + 1);
+
         return articleDetailDto;
     }
 
     @Override
-    public void addComment(String articleId, long parentId, String name, int replyId, String content, String sourceContent, String ticket, String randstr, String email) {
+    public void addComment(String ip,String articleId, long parentId, String name, int replyId, String content, String sourceContent, String ticket, String randstr, String email) {
 
-        CommentDto commentDto = CommentDto.valueOf(articleId, parentId, replyId, name, email, content, sourceContent, 1);
-        Comments comments = CommentDto.toEnt(commentDto);
+        Comments comments = new Comments();
+        comments.setArticleId(articleId);
+        comments.setParentId(parentId);
+        comments.setName(name);
+        comments.setReplyId(replyId);
+        comments.setContent(content);
+        comments.setSourceContent(sourceContent);
+        comments.setEmail(email);
+        comments.setCreateTime(new Date().getTime());
+        comments.setIp(ip);
+        Optional<Comments> commentsOptiona = commentsRepository.findById((long)replyId);
+        Comments commentsTmp = commentsOptiona.get();
+        if(commentsTmp != null) {
+            comments.setParentId(commentsTmp.getId());
+        }
         commentsRepository.save(comments);
     }
 
@@ -186,7 +222,7 @@ public class ApiServiceImpl implements ApiService {
     }
 
     @Override
-    public FriendsTypesDto friends() {
+    public FriendsTypeDto[] friends() {
         List<FriendsType> friendsTypes = friendsTypeRepository.findAll();
         FriendsTypeDto[] friendsTypeDtos = new FriendsTypeDto[friendsTypes.size()];
         int size = 0;
@@ -196,7 +232,7 @@ public class ApiServiceImpl implements ApiService {
             friendsTypeDtos[size] = friendsTypeDto;
             size ++;
         }
-        return FriendsTypesDto.valueOf(friendsTypeDtos);
+        return friendsTypeDtos;
     }
 
     @Override
@@ -231,15 +267,22 @@ public class ApiServiceImpl implements ApiService {
             }
         });
         Pageable pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "publishTime");
-        List<Article> articles = articleRepository.findAllByStatus(ArticleStatusEnum.NORMAL.getStatus(), pageable);
+        List<Article> articles = articleRepository.findAllByStatusAndIdNotContains(ArticleStatusEnum.NORMAL.getStatus(), pageable, "-1");
         for(Article article : articles) {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(new Date(article.getPublishTime() * 1000));
             String year = calendar.get(Calendar.YEAR) + "年";
-            String month = calendar.get(Calendar.MONTH)  + "月";
+            String month = calendar.get(Calendar.MONTH) + 1  + "月";
             Map<String, List<ArticleDetailDto>> monthsMap = yearsMap.get(year);
             if(monthsMap == null) {
-                monthsMap = new HashMap<>();
+                monthsMap = new TreeMap<>(new Comparator<String>() {
+                    @Override
+                    public int compare(String o1, String o2) {
+                        int m1 = Integer.parseInt(o1.replace("月",""));
+                        int m2 = Integer.parseInt(o2.replace("月",""));
+                        return m2 - m1;
+                    }
+                });
                 yearsMap.put(year, monthsMap);
             }
             List<ArticleDetailDto> articleDetailDtos = monthsMap.get(month);

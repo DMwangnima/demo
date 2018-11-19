@@ -10,7 +10,6 @@ import java.io.Serializable;
 @Entity
 @Table(name = "article")
 @Inheritance(strategy = InheritanceType.JOINED)
-@Data
 @Accessors(chain = true)
 public class Article implements Serializable {
 
@@ -36,6 +35,9 @@ public class Article implements Serializable {
   private long pageview;
   private int isEncrypt;
 
+  public static long getSerialVersionUID() {
+    return serialVersionUID;
+  }
 
   public long getAid() {
     return aid;
@@ -45,7 +47,6 @@ public class Article implements Serializable {
     this.aid = aid;
   }
 
-
   public String getId() {
     return id;
   }
@@ -53,7 +54,6 @@ public class Article implements Serializable {
   public void setId(String id) {
     this.id = id;
   }
-
 
   public String getTitle() {
     return title;
@@ -63,7 +63,6 @@ public class Article implements Serializable {
     this.title = title;
   }
 
-
   public String getCategoryId() {
     return categoryId;
   }
@@ -72,42 +71,37 @@ public class Article implements Serializable {
     this.categoryId = categoryId;
   }
 
-
   public long getCreateTime() {
     return createTime;
   }
 
   public void setCreateTime(long createTime) {
-    this.createTime = createTime;
+    this.createTime = createTime % 1000;
   }
-
 
   public long getDeleteTime() {
     return deleteTime;
   }
 
   public void setDeleteTime(long deleteTime) {
-    this.deleteTime = deleteTime;
+    this.deleteTime = deleteTime % 1000;
   }
-
 
   public long getUpdateTime() {
     return updateTime;
   }
 
   public void setUpdateTime(long updateTime) {
-    this.updateTime = updateTime;
+    this.updateTime = updateTime % 1000;
   }
-
 
   public long getPublishTime() {
     return publishTime;
   }
 
   public void setPublishTime(long publishTime) {
-    this.publishTime = publishTime;
+    this.publishTime = publishTime % 1000;
   }
-
 
   public long getStatus() {
     return status;
@@ -117,7 +111,6 @@ public class Article implements Serializable {
     this.status = status;
   }
 
-
   public String getContent() {
     return content;
   }
@@ -125,7 +118,6 @@ public class Article implements Serializable {
   public void setContent(String content) {
     this.content = content;
   }
-
 
   public String getHtmlContent() {
     return htmlContent;
@@ -135,7 +127,6 @@ public class Article implements Serializable {
     this.htmlContent = htmlContent;
   }
 
-
   public String getCover() {
     return cover;
   }
@@ -143,7 +134,6 @@ public class Article implements Serializable {
   public void setCover(String cover) {
     this.cover = cover;
   }
-
 
   public String getSubMessage() {
     return subMessage;
@@ -153,7 +143,6 @@ public class Article implements Serializable {
     this.subMessage = subMessage;
   }
 
-
   public long getPageview() {
     return pageview;
   }
@@ -162,7 +151,6 @@ public class Article implements Serializable {
     this.pageview = pageview;
   }
 
-
   public int getIsEncrypt() {
     return isEncrypt;
   }
@@ -170,5 +158,4 @@ public class Article implements Serializable {
   public void setIsEncrypt(int isEncrypt) {
     this.isEncrypt = isEncrypt;
   }
-
 }

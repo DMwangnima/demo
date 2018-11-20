@@ -26,7 +26,7 @@ services:
     build: .
     working_dir: /myblog
     volumes:
-    - .:/fun
+    - .:/myblog
     - ~/.m2:/root/.m2
     expose:
     - "8080"

@@ -10,6 +10,7 @@ services:
     - 443:443
     volumes:
     - ./nginx/conf.d:/etc/nginx/conf.d
+    - /home/ubuntu/proj/myblog/myblog-front:/home/ubuntu/proj/myblog/myblog-front
 #
 #  mysql:
 #    container_name: m-mysql

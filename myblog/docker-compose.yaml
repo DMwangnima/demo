@@ -8,7 +8,7 @@ services:
     - 80:80
     - 8010:8010
     - 443:443
-    - 3306:3306
+    - 3366:3306
     volumes:
     - ./nginx/conf.d:/etc/nginx/conf.d
     - /home/ubuntu/proj/myblog/myblog-front:/home/ubuntu/proj/myblog/myblog-front
@@ -21,7 +21,7 @@ services:
       MYSQL_ROOT_PASSWORD:
       MYSQL_ROOT_HOST: '%'
     ports:
-    - "3306:3306"
+    - "3366:3306"
     restart: always
 
   myblog:

@@ -1,5 +1,7 @@
 package common;
 
+import client.ClientData;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -50,19 +52,20 @@ public enum MessageType {
         }
     }
 
-    public String receiveMessage(SelectionKey key) throws IOException {
+    public String receiveMessage(ClientData clientData, SelectionKey key) throws IOException {
         ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
         SocketChannel clientChannel = (SocketChannel)key.channel();
         ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
         StringBuffer stringBuffer = new StringBuffer();
         int bufferSize = 0;
         while((bufferSize = clientChannel.read(byteBuffer)) > 0) {
-            // TODO 此处是否要加 flip ???
             byteStream.write(byteBuffer.array(), 0, bufferSize);
         }
         // 接收到客户端推送的消息
         Message message = ProtoStuffUtil.deserialize(byteStream.toByteArray(), Message.class);
-        return message.getBody().toString();
+        String clientName = message.getBody();
+        clientData.setClientName(clientName);
+        return clientName;
     }
 
     public int getCode() {

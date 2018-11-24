@@ -67,7 +67,7 @@ public class ChatServer {
                         if(message.getHeader().getType() == MessageType.LOGIN) {
                             String nickName = NameUtil.getChineseName();
                             users.put(nickName, key);
-                            MessageType.LOGIN.sendMessage(clientChannel, ChatConstant.SYS_NAME, nickName, null);
+                            MessageType.LOGIN.sendMessage(clientChannel, ChatConstant.SYS_NAME, nickName, nickName);
                         }
                     } else if(key.isWritable()) {
                         log.info("不做处理，因为很麻烦");
@@ -75,7 +75,7 @@ public class ChatServer {
                 }
             }
         } catch (IOException e) {
-            log.error(e.getMessage());
+            log.error(e.getLocalizedMessage());
         }
     }
 

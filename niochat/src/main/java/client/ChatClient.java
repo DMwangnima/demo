@@ -1,15 +1,12 @@
 package client;
 
-import common.Message;
 import common.MessageType;
-import common.ProtoStuffUtil;
 import constant.ChatConstant;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
@@ -21,8 +18,8 @@ public class ChatClient {
     private Selector selector;
     private final int port = 8080;
     private ByteArrayOutputStream byteStream;
-    private String clientName;
-    private SocketChannel slefClientChannel;
+    private SocketChannel selfClientChannel;
+    private ClientData clientData;
 
     public ChatClient() {
         init();
@@ -31,12 +28,13 @@ public class ChatClient {
     public void init() {
         try {
             this.byteStream = new ByteArrayOutputStream();
+            this.clientData = new ClientData();
             selector = Selector.open();
-            slefClientChannel = SocketChannel.open();
-            slefClientChannel.configureBlocking(false);
+            selfClientChannel = SocketChannel.open();
+            selfClientChannel.configureBlocking(false);
             // 需要调用finishConnect才会真正进行连接
-            slefClientChannel.connect(new InetSocketAddress("127.0.0.1", port));
-            slefClientChannel.register(selector, SelectionKey.OP_CONNECT);
+            selfClientChannel.connect(new InetSocketAddress("127.0.0.1", port));
+            selfClientChannel.register(selector, SelectionKey.OP_CONNECT);
         } catch (IOException e) {
             log.error(e.getMessage());
         }
@@ -60,8 +58,8 @@ public class ChatClient {
                         // 开启读键盘消息并发送线程
                         new ScannerMsg(key).start();
                     } else if(key.isReadable()) {
-                        String message = MessageType.LOGIN.receiveMessage(key);
-                        log.info("接收到消息，消息对象为{}", message);
+                        String message = MessageType.LOGIN.receiveMessage(clientData,key);
+                        log.info("接收到消息，消息内容为{}", message);
                     }
                 }
             }
@@ -84,7 +82,7 @@ public class ChatClient {
             while(true) {
                 Scanner scanner = new Scanner(System.in);
                 String msg = scanner.nextLine();
-                MessageType.NORMAL.sendMessage(socketChannel, );
+                MessageType.NORMAL.sendMessage(socketChannel, clientData.getClientName(), ChatConstant.SYS_NAME, msg);
             }
         }
     }

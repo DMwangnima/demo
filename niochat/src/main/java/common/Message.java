@@ -11,15 +11,11 @@ import java.util.Date;
 @AllArgsConstructor
 public class Message {
     private MessageHeader header;
-    private byte[] body;
+    private String body;
 
     public static Message valueOf(String sender, String receiver, MessageType type, String msg) {
         MessageHeader msgHeader = new MessageHeader(sender, receiver, type, new Date().getTime());
-        byte[] body = null;
-        if(msg != null) {
-            body = msg.getBytes();
-        }
-        Message message = new Message(msgHeader, body);
+        Message message = new Message(msgHeader, msg);
         return message;
     }
 }

@@ -1,6 +1,7 @@
 package server;
 
 import common.*;
+import constant.ChatConstant;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.ByteArrayOutputStream;
@@ -66,31 +67,13 @@ public class ChatServer {
                         if(message.getHeader().getType() == MessageType.LOGIN) {
                             String nickName = NameUtil.getChineseName();
                             users.put(nickName, key);
-                            Message msg = Message.valueOf(MessageType.NAME, nickName,nickName);
-                            sendMsgToClient(msg);
+                            MessageType.LOGIN.sendMessage(clientChannel, ChatConstant.SYS_NAME, nickName, null);
                         }
                     } else if(key.isWritable()) {
                         log.info("不做处理，因为很麻烦");
                     }
                 }
             }
-        } catch (IOException e) {
-            log.error(e.getMessage());
-        }
-    }
-
-    void sendMsgToClient(Message message) {
-
-        MessageHeader header = message.getHeader();
-        SelectionKey clientKey = users.get(header.getReceiver());
-        SocketChannel socketChannel = (SocketChannel)clientKey.channel();
-        if(clientKey == null) {
-            log.info("发送人{},无法找到接收人{}，发送消息为{}",header.getSender(),header.getReceiver(),message.getBody().toString());
-            return;
-        }
-        ByteBuffer byteBuffer = ByteBuffer.wrap(ProtoStuffUtil.serialize(message));
-        try {
-            socketChannel.write(byteBuffer);
         } catch (IOException e) {
             log.error(e.getMessage());
         }

@@ -1,11 +1,33 @@
 package common;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.SocketChannel;
+
 public enum MessageType {
-    LOGIN(1,"登录"),
+    LOGIN(1,"登录") {
+        public void sendMessage(SocketChannel socketChannel, String sender, String receiver, String msg) {
+            // 给服务端发送登录事件
+            Message message = Message.valueOf(sender, receiver, this, msg);
+            ByteBuffer byteBuffer = ByteBuffer.wrap(ProtoStuffUtil.serialize(message));
+            try {
+                socketChannel.write(byteBuffer);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    },
+
     LOGOUT(2,"注销"),
+
     NORMAL(3,"单聊"),
+
     BROADCAST(4,"群发"),
+
     TASK(5,"任务"),
+
     NAME(6,"命名"),
     ;
     
@@ -15,6 +37,32 @@ public enum MessageType {
     MessageType(int code, String desc) {
         this.code = code;
         this.desc = desc;
+    }
+
+    public void sendMessage(SocketChannel socketChannel, String sender, String receiver, String msg) {
+        // 给服务端发送登录事件
+        Message message = Message.valueOf(sender, receiver, this, msg);
+        ByteBuffer byteBuffer = ByteBuffer.wrap(ProtoStuffUtil.serialize(message));
+        try {
+            socketChannel.write(byteBuffer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String receiveMessage(SelectionKey key) throws IOException {
+        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+        SocketChannel clientChannel = (SocketChannel)key.channel();
+        ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+        StringBuffer stringBuffer = new StringBuffer();
+        int bufferSize = 0;
+        while((bufferSize = clientChannel.read(byteBuffer)) > 0) {
+            // TODO 此处是否要加 flip ???
+            byteStream.write(byteBuffer.array(), 0, bufferSize);
+        }
+        // 接收到客户端推送的消息
+        Message message = ProtoStuffUtil.deserialize(byteStream.toByteArray(), Message.class);
+        return message.getBody().toString();
     }
 
     public int getCode() {

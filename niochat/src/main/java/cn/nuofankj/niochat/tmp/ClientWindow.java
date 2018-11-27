@@ -1,9 +1,9 @@
 //package tmp;
 //
-//import common.Message;
-//import common.MessageHeader;
-//import common.MessageType;
-//import common.ProtoStuffUtil;
+//import Message;
+//import MessageHeader;
+//import MessageType;
+//import ProtoStuffUtil;
 //
 //import javax.swing.*;
 //import java.awt.*;

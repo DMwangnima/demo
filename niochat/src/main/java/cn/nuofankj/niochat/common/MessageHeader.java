@@ -1,4 +1,4 @@
-package common;
+package cn.nuofankj.niochat.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

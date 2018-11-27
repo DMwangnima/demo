@@ -1,7 +1,9 @@
-package client;
+package cn.nuofankj.niochat.client;
 
-import common.MessageType;
-import constant.ChatConstant;
+import cn.nuofankj.niochat.common.Message;
+import cn.nuofankj.niochat.common.MessageType;
+import cn.nuofankj.niochat.constant.ChatConstant;
+import cn.nuofankj.niochat.client.handler.AbstractHandler;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.ByteArrayOutputStream;
@@ -19,7 +21,7 @@ public class ChatClient {
     private final int port = 8080;
     private ByteArrayOutputStream byteStream;
     private SocketChannel selfClientChannel;
-    private ClientData clientData;
+    private ClientInfo clientData;
 
     public ChatClient() {
         init();
@@ -28,7 +30,7 @@ public class ChatClient {
     public void init() {
         try {
             this.byteStream = new ByteArrayOutputStream();
-            this.clientData = new ClientData();
+            this.clientData = new ClientInfo();
             selector = Selector.open();
             selfClientChannel = SocketChannel.open();
             selfClientChannel.configureBlocking(false);
@@ -54,11 +56,11 @@ public class ChatClient {
                         log.info("已连接，坐等服务端分配账户名！");
                         socketChannel.register(selector, SelectionKey.OP_READ);
                         // 给服务端发送登录事件
-                        MessageType.LOGIN.sendMessage(socketChannel, null, ChatConstant.SYS_NAME, null);
+                        AbstractHandler.getHandler(MessageType.LOGIN).sendMessage(socketChannel, null, ChatConstant.SYS_NAME, null);
                         // 开启读键盘消息并发送线程
                         new ScannerMsg(key).start();
                     } else if(key.isReadable()) {
-                        String message = MessageType.LOGIN.receiveMessage(clientData,key);
+                        Message message = AbstractHandler.getMessage(key);
                         log.info("接收到消息，消息内容为{}", message);
                     }
                 }
@@ -82,7 +84,8 @@ public class ChatClient {
             while(true) {
                 Scanner scanner = new Scanner(System.in);
                 String msg = scanner.nextLine();
-                MessageType.NORMAL.sendMessage(socketChannel, clientData.getClientName(), ChatConstant.SYS_NAME, msg);
+                MessageType messageType = MessageType.getMessageType(msg);
+                AbstractHandler.getHandler(messageType).sendMessage(socketChannel, clientData.getClientName(), ChatConstant.SYS_NAME, msg);
             }
         }
     }

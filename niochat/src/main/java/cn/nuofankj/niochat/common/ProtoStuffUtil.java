@@ -1,4 +1,4 @@
-package common;
+package cn.nuofankj.niochat.common;
 
 import io.protostuff.LinkedBuffer;
 import io.protostuff.ProtostuffIOUtil;

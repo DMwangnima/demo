@@ -1,16 +1,13 @@
-package server;
+package cn.nuofankj.niochat.server;
 
-import common.*;
-import constant.ChatConstant;
+import cn.nuofankj.niochat.common.Message;
+import cn.nuofankj.niochat.server.handler.AbstractHandler;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.nio.ByteBuffer;
 import java.nio.channels.*;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 @Slf4j
@@ -20,8 +17,7 @@ public class ChatServer {
     private Selector selector;
     private final int port = 8080;
     private ByteArrayOutputStream byteStream;
-    // key 为昵称
-    private Map<String, SelectionKey> users = new HashMap<>();
+    private ServerInfo serverInfo;
 
     public ChatServer() {
         init();
@@ -35,6 +31,7 @@ public class ChatServer {
             serverSocketChannel.configureBlocking(false);
             selector = Selector.open();
             serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
+            serverInfo = new ServerInfo();
         } catch (IOException e) {
             log.error(e.getMessage());
         }
@@ -53,22 +50,9 @@ public class ChatServer {
                             clientChannel.register(selector, SelectionKey.OP_READ);
                         }
                     } else if(key.isReadable()) {
-                        SocketChannel clientChannel = (SocketChannel)key.channel();
-                        ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-                        StringBuffer stringBuffer = new StringBuffer();
-                        int bufferSize = 0;
-                        while((bufferSize = clientChannel.read(byteBuffer)) > 0) {
-                            // TODO 此处是否要加 flip ???
-                            byteStream.write(byteBuffer.array(), 0, bufferSize);
-                        }
-                        // 接收到客户端推送的消息
-                        Message message = ProtoStuffUtil.deserialize(byteStream.toByteArray(), Message.class);
-                        log.info("接收到消息，消息对象为{}", message);
-                        if(message.getHeader().getType() == MessageType.LOGIN) {
-                            String nickName = NameUtil.getChineseName();
-                            users.put(nickName, key);
-                            MessageType.LOGIN.sendMessage(clientChannel, ChatConstant.SYS_NAME, nickName, nickName);
-                        }
+                        Message message = AbstractHandler.getMessage(key);
+                        AbstractHandler handler = AbstractHandler.getHandler(message.getHeader().getType());
+                        handler.doHandler(serverInfo, key);
                     } else if(key.isWritable()) {
                         log.info("不做处理，因为很麻烦");
                     }

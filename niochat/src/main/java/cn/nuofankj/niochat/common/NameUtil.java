@@ -1,4 +1,4 @@
-package common;
+package cn.nuofankj.niochat.common;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Random;

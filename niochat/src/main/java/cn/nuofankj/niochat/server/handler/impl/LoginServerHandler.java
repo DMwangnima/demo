@@ -4,13 +4,17 @@ import cn.nuofankj.niochat.common.MessageType;
 import cn.nuofankj.niochat.common.NameUtil;
 import cn.nuofankj.niochat.server.ServerInfo;
 import cn.nuofankj.niochat.server.handler.AbstractHandler;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.nio.channels.SelectionKey;
 import java.util.Map;
 
+@Component("loginServerHandler")
 public class LoginServerHandler extends AbstractHandler {
 
-    public LoginServerHandler() {
+    @PostConstruct
+    public void init() {
         MessageType messageType = MessageType.LOGIN;
         init(messageType);
     }

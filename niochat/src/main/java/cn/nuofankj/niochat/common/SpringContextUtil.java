@@ -24,6 +24,7 @@ public final class SpringContextUtil {
         try {
             if (StringUtils.isNotEmpty(StringUtils.trim(beanId))) {
                 bean = (T) applicationContext.getBean(beanId);
+
             }
         } catch (NoSuchBeanDefinitionException e) {
             log.error("获取bean失败");

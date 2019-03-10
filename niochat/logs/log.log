@@ -8,3 +8,194 @@
 2018-11-28 06:47:38  [ main:38736 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
 2018-11-28 06:47:38  [ main:38743 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
 2018-11-28 06:47:38  [ main:38759 ] - [ DEBUG ]  Creating shared instance of singleton bean 'loginClientHandler'
+2018-12-01 20:51:07  [ main:3 ] - [ DEBUG ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4973813a
+2018-12-01 20:51:08  [ main:883 ] - [ DEBUG ]  Identified candidate component class: file [/home/ricoder/code/java/demo/niochat/target/classes/cn/nuofankj/niochat/client/handler/impl/LoginClientHandler.class]
+2018-12-01 20:51:08  [ main:922 ] - [ DEBUG ]  Loaded 6 bean definitions from class path resource [applicationContext.xml]
+2018-12-01 20:51:08  [ main:956 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2018-12-01 20:51:08  [ main:1031 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2018-12-01 20:51:08  [ main:1035 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2018-12-01 20:51:08  [ main:1039 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2018-12-01 20:51:08  [ main:1040 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2018-12-01 20:51:08  [ main:1054 ] - [ DEBUG ]  Creating shared instance of singleton bean 'loginClientHandler'
+2018-12-01 20:51:26  [ main:0 ] - [ DEBUG ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6f75e721
+2018-12-01 20:51:26  [ main:322 ] - [ DEBUG ]  Identified candidate component class: file [/home/ricoder/code/java/demo/niochat/target/classes/cn/nuofankj/niochat/client/handler/impl/LoginClientHandler.class]
+2018-12-01 20:51:26  [ main:357 ] - [ DEBUG ]  Loaded 6 bean definitions from class path resource [applicationContext.xml]
+2018-12-01 20:51:26  [ main:380 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2018-12-01 20:51:26  [ main:441 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2018-12-01 20:51:26  [ main:443 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2018-12-01 20:51:26  [ main:446 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2018-12-01 20:51:26  [ main:447 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2018-12-01 20:51:26  [ main:455 ] - [ DEBUG ]  Creating shared instance of singleton bean 'loginClientHandler'
+2018-12-01 20:51:27  [ main:0 ] - [ DEBUG ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6f75e721
+2018-12-01 20:51:28  [ main:389 ] - [ DEBUG ]  Identified candidate component class: file [/home/ricoder/code/java/demo/niochat/target/classes/cn/nuofankj/niochat/client/handler/impl/LoginClientHandler.class]
+2018-12-01 20:51:28  [ main:416 ] - [ DEBUG ]  Loaded 6 bean definitions from class path resource [applicationContext.xml]
+2018-12-01 20:51:28  [ main:439 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2018-12-01 20:51:28  [ main:499 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2018-12-01 20:51:28  [ main:501 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2018-12-01 20:51:28  [ main:505 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2018-12-01 20:51:28  [ main:506 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2018-12-01 20:51:28  [ main:521 ] - [ DEBUG ]  Creating shared instance of singleton bean 'loginClientHandler'
+2018-12-01 20:51:30  [ main:0 ] - [ DEBUG ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6f75e721
+2018-12-01 20:51:31  [ main:336 ] - [ DEBUG ]  Identified candidate component class: file [/home/ricoder/code/java/demo/niochat/target/classes/cn/nuofankj/niochat/client/handler/impl/LoginClientHandler.class]
+2018-12-01 20:51:31  [ main:354 ] - [ DEBUG ]  Loaded 6 bean definitions from class path resource [applicationContext.xml]
+2018-12-01 20:51:31  [ main:375 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2018-12-01 20:51:31  [ main:424 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2018-12-01 20:51:31  [ main:425 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2018-12-01 20:51:31  [ main:427 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2018-12-01 20:51:31  [ main:428 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2018-12-01 20:51:31  [ main:437 ] - [ DEBUG ]  Creating shared instance of singleton bean 'loginClientHandler'
+2018-12-01 20:51:35  [ main:0 ] - [ DEBUG ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6f75e721
+2018-12-01 20:51:35  [ main:422 ] - [ DEBUG ]  Identified candidate component class: file [/home/ricoder/code/java/demo/niochat/target/classes/cn/nuofankj/niochat/client/handler/impl/LoginClientHandler.class]
+2018-12-01 20:51:35  [ main:451 ] - [ DEBUG ]  Loaded 6 bean definitions from class path resource [applicationContext.xml]
+2018-12-01 20:51:35  [ main:481 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2018-12-01 20:51:35  [ main:549 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2018-12-01 20:51:35  [ main:551 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2018-12-01 20:51:35  [ main:554 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2018-12-01 20:51:35  [ main:555 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2018-12-01 20:51:35  [ main:564 ] - [ DEBUG ]  Creating shared instance of singleton bean 'loginClientHandler'
+2018-12-01 20:51:37  [ main:0 ] - [ DEBUG ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6f75e721
+2018-12-01 20:51:37  [ main:339 ] - [ DEBUG ]  Identified candidate component class: file [/home/ricoder/code/java/demo/niochat/target/classes/cn/nuofankj/niochat/client/handler/impl/LoginClientHandler.class]
+2018-12-01 20:51:37  [ main:367 ] - [ DEBUG ]  Loaded 6 bean definitions from class path resource [applicationContext.xml]
+2018-12-01 20:51:37  [ main:387 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2018-12-01 20:51:38  [ main:450 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2018-12-01 20:51:38  [ main:455 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2018-12-01 20:51:38  [ main:461 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2018-12-01 20:51:38  [ main:466 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2018-12-01 20:51:38  [ main:474 ] - [ DEBUG ]  Creating shared instance of singleton bean 'loginClientHandler'
+2018-12-01 20:52:06  [ main:0 ] - [ DEBUG ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4973813a
+2018-12-01 20:52:06  [ main:264 ] - [ DEBUG ]  Identified candidate component class: file [/home/ricoder/code/java/demo/niochat/target/classes/cn/nuofankj/niochat/client/handler/impl/LoginClientHandler.class]
+2018-12-01 20:52:07  [ main:298 ] - [ DEBUG ]  Loaded 6 bean definitions from class path resource [applicationContext.xml]
+2018-12-01 20:52:07  [ main:326 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2018-12-01 20:52:07  [ main:414 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2018-12-01 20:52:07  [ main:418 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2018-12-01 20:52:07  [ main:420 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2018-12-01 20:52:07  [ main:421 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2018-12-01 20:52:07  [ main:430 ] - [ DEBUG ]  Creating shared instance of singleton bean 'loginClientHandler'
+2018-12-01 20:52:12  [ main:0 ] - [ DEBUG ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6f75e721
+2018-12-01 20:52:12  [ main:453 ] - [ DEBUG ]  Identified candidate component class: file [/home/ricoder/code/java/demo/niochat/target/classes/cn/nuofankj/niochat/client/handler/impl/LoginClientHandler.class]
+2018-12-01 20:52:12  [ main:470 ] - [ DEBUG ]  Loaded 6 bean definitions from class path resource [applicationContext.xml]
+2018-12-01 20:52:12  [ main:484 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2018-12-01 20:52:12  [ main:521 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2018-12-01 20:52:12  [ main:523 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2018-12-01 20:52:12  [ main:525 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2018-12-01 20:52:12  [ main:525 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2018-12-01 20:52:12  [ main:531 ] - [ DEBUG ]  Creating shared instance of singleton bean 'loginClientHandler'
+2018-12-01 20:52:16  [ main:0 ] - [ DEBUG ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6f75e721
+2018-12-01 20:52:16  [ main:270 ] - [ DEBUG ]  Identified candidate component class: file [/home/ricoder/code/java/demo/niochat/target/classes/cn/nuofankj/niochat/client/handler/impl/LoginClientHandler.class]
+2018-12-01 20:52:17  [ main:291 ] - [ DEBUG ]  Loaded 6 bean definitions from class path resource [applicationContext.xml]
+2018-12-01 20:52:17  [ main:314 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2018-12-01 20:52:17  [ main:366 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2018-12-01 20:52:17  [ main:367 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2018-12-01 20:52:17  [ main:370 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2018-12-01 20:52:17  [ main:371 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2018-12-01 20:52:17  [ main:377 ] - [ DEBUG ]  Creating shared instance of singleton bean 'loginClientHandler'
+2018-12-01 20:52:42  [ main:0 ] - [ DEBUG ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4973813a
+2018-12-01 20:52:42  [ main:263 ] - [ DEBUG ]  Identified candidate component class: file [/home/ricoder/code/java/demo/niochat/target/classes/cn/nuofankj/niochat/client/handler/impl/LoginClientHandler.class]
+2018-12-01 20:52:42  [ main:293 ] - [ DEBUG ]  Loaded 6 bean definitions from class path resource [applicationContext.xml]
+2018-12-01 20:52:42  [ main:327 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2018-12-01 20:52:42  [ main:427 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2018-12-01 20:52:42  [ main:429 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2018-12-01 20:52:42  [ main:431 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2018-12-01 20:52:42  [ main:432 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2018-12-01 20:52:42  [ main:438 ] - [ DEBUG ]  Creating shared instance of singleton bean 'loginClientHandler'
+2018-12-01 20:53:03  [ main:0 ] - [ DEBUG ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4973813a
+2018-12-01 20:53:03  [ main:280 ] - [ DEBUG ]  Loaded 5 bean definitions from class path resource [applicationContext.xml]
+2018-12-01 20:53:03  [ main:294 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2018-12-01 20:53:03  [ main:324 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2018-12-01 20:53:03  [ main:326 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2018-12-01 20:53:03  [ main:330 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2018-12-01 20:53:03  [ main:331 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2018-12-01 20:53:03  [ main:375 ] - [ ERROR ]  获取bean失败
+2018-12-01 20:53:13  [ main:0 ] - [ DEBUG ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4973813a
+2018-12-01 20:53:14  [ main:338 ] - [ DEBUG ]  Identified candidate component class: file [/home/ricoder/code/java/demo/niochat/target/classes/cn/nuofankj/niochat/client/handler/impl/LoginClientHandler.class]
+2018-12-01 20:53:14  [ main:385 ] - [ DEBUG ]  Loaded 6 bean definitions from class path resource [applicationContext.xml]
+2018-12-01 20:53:14  [ main:417 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2018-12-01 20:53:14  [ main:485 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2018-12-01 20:53:14  [ main:486 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2018-12-01 20:53:14  [ main:489 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2018-12-01 20:53:14  [ main:490 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2018-12-01 20:53:14  [ main:499 ] - [ DEBUG ]  Creating shared instance of singleton bean 'loginClientHandler'
+2018-12-01 21:05:36  [ main:0 ] - [ DEBUG ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4973813a
+2018-12-01 21:05:36  [ main:308 ] - [ DEBUG ]  Identified candidate component class: file [/home/ricoder/code/java/demo/niochat/target/classes/cn/nuofankj/niochat/client/handler/impl/LoginClientHandler.class]
+2018-12-01 21:05:36  [ main:328 ] - [ DEBUG ]  Loaded 6 bean definitions from class path resource [applicationContext.xml]
+2018-12-01 21:05:36  [ main:354 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2018-12-01 21:05:36  [ main:400 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2018-12-01 21:05:36  [ main:401 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2018-12-01 21:05:36  [ main:405 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2018-12-01 21:05:36  [ main:406 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2018-12-01 21:05:36  [ main:412 ] - [ DEBUG ]  Creating shared instance of singleton bean 'loginClientHandler'
+2018-12-01 21:06:03  [ main:0 ] - [ DEBUG ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6f75e721
+2018-12-01 21:06:03  [ main:235 ] - [ DEBUG ]  Identified candidate component class: file [/home/ricoder/code/java/demo/niochat/target/classes/cn/nuofankj/niochat/client/handler/impl/LoginClientHandler.class]
+2018-12-01 21:06:03  [ main:269 ] - [ DEBUG ]  Loaded 6 bean definitions from class path resource [applicationContext.xml]
+2018-12-01 21:06:03  [ main:290 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2018-12-01 21:06:03  [ main:344 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2018-12-01 21:06:03  [ main:346 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2018-12-01 21:06:03  [ main:350 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2018-12-01 21:06:03  [ main:352 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2018-12-01 21:06:03  [ main:358 ] - [ DEBUG ]  Creating shared instance of singleton bean 'loginClientHandler'
+2018-12-01 21:06:10  [ main:0 ] - [ DEBUG ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4973813a
+2018-12-01 21:06:10  [ main:351 ] - [ DEBUG ]  Identified candidate component class: file [/home/ricoder/code/java/demo/niochat/target/classes/cn/nuofankj/niochat/client/handler/impl/LoginClientHandler.class]
+2018-12-01 21:06:10  [ main:372 ] - [ DEBUG ]  Loaded 6 bean definitions from class path resource [applicationContext.xml]
+2018-12-01 21:06:10  [ main:396 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2018-12-01 21:06:10  [ main:479 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2018-12-01 21:06:10  [ main:482 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2018-12-01 21:06:10  [ main:484 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2018-12-01 21:06:10  [ main:485 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2018-12-01 21:06:10  [ main:492 ] - [ DEBUG ]  Creating shared instance of singleton bean 'loginClientHandler'
+2018-12-01 21:06:14  [ main:1 ] - [ DEBUG ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6f75e721
+2018-12-01 21:06:14  [ main:281 ] - [ DEBUG ]  Identified candidate component class: file [/home/ricoder/code/java/demo/niochat/target/classes/cn/nuofankj/niochat/client/handler/impl/LoginClientHandler.class]
+2018-12-01 21:06:14  [ main:300 ] - [ DEBUG ]  Loaded 6 bean definitions from class path resource [applicationContext.xml]
+2018-12-01 21:06:14  [ main:323 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2018-12-01 21:06:14  [ main:387 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2018-12-01 21:06:14  [ main:391 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2018-12-01 21:06:14  [ main:394 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2018-12-01 21:06:14  [ main:397 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2018-12-01 21:06:14  [ main:402 ] - [ DEBUG ]  Creating shared instance of singleton bean 'loginClientHandler'
+2018-12-01 21:06:23  [ main:0 ] - [ DEBUG ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4973813a
+2018-12-01 21:06:23  [ main:366 ] - [ DEBUG ]  Identified candidate component class: file [/home/ricoder/code/java/demo/niochat/target/classes/cn/nuofankj/niochat/client/handler/impl/LoginClientHandler.class]
+2018-12-01 21:06:23  [ main:415 ] - [ DEBUG ]  Loaded 6 bean definitions from class path resource [applicationContext.xml]
+2018-12-01 21:06:23  [ main:436 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2018-12-01 21:06:24  [ main:514 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2018-12-01 21:06:24  [ main:516 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2018-12-01 21:06:24  [ main:518 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2018-12-01 21:06:24  [ main:519 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2018-12-01 21:06:24  [ main:526 ] - [ DEBUG ]  Creating shared instance of singleton bean 'loginClientHandler'
+2018-12-01 21:06:39  [ main:0 ] - [ DEBUG ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4973813a
+2018-12-01 21:06:40  [ main:297 ] - [ DEBUG ]  Identified candidate component class: file [/home/ricoder/code/java/demo/niochat/target/classes/cn/nuofankj/niochat/client/handler/impl/LoginClientHandler.class]
+2018-12-01 21:06:40  [ main:320 ] - [ DEBUG ]  Loaded 6 bean definitions from class path resource [applicationContext.xml]
+2018-12-01 21:06:40  [ main:361 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2018-12-01 21:06:40  [ main:440 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2018-12-01 21:06:40  [ main:444 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2018-12-01 21:06:40  [ main:446 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2018-12-01 21:06:40  [ main:447 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2018-12-01 21:06:40  [ main:456 ] - [ DEBUG ]  Creating shared instance of singleton bean 'loginClientHandler'
+2018-12-01 21:06:51  [ main:0 ] - [ DEBUG ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6f75e721
+2018-12-01 21:06:52  [ main:272 ] - [ DEBUG ]  Identified candidate component class: file [/home/ricoder/code/java/demo/niochat/target/classes/cn/nuofankj/niochat/client/handler/impl/LoginClientHandler.class]
+2018-12-01 21:06:52  [ main:293 ] - [ DEBUG ]  Loaded 6 bean definitions from class path resource [applicationContext.xml]
+2018-12-01 21:06:52  [ main:312 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2018-12-01 21:06:52  [ main:347 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2018-12-01 21:06:52  [ main:349 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2018-12-01 21:06:52  [ main:350 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2018-12-01 21:06:52  [ main:351 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2018-12-01 21:06:52  [ main:356 ] - [ DEBUG ]  Creating shared instance of singleton bean 'loginClientHandler'
+2018-12-01 21:06:56  [ main:0 ] - [ DEBUG ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6f75e721
+2018-12-01 21:06:57  [ main:216 ] - [ DEBUG ]  Identified candidate component class: file [/home/ricoder/code/java/demo/niochat/target/classes/cn/nuofankj/niochat/client/handler/impl/LoginClientHandler.class]
+2018-12-01 21:06:57  [ main:251 ] - [ DEBUG ]  Loaded 6 bean definitions from class path resource [applicationContext.xml]
+2018-12-01 21:06:57  [ main:295 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2018-12-01 21:06:57  [ main:357 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2018-12-01 21:06:57  [ main:358 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2018-12-01 21:06:57  [ main:361 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2018-12-01 21:06:57  [ main:362 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2018-12-01 21:06:57  [ main:369 ] - [ DEBUG ]  Creating shared instance of singleton bean 'loginClientHandler'
+2018-12-01 21:07:02  [ main:0 ] - [ DEBUG ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4973813a
+2018-12-01 21:07:03  [ main:567 ] - [ DEBUG ]  Identified candidate component class: file [/home/ricoder/code/java/demo/niochat/target/classes/cn/nuofankj/niochat/client/handler/impl/LoginClientHandler.class]
+2018-12-01 21:07:03  [ main:612 ] - [ DEBUG ]  Loaded 6 bean definitions from class path resource [applicationContext.xml]
+2018-12-01 21:07:03  [ main:647 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2018-12-01 21:07:03  [ main:772 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2018-12-01 21:07:03  [ main:774 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2018-12-01 21:07:03  [ main:793 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2018-12-01 21:07:03  [ main:795 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+2018-12-01 21:07:03  [ main:813 ] - [ DEBUG ]  Creating shared instance of singleton bean 'loginClientHandler'
+2018-12-01 21:09:05  [ main:0 ] - [ INFO ]  已连接，坐等服务端分配账户名！
+2018-12-01 21:10:12  [ main:0 ] - [ INFO ]  已连接，坐等服务端分配账户名！
+2018-12-01 21:11:28  [ main:0 ] - [ INFO ]  已连接，坐等服务端分配账户名！

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:resource="http://www.nuofankj.com/resource"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.nuofankj.com/resource http://www.nuofankj.com/resource/resource-1.0.xsd">
 
-    <!--
-        自定义配置bean
-    -->
-    <bean id="helloService" class="com.nuofankj.springdemo.test1.HelloService">
-    </bean>
-
+    <!--静态资源配置-->
+    <resource:config id="resourceManager">
+        <resource:format location="resource" type="csv" suffix="csv"/>
+        <resource:package name="com.nuofankj.springdemo"/>
+    </resource:config>
 </beans>

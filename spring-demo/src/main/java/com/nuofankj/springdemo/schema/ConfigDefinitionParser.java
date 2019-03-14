@@ -4,6 +4,7 @@ import com.nuofankj.springdemo.common.StorageManagerFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.ManagedList;
 import org.springframework.beans.factory.xml.AbstractBeanDefinitionParser;
 import org.springframework.beans.factory.xml.ParserContext;
@@ -16,6 +17,7 @@ import org.springframework.core.type.classreading.CachingMetadataReaderFactory;
 import org.springframework.core.type.classreading.MetadataReader;
 import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.util.ClassUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.util.SystemPropertyUtils;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -41,6 +43,8 @@ public class ConfigDefinitionParser extends AbstractBeanDefinitionParser {
 
     @Override
     protected AbstractBeanDefinition parseInternal(Element element, ParserContext parserContext) {
+
+        register(parserContext);
 
         BeanDefinitionBuilder factory = BeanDefinitionBuilder.rootBeanDefinition(StorageManagerFactory.class);
         ManagedList<BeanDefinition> resourceBeanList = new ManagedList<>();
@@ -86,9 +90,21 @@ public class ConfigDefinitionParser extends AbstractBeanDefinitionParser {
             resourceBeanList.add(beanDefinition);
         }
 
-        factory.addPropertyValue("definitions", resourceBeanList);
+        factory.addPropertyValue("definitionList", resourceBeanList);
 
         return factory.getBeanDefinition();
+    }
+
+    private void register(ParserContext parserContext) {
+        registerStaticInject(parserContext);
+    }
+
+    // 注册StaticInjectProcessor
+    private void registerStaticInject(ParserContext parserContext) {
+        BeanDefinitionRegistry registry = parserContext.getRegistry();
+        String name = StringUtils.uncapitalize(StaticInjectProcessor.class.getSimpleName());
+        BeanDefinitionBuilder factory = BeanDefinitionBuilder.rootBeanDefinition(StaticInjectProcessor.class);
+        registry.registerBeanDefinition(name, factory.getBeanDefinition());
     }
 
     /**

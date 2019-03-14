@@ -17,6 +17,10 @@ public class StorageManagerFactory implements FactoryBean<StorageManager>, Appli
     // 静态资源列表
     private List<ResourceDefinition> definitionList;
 
+    public void setDefinitionList(List<ResourceDefinition> definitionList) {
+        this.definitionList = definitionList;
+    }
+
     @Override
     public StorageManager getObject() throws Exception {
         // 使用AutowireCapableBeanFactory构造StorageManager对象

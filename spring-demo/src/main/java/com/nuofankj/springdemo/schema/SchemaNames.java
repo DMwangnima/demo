@@ -8,7 +8,7 @@ public interface SchemaNames {
 
     String FORMAT_ELEMENT = "format";
 
-    String PAKCAGE_ATTRIBUTE_NAME = "name";
+    String PAKCAGE_ATTRIBUTE_NAME = "getName";
 
     String FORMAT_ATTRIBUTE_LOCATION = "location";
 

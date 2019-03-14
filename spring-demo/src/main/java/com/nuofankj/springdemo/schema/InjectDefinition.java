@@ -1,7 +1,7 @@
 package com.nuofankj.springdemo.schema;
 
-import com.nuofankj.springdemo.anno.Resource;
 import com.nuofankj.springdemo.anno.ResourceInject;
+import org.springframework.context.ApplicationContext;
 import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Field;
@@ -38,5 +38,19 @@ public class InjectDefinition {
 
     public InjectType getType() {
         return type;
+    }
+
+    /**
+     * 获取注入值
+     *
+     * @param applicationContext
+     * @return
+     */
+    public Object getValue(ApplicationContext applicationContext) {
+        if (InjectType.NAME.equals(type)) {
+            return applicationContext.getBean(resourceInject.value());
+        } else {
+            return applicationContext.getBean(field.getType());
+        }
     }
 }

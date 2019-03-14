@@ -1,5 +1,6 @@
 package com.nuofankj.springdemo.schema;
 
+import com.nuofankj.springdemo.common.StorageManagerFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
@@ -41,7 +42,7 @@ public class ConfigDefinitionParser extends AbstractBeanDefinitionParser {
     @Override
     protected AbstractBeanDefinition parseInternal(Element element, ParserContext parserContext) {
 
-        // FIXME: 2019/3/12 作用是什么
+        BeanDefinitionBuilder factory = BeanDefinitionBuilder.rootBeanDefinition(StorageManagerFactory.class);
         ManagedList<BeanDefinition> resourceBeanList = new ManagedList<>();
         Set<Class> resourceClassList = new HashSet<>();
         NodeList child = element.getChildNodes();
@@ -84,7 +85,10 @@ public class ConfigDefinitionParser extends AbstractBeanDefinitionParser {
             BeanDefinition beanDefinition = parseResource(resourceClass, formatDefinition);
             resourceBeanList.add(beanDefinition);
         }
-        return null;
+
+        factory.addPropertyValue("definitions", resourceBeanList);
+
+        return factory.getBeanDefinition();
     }
 
     /**

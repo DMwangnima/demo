@@ -1,6 +1,8 @@
 package com.nuofankj.springdemo.schema;
 
 import com.nuofankj.springdemo.common.StorageManagerFactory;
+import com.nuofankj.springdemo.reader.CsvReader;
+import com.nuofankj.springdemo.reader.ReaderHolder;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
@@ -97,6 +99,16 @@ public class ConfigDefinitionParser extends AbstractBeanDefinitionParser {
 
     private void register(ParserContext parserContext) {
         registerStaticInject(parserContext);
+        registerReaderHolder(parserContext);
+        registerDefaultReader(parserContext);
+    }
+
+    // 注册CsvReader
+    private void registerDefaultReader(ParserContext parserContext) {
+        BeanDefinitionRegistry registry = parserContext.getRegistry();
+        String name = StringUtils.uncapitalize(CsvReader.class.getSimpleName());
+        BeanDefinitionBuilder factory = BeanDefinitionBuilder.rootBeanDefinition(CsvReader.class);
+        registry.registerBeanDefinition(name, factory.getBeanDefinition());
     }
 
     // 注册StaticInjectProcessor
@@ -104,6 +116,14 @@ public class ConfigDefinitionParser extends AbstractBeanDefinitionParser {
         BeanDefinitionRegistry registry = parserContext.getRegistry();
         String name = StringUtils.uncapitalize(StaticInjectProcessor.class.getSimpleName());
         BeanDefinitionBuilder factory = BeanDefinitionBuilder.rootBeanDefinition(StaticInjectProcessor.class);
+        registry.registerBeanDefinition(name, factory.getBeanDefinition());
+    }
+
+    // 注册ReaderHolder
+    private void registerReaderHolder(ParserContext parserContext) {
+        BeanDefinitionRegistry registry = parserContext.getRegistry();
+        String name = StringUtils.uncapitalize(ReaderHolder.class.getSimpleName());
+        BeanDefinitionBuilder factory = BeanDefinitionBuilder.rootBeanDefinition(ReaderHolder.class);
         registry.registerBeanDefinition(name, factory.getBeanDefinition());
     }
 

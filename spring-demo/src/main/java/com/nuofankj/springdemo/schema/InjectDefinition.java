@@ -24,6 +24,8 @@ public class InjectDefinition {
             throw new IllegalArgumentException("被注入属性域" + field.getName() + "的注释配置缺失");
         }
         field.setAccessible(true);
+
+        this.field = field;
         this.resourceInject = field.getAnnotation(ResourceInject.class);
         if (StringUtils.isEmpty(this.resourceInject.value())) {
             this.type = InjectType.CLASS;

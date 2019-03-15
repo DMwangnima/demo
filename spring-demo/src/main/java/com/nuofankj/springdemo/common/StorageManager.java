@@ -43,12 +43,12 @@ public class StorageManager implements ApplicationContextAware {
         });
 
         for (ResourceDefinition resourceDefinition : definitions) {
-            Storage<?, ?> storage = getStorage(resourceDefinition.getClass());
+            Storage<?, ?> storage = getStorage(resourceDefinition.getClz());
             storage.postInit(storage.getData().values);
         }
     }
 
-    private Storage<?, ?> getStorage(Class clz) {
+    public Storage<?, ?> getStorage(Class clz) {
         if (storages.contains(clz)) {
             return storages.get(clz);
         }
@@ -65,7 +65,7 @@ public class StorageManager implements ApplicationContextAware {
 
         ResourceDefinition definition = this.definitions.get(clz);
         if (definition == null) {
-            FormattingTuple message = MessageFormatter.format("静态资源[{}]的信息定义不存在，可能是配置确实", clz.getSimpleName());
+            FormattingTuple message = MessageFormatter.format("静态资源[{}]的信息定义不存在，可能是配置缺失", clz.getSimpleName());
             throw new IllegalStateException(message.getMessage());
         }
 

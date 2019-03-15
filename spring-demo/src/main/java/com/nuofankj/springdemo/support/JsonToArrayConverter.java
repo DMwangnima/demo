@@ -39,11 +39,7 @@ public class JsonToArrayConverter implements ConditionalGenericConverter {
             }
         }
         Object object = null;
-        try {
-            object = JSONChange.jsonToObj(targetType.getObjectType(), content);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        object = JSONChange.jsonToObj(targetType.getObjectType(), content);
         return object;
     }
 }

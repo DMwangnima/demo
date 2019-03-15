@@ -105,6 +105,7 @@ public class GetterBuilder {
 
         public FieldGetter(Field field) {
             ReflectionUtility.makeAccessible(field);
+            this.field = field;
         }
 
         @Override

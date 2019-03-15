@@ -18,9 +18,15 @@ public class JSONChange {
      * @param:传入Class，json字符串
      * @return:Object
      */
-    public static Object jsonToObj(Class clz, String jsonStr) throws JsonParseException, JsonMappingException, IOException {
+    public static Object jsonToObj(Class clz, String jsonStr) {
         ObjectMapper mapper = new ObjectMapper();
-        return  mapper.readValue(jsonStr, clz);
+        try {
+            return mapper.readValue(jsonStr, clz);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     /*
@@ -28,8 +34,14 @@ public class JSONChange {
      * @param:传入对象
      * @return:json字符串
      */
-    public static String objToJson(Object obj) throws JsonProcessingException {
+    public static String objToJson(Object obj) {
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.writeValueAsString(obj);
+        try {
+            return mapper.writeValueAsString(obj);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

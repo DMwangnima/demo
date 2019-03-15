@@ -114,6 +114,7 @@ public class Storage<K, V> extends Observable implements ApplicationContextAware
         notifyChange();
     }
 
+    // 观察者模式[通知监听器]
     private void notifyChange() {
         // 通知监听器
         this.setChanged();
@@ -183,12 +184,7 @@ public class Storage<K, V> extends Observable implements ApplicationContextAware
         if (obj == null) {
             return "null";
         }
-        try {
-            return JSONChange.objToJson(obj);
-        } catch (JsonProcessingException e) {
-            K key = (K) identifier.getValue(obj);
-            return key.toString();
-        }
+        return JSONChange.objToJson(obj);
     }
 
     private V put(StorageData<K, V> data, V value) {
@@ -356,5 +352,15 @@ public class Storage<K, V> extends Observable implements ApplicationContextAware
 
     private Class<V> getClz() {
         return (Class<V>) resourceDefinition.getClz();
+    }
+
+    public V get(K key, boolean flag) {
+        isReady();
+        V result = data.values.get(key);
+        if (flag && result == null) {
+            FormattingTuple message = MessageFormatter.format("标志为[{}]的静态资源[{}]不存在", key, getClz().getName());
+            throw new IllegalStateException(message.getMessage());
+        }
+        return result;
     }
 }

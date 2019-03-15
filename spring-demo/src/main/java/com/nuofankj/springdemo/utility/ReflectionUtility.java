@@ -79,4 +79,21 @@ public abstract class ReflectionUtility extends ReflectionUtils {
         }
         return methods.toArray(new Method[0]);
     }
+
+    /**
+     * 获得第一个使用指定注解声明的属性
+     *
+     * @param clz
+     * @param annotationClass
+     * @return
+     */
+    public static Field getFirstDeclaredFieldWith(Class<?> clz, Class<? extends Annotation> annotationClass) {
+        for (Field field : clz.getDeclaredFields()) {
+            if (field.isAnnotationPresent(annotationClass)) {
+                return field;
+            }
+        }
+
+        return null;
+    }
 }

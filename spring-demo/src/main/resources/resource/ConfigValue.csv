@@ -1,0 +1,6 @@
+ConfigValue,,,,
+,标志,内容,内容类型,值类型
+,int,string,string,string
+SERVER,id,content,type,clz
+,1,123,NORMAL,Integer
+END,2,"[1,2,3]",ARRAY,String

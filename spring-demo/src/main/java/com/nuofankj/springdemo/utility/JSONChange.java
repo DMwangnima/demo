@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * use:jackson
  */
 public class JSONChange {
+
     /*
      * 001.json转换成对象
      * @param:传入Class，json字符串

@@ -36,8 +36,6 @@ public class CsvReader implements ResourceReader {
     @Override
     public <E> Iterator<E> read(InputStream inputStream, Class<E> clz) {
 
-        // FIXME: 2019/3/20 暂时存放
-        TypeEnum.conversionService = conversionService;
         List<E> resourceBeans = new ArrayList<>();
         boolean hasHeader = false;
         CSVHeader<E> csvHeader = new CSVHeader<>(clz);

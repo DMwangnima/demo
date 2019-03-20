@@ -43,4 +43,14 @@ public class ConfigValue<T> extends AbstractGlobalConfig<T> {
     public Class getClz() {
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "ConfigValue{" +
+                "id='" + id + '\'' +
+                ", content='" + content + '\'' +
+                ", type=" + type +
+                ", clz=" + clz +
+                '}';
+    }
 }

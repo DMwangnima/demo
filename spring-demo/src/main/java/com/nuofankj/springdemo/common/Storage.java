@@ -314,7 +314,7 @@ public class Storage<K, V> extends Observable implements ApplicationContextAware
     }
 
     private Method findMethodByAnno(ResourceDefinition definition, Class<? extends Annotation> annotationClass) {
-        Method[] methods = ReflectionUtility.getDeclaredGetMethodsWith(definition.getClz(), annotationClass);
+        Method[] methods = ReflectionUtility.getDeclaredMethodsWith(definition.getClz(), annotationClass);
         if (methods.length > 0) {
             Method method = methods[0];
             method.setAccessible(true);
@@ -362,5 +362,10 @@ public class Storage<K, V> extends Observable implements ApplicationContextAware
             throw new IllegalStateException(message.getMessage());
         }
         return result;
+    }
+
+    public Collection<V> getAll() {
+        isReady();
+        return Collections.unmodifiableCollection(data.values.values());
     }
 }

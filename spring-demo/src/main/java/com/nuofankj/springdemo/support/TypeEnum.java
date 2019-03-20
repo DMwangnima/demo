@@ -1,5 +1,8 @@
 package com.nuofankj.springdemo.support;
 
+import org.springframework.core.convert.ConversionService;
+import org.springframework.core.convert.TypeDescriptor;
+
 import java.lang.reflect.*;
 import java.util.*;
 
@@ -7,10 +10,14 @@ import java.util.*;
  * 分隔符类型：
  * - 对象成员分隔符，格式 1-2
  * , array和list分隔符，格式1,2,3 或者[1,2,3]
- * {} 对象分隔符，在最外围的可以不加，组合对象需加，格式{1-2-3}
+ * {} 对象分隔符，在最外围的可以不加，组合对象需加，格式{1-2f3}
  * : ; map类型使用，格式 key:value1;key:value2;
  *
- * @ 多态分隔符，格式 XXX@{1-2-3}
+ * @ 多态分隔符，格式 XXX@{1-2-3};
+ * <p>
+ * Tips:
+ * Filed为自定义对象或者包含自定义对象的时候需要实现PolyObjectMapper接口
+ * 使用多态的时候：多态类需要加@ClassMapper注解
  */
 public enum TypeEnum {
 
@@ -152,6 +159,9 @@ public enum TypeEnum {
             // 此处先处理带@的多态情况
             Class<?> cls = getVarietyClass(param);
 
+            // 如果有 @ 脱掉 xxx@
+            param = cleanAite(param);
+
             // 数据成员以 - 分割，此处进行切割
             List<String> strList = splitFieldMember(param, '-');
 
@@ -166,7 +176,7 @@ public enum TypeEnum {
 
             Object t = cls.getDeclaredConstructor().newInstance();
 
-            Field[] fields = cls.getDeclaredFields();
+            List<Field> fields = getFields(cls);
 
             int index = 0;
 
@@ -207,7 +217,19 @@ public enum TypeEnum {
             return arr;
         }
     },
-    ;
+
+    // fixme: 枚举类型直接引用了spring的转换器
+    ENUM(null, null) {
+        @Override
+        public Object analyse(Object o, String str) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+
+            TypeDescriptor sourceType = TypeDescriptor.valueOf(String.class);
+            TypeDescriptor targetType = new TypeDescriptor((Field) o);
+            Object value = conversionService.convert(str, sourceType, targetType);
+
+            return value;
+        }
+    };
     private String name1;
 
     private String name2;
@@ -221,6 +243,8 @@ public enum TypeEnum {
     }
 
     public static ClassMapperManager classMapperManager;
+
+    public static ConversionService conversionService;
 
     public abstract Object analyse(Object o, String str) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException;
 
@@ -254,6 +278,9 @@ public enum TypeEnum {
                 anEnum = TypeEnum.ARRAY_TYPE;
             } else {
                 typeName = ((Field) o).getType().getName();
+                if (((Field) o).getType().isEnum()) {
+                    anEnum = TypeEnum.ENUM;
+                }
             }
         } else {
             Class cls = (Class) o;
@@ -335,9 +362,6 @@ public enum TypeEnum {
      * @return
      */
     public List<String> splitFieldMember(String param, char symbol) {
-
-        // 如果有 @ 脱掉 xxx@
-        param = cleanAite(param);
 
         // 如果有[]脱掉最外围的[]
         param = cleanLargeBrackets(param);
@@ -481,4 +505,17 @@ public enum TypeEnum {
         return substring;
     }
 
+    public List<Field> getFields(Class<?> clz) {
+
+        List<Field> fieldList = new ArrayList<>();
+        // 获取所有字段,public和protected和private,但是不包括父类字段
+        Collections.addAll(fieldList, clz.getDeclaredFields());
+        // 获取父类成员
+        while (clz.getSuperclass() != Object.class) {
+            clz = clz.getSuperclass();
+            Collections.addAll(fieldList, clz.getDeclaredFields());
+        }
+
+        return fieldList;
+    }
 }

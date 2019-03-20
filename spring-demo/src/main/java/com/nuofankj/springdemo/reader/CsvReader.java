@@ -1,5 +1,6 @@
 package com.nuofankj.springdemo.reader;
 
+import com.nuofankj.springdemo.support.TypeEnum;
 import com.nuofankj.springdemo.utility.ReflectionUtility;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -35,6 +36,8 @@ public class CsvReader implements ResourceReader {
     @Override
     public <E> Iterator<E> read(InputStream inputStream, Class<E> clz) {
 
+        // FIXME: 2019/3/20 暂时存放
+        TypeEnum.conversionService = conversionService;
         List<E> resourceBeans = new ArrayList<>();
         boolean hasHeader = false;
         CSVHeader<E> csvHeader = new CSVHeader<>(clz);

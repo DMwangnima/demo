@@ -81,6 +81,24 @@ public abstract class ReflectionUtility extends ReflectionUtils {
     }
 
     /**
+     * 取出对应class所有加了指定注解声明的方法
+     *
+     * @param clz
+     * @param annotationClass
+     * @return
+     */
+    public static Method[] getDeclaredMethodsWith(Class<?> clz, Class<? extends Annotation> annotationClass) {
+
+        List<Method> methods = new ArrayList<>();
+        for (Method method : clz.getDeclaredMethods()) {
+            if (method.isAnnotationPresent(annotationClass)) {
+                methods.add(method);
+            }
+        }
+        return methods.toArray(new Method[0]);
+    }
+
+    /**
      * 获得第一个使用指定注解声明的属性
      *
      * @param clz

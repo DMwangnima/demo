@@ -4,6 +4,7 @@ import org.springframework.core.ResolvableType;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.core.convert.converter.ConditionalGenericConverter;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
 import java.util.List;
@@ -59,13 +60,7 @@ public class StringToPolyObjectConverter implements ConditionalGenericConverter 
         String content = (String) source;
         Object obj = null;
         try {
-            if (targetType.getType().isInterface()) {
-                obj = TypeEnum.doAnalyse(targetType, content);
-
-            } else {
-                Class<?> type = targetType.getType();
-                obj = TypeEnum.doAnalyse(targetType, content);
-            }
+            obj = TypeEnum.doAnalyse((Field) (targetType.getSource()), content);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {

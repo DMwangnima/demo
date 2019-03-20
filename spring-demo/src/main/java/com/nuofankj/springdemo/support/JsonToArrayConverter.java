@@ -33,7 +33,7 @@ public class JsonToArrayConverter implements ConditionalGenericConverter {
             return null;
         }
         // 数组形式
-        if (!sourceType.getElementTypeDescriptor().isPrimitive()) {
+        if (!targetType.getElementTypeDescriptor().isPrimitive()) {
             if (!content.startsWith("[")) {
                 content = "[" + content + "]";
             }

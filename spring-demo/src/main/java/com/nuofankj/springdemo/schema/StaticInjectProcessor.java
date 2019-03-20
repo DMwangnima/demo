@@ -41,6 +41,7 @@ public class StaticInjectProcessor extends InstantiationAwareBeanPostProcessorAd
 
     @Override
     public boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException {
+
         ReflectionUtils.doWithFields(bean.getClass(), new ReflectionUtils.FieldCallback() {
             @Override
             public void doWith(Field field) throws IllegalArgumentException, IllegalAccessException {
@@ -84,7 +85,7 @@ public class StaticInjectProcessor extends InstantiationAwareBeanPostProcessorAd
             key = conversionService.convert(field.getName(), clz);
         }
 
-        Storage storage = storageManager.getStorage(clz);
+        Storage storage = storageManager.getStorage(field.getType());
         // 观察者模式[添加监听器]
         StaticObserver observer = new StaticObserver(bean, field, anno, key);
         storage.addObserver(observer);

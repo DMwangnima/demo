@@ -10,4 +10,12 @@ public class TestResource {
     private int id;
 
     private String testStr;
+
+    @Override
+    public String toString() {
+        return "TestResource{" +
+                "id=" + id +
+                ", testStr='" + testStr + '\'' +
+                '}';
+    }
 }

@@ -1,7 +1,7 @@
 package com.nuofankj.springdemo.resource;
 
 import com.nuofankj.springdemo.support.StringToObjectMapper;
-import com.nuofankj.springdemo.utility.JSONChange;
+import com.nuofankj.springdemo.utility.JsonUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.convert.ConversionService;
 
@@ -25,7 +25,7 @@ public abstract class AbstractGlobalConfig<T> {
     }
 
     // FIXME: 2019/3/15 JSONChange工具感觉不靠谱，如果靠谱JSON那里可以优化下
-    private void initializeValue(){
+    private void initializeValue() {
         switch (getType()) {
             case NORMAL:
                 value = (T) getConversionService().convert(getContent(), getClz());
@@ -33,16 +33,16 @@ public abstract class AbstractGlobalConfig<T> {
             case JSON:
                 if (StringUtils.startsWith(getContent(), "[")) {
                     if (!getClz().isArray()) {
-                        value = (T) JSONChange.jsonToObj(getClz(), getContent());
+                        value = (T) JsonUtils.string2Object(getContent(), getClz());
                     } else {
-                        value = (T) JSONChange.jsonToObj(getClz(), getContent());
+                        value = (T) JsonUtils.string2Array(getContent(), getClz());
                     }
                 } else {
-                    value = (T) JSONChange.jsonToObj(getClz(), getContent());
+                    value = (T) JsonUtils.string2Object(getContent(), getClz());
                 }
                 break;
             case ARRAY:
-                value = (T) JSONChange.jsonToObj(getClz(), getContent());
+                value = (T) JsonUtils.string2Array(getContent(), getClz());
                 break;
             case PARSER:
                 if (StringToObjectMapper.class.isAssignableFrom(getClz())) {

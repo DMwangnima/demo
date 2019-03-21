@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
-import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -24,8 +23,6 @@ public class ClassMapperManager {
     private ApplicationContext applicationContext;
     @Autowired
     private DefaultListableBeanFactory beanFactory;
-    @Autowired
-    private ConversionService conversionService;
 
     @PostConstruct
     private void initialize() {
@@ -45,8 +42,9 @@ public class ClassMapperManager {
                 }
             }
         }
+
+        // FIXME: 2019/3/20 暂时存放
         TypeEnum.classMapperManager = this;
-        TypeEnum.conversionService = conversionService;
     }
 
     public Class getMapperClass(String name) {

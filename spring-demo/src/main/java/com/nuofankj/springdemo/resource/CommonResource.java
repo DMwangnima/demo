@@ -8,6 +8,7 @@ import com.nuofankj.springdemo.support.PolyObjectMapper;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @Resource
 public class CommonResource {
@@ -24,6 +25,9 @@ public class CommonResource {
     // 多态&预处理
     private List<ActivityRewardCondition> conditionRewards;
 
+    // map
+    private Map<Integer, Test2Bean> test3Map;
+
     // 消耗
     private ConsumeDef[] consume;
 
@@ -36,8 +40,8 @@ public class CommonResource {
     // 掉落 多态
     private PolyObjectMapper odd4;
 
-    // FIXME: 2019/3/20 json数组注入还有问题
-    private Test3Bean bean;
+    // json数组注入[字段需要实现set函数]
+    private Test3Bean[] bean;
 
     @PostInit
     public void init() {
@@ -58,7 +62,8 @@ public class CommonResource {
                 ", attributes=" + attributes +
                 ", effect=" + effect +
                 ", odd4=" + odd4 +
-                ", bean=" + bean +
+                ", bean=" + Arrays.toString(bean) +
+                ", test3Map=" + test3Map +
                 '}';
     }
 }

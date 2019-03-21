@@ -1,6 +1,5 @@
 package com.nuofankj.springdemo.reader;
 
-import com.nuofankj.springdemo.support.TypeEnum;
 import com.nuofankj.springdemo.utility.ReflectionUtility;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;

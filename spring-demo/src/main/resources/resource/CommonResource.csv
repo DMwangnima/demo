@@ -1,6 +1,6 @@
-CommonResource,,,,,,,,,
-,标识,基础结构,对象数组,多态&预处理,多态&预处理,属性测试,掉落测试,掉落测试多态,json数组
-,int,string,string,string,string,string,string,string,string
-SERVER,id,test1Bean,test2Array,conditionRewards,consume,attributes,effect,odd4,bean
-,1,"{1-test-2.1-3.5-4-5-6-c-0-7,8,9-10:11;12:13-{14-15}-16,17,18}","{104-300-3333},{105-301-3334}","[CommonRankRewardCondition@{1,1,0-1:43;2:43},LevelRankRewardCondition@{1-1:43;2:43}]","[{Currency-Gold:20},{Item-Gold:20}]","[{MAXHP-51},{ATTACK-1}]","{1:1130104,1130105,1130106;2:1130104,1130105,1130106;3:1130104,1130105,1130106}",OddTest1@{0-0-10000-10000},"{""a1"":1,""a2"":2}"
-END,2,"{1-test-2.1-3.5-4-5-6-c-0-7,8,9-10:11;12:13-{14-15}-16,17,18}","[{104-300-3333},{105-301-3334}]","[CommonRankRewardCondition@{1,1,0-1:43;2:43},LevelRankRewardCondition@{1-1:43;2:43}]","[{Currency-Gold:20},{Item-Gold:20}]","[{MAXHP-51},{ATTACK-1}]","{1:1130104,1130105,1130106;2:1130104,1130105,1130106;3:1130104,1130105,1130106}",OddTest2@{1-10000},"{""a1"":1,""a2"":2}"
+CommonResource,,,,,,,,,,
+,标识,基础结构,对象数组,多态&预处理,多态&预处理,属性测试,掉落测试,掉落测试多态,json数组,map测试
+,int,string,string,string,string,string,string,string,string,string
+SERVER,id,test1Bean,test2Array,conditionRewards,consume,attributes,effect,odd4,bean,test3Map
+,1,"{1-test-2.1-3.5-4-5-6-c-0-7,8,9-10:11;12:13-{14-15}-16,17,18}","{104-300-3333},{105-301-3334}","[CommonRankRewardCondition@{1,1,0-1:43;2:43},LevelRankRewardCondition@{1-1:43;2:43}]","[{Currency-Gold:20},{Item-Gold:20}]","[{MAXHP-51},{ATTACK-1}]","{1:1130104,1130105,1130106;2:1130104,1130105,1130106;3:1130104,1130105,1130106}",OddTest1@{0-0-10000-10000},"{""a1"":1,""a2"":2}",[1:{1-2};2:{2-3}]
+END,2,"{1-test-2.1-3.5-4-5-6-c-0-7,8,9-10:11;12:13-{14-15}-16,17,18}","[{104-300-3333},{105-301-3334}]","[CommonRankRewardCondition@{1,1,0-1:43;2:43},LevelRankRewardCondition@{1-1:43;2:43}]","[{Currency-Gold:20},{Item-Gold:20}]","[{MAXHP-51},{ATTACK-1}]","{1:1130104,1130105,1130106;2:1130104,1130105,1130106;3:1130104,1130105,1130106}",OddTest2@{1-10000},"{""a1"":1,""a2"":2}",1:{1-2};2:{2-3}

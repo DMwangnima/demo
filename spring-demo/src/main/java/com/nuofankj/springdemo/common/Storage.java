@@ -1,13 +1,12 @@
 package com.nuofankj.springdemo.common;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.nuofankj.springdemo.anno.Init;
 import com.nuofankj.springdemo.anno.PostInit;
 import com.nuofankj.springdemo.reader.ReaderHolder;
 import com.nuofankj.springdemo.reader.ResourceReader;
 import com.nuofankj.springdemo.schema.InjectDefinition;
 import com.nuofankj.springdemo.schema.ResourceDefinition;
-import com.nuofankj.springdemo.utility.JSONChange;
+import com.nuofankj.springdemo.utility.JsonUtils;
 import com.nuofankj.springdemo.utility.ReflectionUtility;
 import org.slf4j.helpers.FormattingTuple;
 import org.slf4j.helpers.MessageFormatter;
@@ -184,7 +183,7 @@ public class Storage<K, V> extends Observable implements ApplicationContextAware
         if (obj == null) {
             return "null";
         }
-        return JSONChange.objToJson(obj);
+        return JsonUtils.object2String(obj);
     }
 
     private V put(StorageData<K, V> data, V value) {

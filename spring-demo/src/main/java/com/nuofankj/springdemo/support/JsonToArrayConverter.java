@@ -1,10 +1,9 @@
 package com.nuofankj.springdemo.support;
 
-import com.nuofankj.springdemo.utility.JSONChange;
+import com.nuofankj.springdemo.utility.JsonUtils;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.core.convert.converter.ConditionalGenericConverter;
 
-import java.io.IOException;
 import java.util.Collections;
 import java.util.Set;
 
@@ -39,7 +38,7 @@ public class JsonToArrayConverter implements ConditionalGenericConverter {
             }
         }
         Object object = null;
-        object = JSONChange.jsonToObj(targetType.getObjectType(), content);
+        object = JsonUtils.string2Array(content, targetType.getElementTypeDescriptor().getObjectType());
         return object;
     }
 }

@@ -1,9 +1,14 @@
 package com.nuofankj.springdemo.support;
 
+import org.slf4j.helpers.FormattingTuple;
+import org.slf4j.helpers.MessageFormatter;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
 
-import java.lang.reflect.*;
+import java.lang.reflect.Array;
+import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.*;
 
 /**
@@ -81,8 +86,7 @@ public enum TypeEnum {
         @Override
         public Object analyse(Object o, String str) {
 
-            char c = str.charAt(0);
-            return c;
+            return str.charAt(0);
         }
     },
 
@@ -90,31 +94,25 @@ public enum TypeEnum {
         @Override
         public Object analyse(Object o, String str) {
 
-            Boolean aBoolean = null;
-            if (str.equals("1")) {
-                aBoolean = Boolean.valueOf(true);
-            } else if (str.equals("0")) {
-                aBoolean = Boolean.valueOf(false);
-            } else {
-                System.out.println("boolean类型不匹配");
-            }
-            return aBoolean;
+            return str.equals("1");
         }
     },
 
     LIST_TYPE("java.util.List", null) {
         @Override
-        public Object analyse(Object o, String str) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+        public Object analyse(Object o, String str) {
 
-            // 分割
-            List<String> listTmp = splitFieldMember(str, ',');
-
-            // 获取List的泛型类型
-            List<Type> parameterizedType = getParameterizedType(o);
             List list = new ArrayList();
-            for (String s : listTmp) {
-                Object obj = TypeEnum.doAnalyse(parameterizedType.get(0), s);
-                list.add(obj);
+            try {
+                // 获取List的泛型类型
+                List<Type> parameterizedType = getParameterizedType(o);
+                for (String s : splitFieldMember(str, ',')) {
+                    Object obj = TypeEnum.doAnalyse(parameterizedType.get(0), s);
+                    list.add(obj);
+                }
+            } catch (Exception e) {
+                FormattingTuple message = MessageFormatter.format("无法将字符[{}]转成List", str, e);
+                throw new IllegalStateException(message.getMessage());
             }
             return list;
         }
@@ -122,114 +120,126 @@ public enum TypeEnum {
 
     MAP_TYPE("java.util.Map", null) {
         @Override
-        public Object analyse(Object o, String str) throws IllegalAccessException, ClassNotFoundException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+        public Object analyse(Object o, String str) {
 
             Map map = new HashMap();
-            List<String> strList = splitFieldMember(str, ';');
+            try {
+                List<Type> parameterizedType = getParameterizedType(o);
+                // map key 的类型
+                Type keyType = parameterizedType.get(0);
+                // map value 的类型
+                Type valType = parameterizedType.get(1);
 
-            // parameterizedType 此处为map的泛型参数
-            List<Type> parameterizedType = getParameterizedType(o);
-            // map key 的类型
-            Type keyType = parameterizedType.get(0);
-            // map value 的类型
-            Type valType = parameterizedType.get(1);
-
-            for (String s : strList) {
-
-                List<String> keyValue = splitFieldMember(s, ':');
-
-                // 键 的处理 命名参数优化出去
-                String keyStr = keyValue.get(0);
-                Object key = TypeEnum.doAnalyse(keyType, keyStr);
-
-                // 值 的处理
-                String valStr = keyValue.get(1);
-                Object value = TypeEnum.doAnalyse(valType, valStr);
-                map.put(key, value);
+                List<String> strList = splitFieldMember(str, ';');
+                for (String s : strList) {
+                    List<String> keyValue = splitFieldMember(s, ':');
+                    // 键 的处理
+                    String keyStr = keyValue.get(0);
+                    Object key = TypeEnum.doAnalyse(keyType, keyStr);
+                    // 值 的处理
+                    String valStr = keyValue.get(1);
+                    Object value = TypeEnum.doAnalyse(valType, valStr);
+                    map.put(key, value);
+                }
+            } catch (Exception e) {
+                FormattingTuple message = MessageFormatter.format("无法将字符[{}]转成Map", str, e);
+                throw new IllegalStateException(message.getMessage());
             }
-
             return map;
-        }
-    },
-
-    OBJECT_TYPE(null, null) {
-        @Override
-        public Object analyse(Object o, String param) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-
-            // 此处先处理带@的多态情况
-            Class<?> cls = getVarietyClass(param);
-
-            // 如果有 @ 脱掉 xxx@
-            param = cleanAite(param);
-
-            // 数据成员以 - 分割，此处进行切割
-            List<String> strList = splitFieldMember(param, '-');
-
-            if (cls == null) {
-                if (o instanceof Field) {
-                    Field f = (Field) o;
-                    cls = Class.forName(f.getType().getName());
-                } else {
-                    cls = (Class<?>) o;
-                }
-            }
-
-            Object t = cls.getDeclaredConstructor().newInstance();
-
-            List<Field> fields = getFields(cls);
-
-            int index = 0;
-
-            for (Field f : fields) {
-                if (strList.get(index).equals("") || strList.get(index) == null) {
-                    index++;
-                    continue;
-                }
-                f.setAccessible(true);
-                Object o1 = TypeEnum.doAnalyse(f, strList.get(index));
-                f.set(t, o1);
-                index++;
-            }
-            return t;
         }
     },
 
     ARRAY_TYPE(null, null) {
         @Override
-        public Object analyse(Object o, String str) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        public Object analyse(Object o, String str) {
 
-            Class<?> cls;
-            if (o instanceof Field) {
-                cls = ((Field) o).getType().getComponentType();
-            } else {
-                cls = ((Class) o).getComponentType();
+            try {
+                Class<?> cls;
+                // 取出数组内具体的class类型
+                if (o instanceof Field) {
+                    cls = ((Field) o).getType().getComponentType();
+                } else {
+                    cls = ((Class) o).getComponentType();
+                }
+
+                List<String> strList = splitFieldMember(str, ',');
+                Object arr = Array.newInstance(cls, strList.size());
+                int index = 0;
+                for (String s : strList) {
+                    Object obj = TypeEnum.doAnalyse(cls, s);
+                    Array.set(arr, index, obj);
+                    index++;
+                }
+
+                return arr;
+            } catch (Exception e) {
+                FormattingTuple message = MessageFormatter.format("无法将字符串[{}]转成数组", str, e);
+                throw new IllegalStateException(message.getMessage());
             }
-
-            List<String> strList = splitFieldMember(str, ',');
-            Object arr = Array.newInstance(cls, strList.size());
-            int index = 0;
-            for (String s : strList) {
-                Object obj = TypeEnum.doAnalyse(cls, s);
-                Array.set(arr, index, obj);
-                index++;
-            }
-
-            return arr;
         }
     },
 
-    // fixme: 枚举类型直接引用了spring的转换器
     ENUM(null, null) {
         @Override
-        public Object analyse(Object o, String str) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+        public Object analyse(Object o, String str) {
 
-            TypeDescriptor sourceType = TypeDescriptor.valueOf(String.class);
-            TypeDescriptor targetType = new TypeDescriptor((Field) o);
-            Object value = conversionService.convert(str, sourceType, targetType);
-
-            return value;
+            try {
+                // 枚举类型直接引用了spring的转换器
+                return conversionService.convert(str, TypeDescriptor.valueOf(String.class), new TypeDescriptor((Field) o));
+            } catch (Exception e) {
+                FormattingTuple message = MessageFormatter.format("无法将字符串[{}]转成枚举", str, e);
+                throw new IllegalStateException(message.getMessage());
+            }
         }
-    };
+    },
+
+    OBJECT_TYPE(null, null) {
+        @Override
+        public boolean isMatch(String typeName) {
+            return true;
+        }
+
+        @Override
+        public Object analyse(Object o, String param) {
+
+            try {
+                // 此处先处理带@的多态情况
+                Class<?> cls = getVarietyClass(param);
+                if (cls == null) {
+                    if (o instanceof Field) {
+                        Field f = (Field) o;
+                        cls = Class.forName(f.getType().getName());
+                    } else {
+                        cls = (Class<?>) o;
+                    }
+                }
+
+                Object obj = cls.getDeclaredConstructor().newInstance();
+                List<Field> fields = getFields(cls);
+                // 如果有 @ 脱掉 xxx@
+                param = cleanAite(param);
+                // 数据成员以 - 分割，此处进行切割
+                List<String> strList = splitFieldMember(param, '-');
+                int index = 0;
+                for (Field f : fields) {
+                    if (strList.get(index).equals("") || strList.get(index) == null) {
+                        index++;
+                        continue;
+                    }
+                    f.setAccessible(true);
+                    Object o1 = TypeEnum.doAnalyse(f, strList.get(index));
+                    f.set(obj, o1);
+                    index++;
+                }
+
+                return obj;
+            } catch (Exception e) {
+                FormattingTuple message = MessageFormatter.format("无法将字符串[{}]转成对象", param, e);
+                throw new IllegalStateException(message.getMessage());
+            }
+        }
+    },
+    ;
     private String name1;
 
     private String name2;
@@ -246,7 +256,21 @@ public enum TypeEnum {
 
     public static ConversionService conversionService;
 
-    public abstract Object analyse(Object o, String str) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException;
+    public abstract Object analyse(Object o, String str);
+
+    public boolean isMatch(String typeName) {
+
+        typeName = getRealName(typeName);
+        if (getName1() != null && getName1().equals(typeName)) {
+            return true;
+        }
+
+        if (getName2() != null && getName2().equals(typeName)) {
+            return true;
+        }
+
+        return false;
+    }
 
     TypeEnum(String name1, String name2) {
         this.name1 = name1;
@@ -254,36 +278,34 @@ public enum TypeEnum {
     }
 
     // 取得对应TypeEnum并调用analyse解析出对应对象
-    public static Object doAnalyse(Object o, String str) throws IllegalAccessException, InstantiationException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException {
+    public static Object doAnalyse(Object o, String str) {
 
-        TypeEnum anEnum = getTypeEnum(o);
-        Object analyse = anEnum.analyse(o, str);
-        return analyse;
+        return getTypeEnum(o).analyse(o, str);
     }
 
     /**
      * 根据Object的类型获取对应的TypeEnum
      *
-     * @param o
+     * @param obj
      * @return
      */
-    private static TypeEnum getTypeEnum(Object o) {
+    private static TypeEnum getTypeEnum(Object obj) {
 
         String typeName = null;
         TypeEnum anEnum = null;
-        if (o instanceof ParameterizedType) {
-            typeName = ((Type) o).getTypeName();
-        } else if (o instanceof Field) {
-            if (((Field) o).getType().isArray()) {
+        if (obj instanceof ParameterizedType) {
+            typeName = ((Type) obj).getTypeName();
+        } else if (obj instanceof Field) {
+            if (((Field) obj).getType().isArray()) {
                 anEnum = TypeEnum.ARRAY_TYPE;
             } else {
-                typeName = ((Field) o).getType().getName();
-                if (((Field) o).getType().isEnum()) {
+                typeName = ((Field) obj).getType().getName();
+                if (((Field) obj).getType().isEnum()) {
                     anEnum = TypeEnum.ENUM;
                 }
             }
         } else {
-            Class cls = (Class) o;
+            Class cls = (Class) obj;
             if (cls.isArray()) {
                 anEnum = TypeEnum.ARRAY_TYPE;
             } else {
@@ -291,17 +313,11 @@ public enum TypeEnum {
             }
         }
         if (anEnum == null) {
-            typeName = getRealName(typeName);
             for (TypeEnum typeEnum : TypeEnum.values()) {
-                if (typeEnum.getName1() != null && typeEnum.getName1().equals(typeName)) {
+                if (typeEnum.isMatch(typeName)) {
                     anEnum = typeEnum;
+                    break;
                 }
-                if (typeEnum.getName2() != null && typeEnum.getName2().equals(typeName)) {
-                    anEnum = typeEnum;
-                }
-            }
-            if (anEnum == null) {
-                anEnum = TypeEnum.OBJECT_TYPE;
             }
         }
 
@@ -311,16 +327,15 @@ public enum TypeEnum {
     /**
      * 获取泛型参数
      */
-    public List<Type> getParameterizedType(Object o) throws ClassNotFoundException {
+    public List<Type> getParameterizedType(Object o) {
+
         List<Type> list = new ArrayList();
         if (o instanceof Field) {
-            Field f = (Field) o;
-            // 获取f字段的通用类型
-            Type fc = f.getGenericType(); // 关键的地方得到其Generic的类型
+            // 获取f字段的类型
+            Type fc = ((Field) o).getGenericType();
             // 如果不为空并且是泛型参数的类型
             if (fc != null && fc instanceof ParameterizedType) {
-                ParameterizedType pt = (ParameterizedType) fc;
-                Type[] types = pt.getActualTypeArguments();
+                Type[] types = ((ParameterizedType) fc).getActualTypeArguments();
                 if (types != null && types.length > 0) {
                     for (int i = 0; i < types.length; i++) {
                         list.add(types[i]);
@@ -329,12 +344,11 @@ public enum TypeEnum {
             }
         }
 
-        // 此处兼容当o为List<Object>的时候
+        // 此处兼容当o为List<Object>的时候，如结构 Map<Integer, List<Integer>>
         if (o instanceof Type) {
             Type t = (Type) o;
             if (TypeEnum.getTypeEnum(t) == TypeEnum.LIST_TYPE) {
-                ParameterizedType type = (ParameterizedType) t;
-                list.add(type.getActualTypeArguments()[0]);
+                list.add(((ParameterizedType) t).getActualTypeArguments()[0]);
             }
         }
 
@@ -355,7 +369,7 @@ public enum TypeEnum {
     }
 
     /**
-     * 字符串切割成成员队列返回
+     * 字符串切割成成员队列返回，例如：a-{a-b-c}-c，切割完便是 a、{a-b-c}、c 三个成员
      *
      * @param param
      * @param symbol
@@ -379,20 +393,23 @@ public enum TypeEnum {
             char c = param.charAt(current);
             if (startIndex == -1) {
                 startIndex = current;
+                // 为了兼顾-b-c即a放空的情况
                 if (c == symbol) {
                     list.add("");
                     startIndex = -1;
                     continue;
                 }
             }
+
             if (c == '{') {
                 leftCount++;
             }
+
             if (c == '}') {
                 rightCount++;
             }
-            if (c == symbol) {
 
+            if (c == symbol) {
                 if (leftCount == rightCount) {
                     String fieldStr = param.substring(startIndex, current);
                     if (!fieldStr.equals("")) {
@@ -407,7 +424,6 @@ public enum TypeEnum {
                     list.add("");
                     continue;
                 }
-
             }
 
             if (current == param.length() - 1) {
@@ -418,7 +434,6 @@ public enum TypeEnum {
                 list.add(fieldStr);
             }
         }
-
 
         return list;
     }

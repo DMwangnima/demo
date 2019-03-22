@@ -5,10 +5,7 @@ import org.slf4j.helpers.MessageFormatter;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
 
-import java.lang.reflect.Array;
-import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+import java.lang.reflect.*;
 import java.util.*;
 
 /**
@@ -151,6 +148,28 @@ public enum TypeEnum {
 
     ARRAY_TYPE(null, null) {
         @Override
+        public boolean isMatch(Object obj) {
+
+            if (obj instanceof ParameterizedType) {
+                return false;
+            } else if (obj instanceof Field) {
+                if (((Field) obj).getType().isArray()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                Class cls = (Class) obj;
+                if (cls.isArray()) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+
+        @Override
         public Object analyse(Object o, String str) {
 
             try {
@@ -181,6 +200,18 @@ public enum TypeEnum {
 
     ENUM(null, null) {
         @Override
+        public boolean isMatch(Object obj) {
+
+            if (obj instanceof Field) {
+                if (((Field) obj).getType().isEnum()) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        @Override
         public Object analyse(Object o, String str) {
 
             try {
@@ -195,7 +226,7 @@ public enum TypeEnum {
 
     OBJECT_TYPE(null, null) {
         @Override
-        public boolean isMatch(String typeName) {
+        public boolean isMatch(Object obj) {
             return true;
         }
 
@@ -258,13 +289,29 @@ public enum TypeEnum {
 
     public abstract Object analyse(Object o, String str);
 
-    public boolean isMatch(String typeName) {
+    public boolean isMatch(Object obj) {
+
+        String typeName;
+        if (obj instanceof Field) {
+            if (((Field) obj).getType().isArray()) {
+                return false;
+            }
+            if (((Field) obj).getType().isEnum()) {
+                return false;
+            }
+            typeName = getRealName(((Field) obj).getType().getName());
+        } else {
+            Class cls = (Class) obj;
+            if (cls.isArray()) {
+                return false;
+            }
+            typeName = cls.getName();
+        }
 
         typeName = getRealName(typeName);
         if (getName1() != null && getName1().equals(typeName)) {
             return true;
         }
-
         if (getName2() != null && getName2().equals(typeName)) {
             return true;
         }
@@ -286,26 +333,26 @@ public enum TypeEnum {
     /**
      * 根据Object的类型获取对应的TypeEnum
      *
-     * @param obj
+     * @param o
      * @return
      */
-    private static TypeEnum getTypeEnum(Object obj) {
-
+    private static TypeEnum getTypeEnum(Object o) {
+        // FIXME: 2019/3/22 待优化代码
         String typeName = null;
         TypeEnum anEnum = null;
-        if (obj instanceof ParameterizedType) {
-            typeName = ((Type) obj).getTypeName();
-        } else if (obj instanceof Field) {
-            if (((Field) obj).getType().isArray()) {
+        if (o instanceof ParameterizedType) {
+            typeName = ((Type) o).getTypeName();
+        } else if (o instanceof Field) {
+            if (((Field) o).getType().isArray()) {
                 anEnum = TypeEnum.ARRAY_TYPE;
             } else {
-                typeName = ((Field) obj).getType().getName();
-                if (((Field) obj).getType().isEnum()) {
+                typeName = ((Field) o).getType().getName();
+                if (((Field) o).getType().isEnum()) {
                     anEnum = TypeEnum.ENUM;
                 }
             }
         } else {
-            Class cls = (Class) obj;
+            Class cls = (Class) o;
             if (cls.isArray()) {
                 anEnum = TypeEnum.ARRAY_TYPE;
             } else {
@@ -313,15 +360,29 @@ public enum TypeEnum {
             }
         }
         if (anEnum == null) {
+            typeName = getRealName(typeName);
             for (TypeEnum typeEnum : TypeEnum.values()) {
-                if (typeEnum.isMatch(typeName)) {
+                if (typeEnum.getName1() != null && typeEnum.getName1().equals(typeName)) {
                     anEnum = typeEnum;
-                    break;
                 }
+                if (typeEnum.getName2() != null && typeEnum.getName2().equals(typeName)) {
+                    anEnum = typeEnum;
+                }
+            }
+            if (anEnum == null) {
+                anEnum = TypeEnum.OBJECT_TYPE;
             }
         }
 
         return anEnum;
+
+//        for (TypeEnum typeEnum : TypeEnum.values()) {
+//            if (typeEnum.isMatch(o)) {
+//                return typeEnum;
+//            }
+//        }
+//
+//        return null;
     }
 
     /**

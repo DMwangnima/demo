@@ -16,6 +16,9 @@ public class CommonResource {
     @Id
     private int id;
 
+    // 简单例子
+    private Test2Bean test2Bean;
+
     // 基础结构
     private Test1Bean test1Bean;
 
@@ -55,15 +58,16 @@ public class CommonResource {
     public String toString() {
         return "CommonResource{" +
                 "id=" + id +
+                ", test2Bean=" + test2Bean +
                 ", test1Bean=" + test1Bean +
                 ", test2Array=" + Arrays.toString(test2Array) +
                 ", conditionRewards=" + conditionRewards +
+                ", test3Map=" + test3Map +
                 ", consume=" + Arrays.toString(consume) +
                 ", attributes=" + attributes +
                 ", effect=" + effect +
                 ", odd4=" + odd4 +
                 ", bean=" + Arrays.toString(bean) +
-                ", test3Map=" + test3Map +
                 '}';
     }
 }

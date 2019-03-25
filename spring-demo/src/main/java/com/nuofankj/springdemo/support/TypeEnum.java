@@ -215,6 +215,7 @@ public enum TypeEnum {
         public Object analyse(Object o, String str) {
 
             try {
+//                Class<? extends Enum> a = (Class<? extends Enum>) o.getClass();
                 // 枚举类型直接引用了spring的转换器
                 return conversionService.convert(str, TypeDescriptor.valueOf(String.class), new TypeDescriptor((Field) o));
             } catch (Exception e) {

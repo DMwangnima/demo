@@ -29,9 +29,6 @@ public class StorageManagerFactory implements FactoryBean<StorageManager>, Appli
     @Override
     public StorageManager getObject() throws Exception {
 
-        // FIXME: 2019/3/21 枚举转换器注入
-        TypeEnum.conversionService = conversionService;
-
         // 使用AutowireCapableBeanFactory构造StorageManager对象
         StorageManager result = this.applicationContext.getAutowireCapableBeanFactory().createBean(StorageManager.class);
         Collections.sort(definitionList, new Comparator<ResourceDefinition>() {

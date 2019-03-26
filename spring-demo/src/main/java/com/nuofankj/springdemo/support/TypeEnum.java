@@ -1,11 +1,13 @@
 package com.nuofankj.springdemo.support;
 
+import com.nuofankj.springdemo.anno.ParseIgnore;
 import org.slf4j.helpers.FormattingTuple;
 import org.slf4j.helpers.MessageFormatter;
-import org.springframework.core.convert.ConversionService;
-import org.springframework.core.convert.TypeDescriptor;
 
-import java.lang.reflect.*;
+import java.lang.reflect.Array;
+import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.*;
 
 /**
@@ -13,13 +15,14 @@ import java.util.*;
  * - 对象成员分隔符，格式 1-2
  * , array和list分隔符，格式1,2,3 或者[1,2,3]
  * {} 对象分隔符，在最外围的可以不加，组合对象需加，格式{1-2f3}
- * : ; map类型使用，格式 key:value1;key:value2;
+ * : ; map类型使用，格式 key:value1;key:value2
  *
- * @ 多态分隔符，格式 XXX@{1-2-3};
+ * @ 多态分隔符，格式 XXX@{1-2-3}
  * <p>
  * Tips:
  * Filed为自定义对象或者包含自定义对象的时候需要实现PolyObjectMapper接口
  * 使用多态的时候：多态类需要加@ClassMapper注解
+ * 需要绕过通用解析，自己解析的时候需要使用注解@ParseIgnore和实现接口SelfParser
  */
 public enum TypeEnum {
 
@@ -218,7 +221,7 @@ public enum TypeEnum {
             try {
                 int index = Integer.parseInt(str);
                 Class<? extends Enum> type = (Class<? extends Enum>) ((Field) o).getType();
-                return ((Enum[]) type.getEnumConstants())[index];
+                return type.getEnumConstants()[index];
             } catch (Exception e) {
                 FormattingTuple message = MessageFormatter.format("无法将字符串[{}]转成枚举", str, e);
                 throw new IllegalStateException(message.getMessage());
@@ -255,6 +258,10 @@ public enum TypeEnum {
                 List<String> strList = splitFieldMember(param, '-');
                 int index = 0;
                 for (Field f : fields) {
+                    // 加了ParseIgnore则直接绕过
+                    if (f.getAnnotation(ParseIgnore.class) != null) {
+                        continue;
+                    }
                     if (strList.get(index).equals("") || strList.get(index) == null) {
                         index++;
                         continue;
@@ -265,6 +272,10 @@ public enum TypeEnum {
                     index++;
                 }
 
+                // 自我解析
+                if (SelfParser.class.isInstance(obj)) {
+                    ((SelfParser) obj).doParse();
+                }
                 return obj;
             } catch (Exception e) {
                 FormattingTuple message = MessageFormatter.format("无法将字符串[{}]转成对象", param, e);

@@ -49,9 +49,6 @@ public class CommonResource {
     @PostInit
     public void init() {
         System.out.println("------------------postInit注解调用------------------");
-        for (ActivityRewardCondition condition : conditionRewards) {
-            condition.doParse();
-        }
     }
 
     @Override

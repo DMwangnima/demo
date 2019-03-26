@@ -20,8 +20,6 @@ public abstract class ActivityRewardCondition implements PolyObjectMapper {
         return reward;
     }
 
-    public abstract void doParse();
-
     @Override
     public String toString() {
         return "ActivityRewardCondition{" +

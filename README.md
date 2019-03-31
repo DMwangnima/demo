@@ -1,6 +1,8 @@
-**GO微服务**
+**一、 GO微服务**
 
-1、GoMicroDemo：gomicro微服务的demo，实现了web服务和user服务以及数据库的增删查改
+源码可以看GoMicroDemo
+
+描述：gomicro微服务的demo，实现了web服务和user服务以及数据库的增删查改
 
 运行要求：
 
@@ -10,6 +12,14 @@
 
 系统应用可以查看项目基于go-micro微服务实现的在线电影院订票系统：
 https://github.com/wiatingpub/MTBSystem
+
+**二、 基于spring实现事件驱动**
+
+源码可以看：event-mechanism
+
+运行要求：
+
+1）直接点击EventMechanismApplicationTests启动便可以
 
 ---------
 

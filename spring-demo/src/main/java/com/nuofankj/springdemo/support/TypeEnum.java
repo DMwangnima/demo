@@ -17,7 +17,7 @@ import java.util.*;
  * {} 对象分隔符，在最外围的可以不加，组合对象需加，格式{1-2f3}
  * : ; map类型使用，格式 key:value1;key:value2
  *
- * @ 多态分隔符，格式 XXX@{1-2-3}
+ * @ 多态分隔符，格式 XXX@{1-2-3},无需再{XXX@{1-2-3}}
  * <p>
  * Tips:
  * Filed为自定义对象或者包含自定义对象的时候需要实现PolyObjectMapper接口

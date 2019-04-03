@@ -32,7 +32,7 @@ public class CommonResource {
     private Map<Integer, Test2Bean> test3Map;
 
     // 消耗
-    private ConsumeDef[] consume;
+    private IConsume consume;
 
     // 属性
     private List<ImmutableAttribute> attributes;
@@ -45,6 +45,15 @@ public class CommonResource {
 
     // json数组注入[字段需要实现set函数]
     private Test3Bean[] bean;
+
+    // 私有解析
+    private Test5Bean test5Bean;
+
+    // 发奖
+    private RewardDef[] rankReward;
+
+    // 枚举
+    private Test6Bean test6Bean;
 
     @PostInit
     public void init() {
@@ -60,11 +69,14 @@ public class CommonResource {
                 ", test2Array=" + Arrays.toString(test2Array) +
                 ", conditionRewards=" + conditionRewards +
                 ", test3Map=" + test3Map +
-                ", consume=" + Arrays.toString(consume) +
+                ", consume=" + consume +
                 ", attributes=" + attributes +
                 ", effect=" + effect +
                 ", odd4=" + odd4 +
                 ", bean=" + Arrays.toString(bean) +
+                ", test5Bean=" + test5Bean +
+                ", rankReward=" + Arrays.toString(rankReward) +
+                ", test6Bean=" + test6Bean +
                 '}';
     }
 }

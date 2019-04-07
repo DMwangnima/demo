@@ -1,6 +1,6 @@
 **一、 GO微服务**
 
-源码可以看GoMicroDemo
+源码可以看：GoMicroDemo
 
 描述：gomicro微服务的demo，实现了web服务和user服务以及数据库的增删查改
 

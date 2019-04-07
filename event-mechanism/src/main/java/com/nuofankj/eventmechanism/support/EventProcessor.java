@@ -13,7 +13,7 @@ import org.springframework.util.ReflectionUtils;
 /**
  * @author xifanxiaxue
  * @date 3/31/19
- * @desc
+ * @desc 事件处理器
  */
 @Component
 public class EventProcessor extends InstantiationAwareBeanPostProcessorAdapter {

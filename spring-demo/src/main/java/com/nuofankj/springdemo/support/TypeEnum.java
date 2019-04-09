@@ -398,9 +398,13 @@ public enum TypeEnum {
         Class<?> cls = null;
         if (param.contains("@")) {
             // 证明 @ 在最外围
-            if (!param.split("@")[0].contains("-")) {
-                // 多态处理
-                cls = TypeEnum.classMapperManager.getMapperClass(param.split("@")[0]);
+            String clzName = param.split("@")[0];
+            if (!clzName.contains("-")) {
+                // 多态处理,率先取PolyObjectEnum中定义的类，再取classMapperManager中自动处理的类
+                cls = PolyObjectEnum.getPolyObject(clzName);
+                if (cls == null) {
+                    cls = TypeEnum.classMapperManager.getMapperClass(clzName);
+                }
             }
         }
         return cls;

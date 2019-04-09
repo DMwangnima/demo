@@ -105,7 +105,7 @@ public class ResourceDefinition {
     }
 
     /**
-     * 获取非静态&并且是加了@ResoureInject注解的Field
+     * 获取非静态的Field
      */
     public Set<InjectDefinition> getInjects() {
         HashSet<InjectDefinition> result = new HashSet<>();

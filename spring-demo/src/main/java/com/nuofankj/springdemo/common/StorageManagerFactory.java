@@ -1,7 +1,6 @@
 package com.nuofankj.springdemo.common;
 
 import com.nuofankj.springdemo.schema.ResourceDefinition;
-import com.nuofankj.springdemo.support.TypeEnum;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;

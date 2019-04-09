@@ -89,7 +89,6 @@ public class StaticInjectProcessor extends InstantiationAwareBeanPostProcessorAd
         // 观察者模式[添加监听器]
         StaticObserver observer = new StaticObserver(bean, field, anno, key);
         storage.addObserver(observer);
-        // FIXME: 2019/3/15 这段是什么鬼东西
         Object instance = storage.get(key, false);
         if (anno.required() && instance == null) {
             if (!anno.default_().equals("")) {

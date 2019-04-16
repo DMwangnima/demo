@@ -13,8 +13,6 @@
 系统应用可以查看项目基于go-micro微服务实现的在线电影院订票系统：
 https://github.com/wiatingpub/MTBSystem
 
------------
-
 系列博客：
 - https://mp.weixin.qq.com/s/UX_h-SgHk28ny8MLc0MXqg
 - https://mp.weixin.qq.com/s/IGQV_uxcs6n6S9trayShag

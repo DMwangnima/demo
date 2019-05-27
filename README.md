@@ -29,6 +29,9 @@ https://github.com/wiatingpub/MTBSystem
 
 1）直接点击EventMechanismApplicationTests启动便可以
 
+系列博客：
+- https://mp.weixin.qq.com/s?__biz=MzI4NjMwMzgzOA==&mid=2247483737&idx=1&sn=ca8dbfed50c1b300e8f95972838b93d4&chksm=ebdfb268dca83b7e127c2b61f3ad440faeebefcdc1382e0348ad557a75eca90ba4119a8a0126&token=1239249976&lang=zh_CN#rd
+
 ---------
 
 

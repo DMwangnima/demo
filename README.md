@@ -34,6 +34,19 @@ https://github.com/wiatingpub/MTBSystem
 
 ---------
 
+**三、 聊聊spring中bean的生命周期**
+
+源码可以看：springboot-demo
+
+运行要求：
+
+1）直接点击DemoApplication启动便可以
+
+系列博客：
+- 
+
+---------
+
 
 系列博客可以关注公众号：
 

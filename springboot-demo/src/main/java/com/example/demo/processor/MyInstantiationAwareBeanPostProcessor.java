@@ -1,5 +1,7 @@
 package com.example.demo.processor;
 
+import com.example.demo.bean.TestBeanA;
+import com.example.demo.bean.TestBeanB;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.PropertyValues;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter;
@@ -17,14 +19,18 @@ public class MyInstantiationAwareBeanPostProcessor extends
     public MyInstantiationAwareBeanPostProcessor() {
         super();
         System.out
-                .println("4、【InstantiationAwareBeanPostProcessorAdapter】实现类的构造函数");
+                .println("【MyInstantiationAwareBeanPostProcessor】InstantiationAwareBeanPostProcessorAdapter实现类的构造函数");
     }
 
     // 接口方法、实例化Bean之前调用
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        System.out
-                .println("7、【InstantiationAwareBeanPostProcessorAdapter】的接口【postProcessBeforeInitialization】，beanName:" + beanName);
+
+        if (bean.getClass() == TestBeanA.class || bean.getClass() == TestBeanB.class) {
+            System.out
+                    .println("【InstantiationAwareBeanPostProcessorAdapter.postProcessBeforeInitialization】来自MyInstantiationAwareBeanPostProcessor，beanName:" + beanName);
+
+        }
         return bean;
     }
 
@@ -32,8 +38,11 @@ public class MyInstantiationAwareBeanPostProcessor extends
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName)
             throws BeansException {
-        System.out
-                .println("9、【InstantiationAwareBeanPostProcessorAdapter】的接口【postProcessAfterInitialization】，beanName:" + beanName);
+        if (bean.getClass() == TestBeanA.class || bean.getClass() == TestBeanB.class) {
+            System.out
+                    .println("【InstantiationAwareBeanPostProcessorAdapter.postProcessAfterInitialization】来自MyInstantiationAwareBeanPostProcessor，beanName:" + beanName);
+        }
+
         return bean;
     }
 
@@ -42,8 +51,12 @@ public class MyInstantiationAwareBeanPostProcessor extends
     public PropertyValues postProcessPropertyValues(PropertyValues pvs,
                                                     PropertyDescriptor[] pds, Object bean, String beanName)
             throws BeansException {
-        System.out
-                .println("5、【InstantiationAwareBeanPostProcessorAdapter】的接口【postProcessPropertyValues】，beanName:" + beanName);
+
+        if (bean.getClass() == TestBeanA.class || bean.getClass() == TestBeanB.class) {
+            System.out
+                    .println("【InstantiationAwareBeanPostProcessorAdapter.postProcessPropertyValues】来自MyInstantiationAwareBeanPostProcessor，beanName:" + beanName);
+        }
+
         return pvs;
     }
 }

@@ -2,20 +2,11 @@ package com.example.demo.bean;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
-/**
- * @author qsk
- */
-@Component
-public class Person implements BeanFactoryAware, BeanNameAware,
+public class TestBeanA implements BeanFactoryAware, BeanNameAware,
         InitializingBean, DisposableBean {
-
-    @Autowired
-    private PersonB personB;
 
     private String name;
     private String address;
@@ -26,11 +17,15 @@ public class Person implements BeanFactoryAware, BeanNameAware,
 
     @PostConstruct
     public void init() {
-        System.out.println("【Person】的被【@PostConstruct】注解的【init】函数");
+        System.out.println("【TestBeanA.@PostConstruct】");
     }
 
-    public Person() {
-        System.out.println("【构造器】调用Person的构造器实例化");
+    public TestBeanA() {
+        System.out.println("【TestBeanA.默认构造器】");
+    }
+
+    public TestBeanA(String name) {
+        System.out.println("【TestBeanA.带参构造器】");
     }
 
     public String getName() {
@@ -38,7 +33,6 @@ public class Person implements BeanFactoryAware, BeanNameAware,
     }
 
     public void setName(String name) {
-        System.out.println("【注入属性】注入属性name");
         this.name = name;
     }
 
@@ -47,7 +41,6 @@ public class Person implements BeanFactoryAware, BeanNameAware,
     }
 
     public void setAddress(String address) {
-        System.out.println("【注入属性】注入属性address");
         this.address = address;
     }
 
@@ -56,13 +49,12 @@ public class Person implements BeanFactoryAware, BeanNameAware,
     }
 
     public void setPhone(int phone) {
-        System.out.println("【注入属性】注入属性phone");
         this.phone = phone;
     }
 
     @Override
     public String toString() {
-        return "Person [address=" + address + ", name=" + name + ", phone="
+        return "TestBeanA [address=" + address + ", name=" + name + ", phone="
                 + phone + "]";
     }
 
@@ -70,14 +62,14 @@ public class Person implements BeanFactoryAware, BeanNameAware,
     @Override
     public void setBeanFactory(BeanFactory arg0) throws BeansException {
         System.out
-                .println("【BeanFactoryAware接口】调用BeanFactoryAware.setBeanFactory()");
+                .println("【BeanFactoryAware.setBeanFactory】来自TestBeanA");
         this.beanFactory = arg0;
     }
 
     // 这是BeanNameAware接口方法
     @Override
     public void setBeanName(String arg0) {
-        System.out.println("【BeanNameAware接口】调用BeanNameAware.setBeanName()");
+        System.out.println("【BeanNameAware.setBeanName】来自TestBeanA");
         this.beanName = arg0;
     }
 
@@ -85,22 +77,22 @@ public class Person implements BeanFactoryAware, BeanNameAware,
     @Override
     public void afterPropertiesSet() throws Exception {
         System.out
-                .println("【InitializingBean接口】调用InitializingBean.afterPropertiesSet()");
+                .println("【InitializingBean.afterPropertiesSet】来自TestBeanA");
     }
 
     // 这是DiposibleBean接口方法
     @Override
     public void destroy() throws Exception {
-        System.out.println("【DiposibleBean接口】调用DiposibleBean.destory()");
+        System.out.println("【DiposibleBean.destory】来自TestBeanA");
     }
 
     // 通过<bean>的init-method属性指定的初始化方法
     public void myInit() {
-        System.out.println("【init-method】调用<bean>的init-method属性指定的初始化方法");
+        System.out.println("【TestBeanA.init-method】");
     }
 
     // 通过<bean>的destroy-method属性指定的初始化方法
     public void myDestory() {
-        System.out.println("【destroy-method】调用<bean>的destroy-method属性指定的初始化方法");
+        System.out.println("【TestBeanA.destroy-method】");
     }
 }

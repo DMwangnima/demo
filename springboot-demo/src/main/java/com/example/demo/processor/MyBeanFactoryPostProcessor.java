@@ -13,7 +13,7 @@ public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 
     public MyBeanFactoryPostProcessor() {
         super();
-        System.out.println("1、【BeanFactoryPostProcessor】实现类的构造函数");
+        System.out.println("【BeanFactoryPostProcessor】实现类postProcessBeanFactory的构造函数");
     }
 
     // 允许我们在工厂里所有的bean被加载进来后但是还没初始化前，对所有bean的属性进行修改也可以add属性值，该操作在对应bean的构造函数执行前
@@ -21,7 +21,7 @@ public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
     public void postProcessBeanFactory(ConfigurableListableBeanFactory arg0)
             throws BeansException {
         System.out
-                .println("2、【BeanFactoryPostProcessor】的接口【postProcessBeanFactory】");
+                .println("【BeanFactoryPostProcessor.postProcessBeanFactory】，来自MyBeanFactoryPostProcessor");
         //获取到Spring中所有的beanName
         String[] beanStr = arg0.getBeanDefinitionNames();
         //循环打印

@@ -16,7 +16,7 @@ https://github.com/wiatingpub/MTBSystem
 系列博客：
 - https://mp.weixin.qq.com/s/5bn5ZkAJYR0IEaa5H0bsFg
 - https://mp.weixin.qq.com/s/SQ9HS4wKSz8HtNXHOA5oeg
-- https://mp.weixin.qq.com/s/CngTpb50o9f7XWGviJ3P3Q
+- https://mp.weixin.qq.com/s/Y55hfVF4a8A6XOI5OHHlgw
 - https://mp.weixin.qq.com/s/Yo2f-XtbbxI6jrYDTtKxKA
 
 -----------

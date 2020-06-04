@@ -13,12 +13,6 @@
 系统应用可以查看项目基于go-micro微服务实现的在线电影院订票系统：
 https://github.com/wiatingpub/MTBSystem
 
-系列博客：
-- https://mp.weixin.qq.com/s/5bn5ZkAJYR0IEaa5H0bsFg
-- https://mp.weixin.qq.com/s/SQ9HS4wKSz8HtNXHOA5oeg
-- https://mp.weixin.qq.com/s/Y55hfVF4a8A6XOI5OHHlgw
-- https://mp.weixin.qq.com/s/Yo2f-XtbbxI6jrYDTtKxKA
-
 -----------
 
 **二、 基于spring实现事件驱动**
@@ -29,9 +23,6 @@ https://github.com/wiatingpub/MTBSystem
 
 1）直接点击EventMechanismApplicationTests启动便可以
 
-系列博客：
-- https://mp.weixin.qq.com/s?__biz=MzI4NjMwMzgzOA==&mid=2247483737&idx=1&sn=ca8dbfed50c1b300e8f95972838b93d4&chksm=ebdfb268dca83b7e127c2b61f3ad440faeebefcdc1382e0348ad557a75eca90ba4119a8a0126&token=1239249976&lang=zh_CN#rd
-
 ---------
 
 **三、 聊聊spring中bean的生命周期**
@@ -41,13 +32,3 @@ https://github.com/wiatingpub/MTBSystem
 运行要求：
 
 1）直接点击DemoApplication启动便可以
-
-系列博客：
-- 
-
----------
-
-
-系列博客可以关注公众号：
-
-![qrcode_for_gh_04e57fbebd02_258.jpg](http://upload-images.jianshu.io/upload_images/3365849-f14ff503e4288fc3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
